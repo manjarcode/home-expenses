@@ -1,4 +1,4 @@
-import FormExpenses from './form/formExpenses.js'
+import FormExpenses from './form/formExpenses/index.js'
 
 import './styles.css'
 

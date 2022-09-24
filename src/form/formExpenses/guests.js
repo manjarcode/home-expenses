@@ -3,7 +3,7 @@ import {useState} from 'react'
 import PropTypes from 'prop-types'
 
 import Guest from '../../components/guest/index.js'
-import AddGuest from '../addGuest.js'
+import AddGuest from '../addGuest/index.js'
 import useModal from './useModal.js'
 
 function Guests({onChange}) {

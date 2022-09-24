@@ -3,7 +3,7 @@ import {useState} from 'react'
 import PropTypes from 'prop-types'
 
 import Expense from '../../components/expense/index.js'
-import AddExpense from '../addExpense.js'
+import AddExpense from '../addExpense/index.js'
 import useModal from './useModal.js'
 
 function Expenses({onChange}) {
