@@ -1,0 +1,11 @@
+@import "../../theme/index.scss";
+
+.Input {
+  &-label {
+    display: block;
+  }
+
+  &-input {
+    margin-bottom: $m-m;
+  }
+}
