@@ -2,19 +2,20 @@ import PropTypes from 'prop-types'
 
 import Period from '../period/index.js'
 
-import './index.scss'
-
-function Guest({name, period}) {
+function Expense({name, period}) {
   return (
-    <div className="Guest">
+    <div>
       <div>{name}</div>
       <Period {...period} />
     </div>
   )
 }
 
-Guest.propTypes = {
+Expense.propTypes = {
   name: PropTypes.string,
-  period: PropTypes.string
+  period: PropTypes.shape({
+    from: PropTypes.date,
+    to: PropTypes.date
+  })
 }
-export default Guest
+export default Expense

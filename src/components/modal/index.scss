@@ -8,7 +8,7 @@
   left: 0;
   right: 0;
   opacity: $o-75;
-  background-color: $c-primary;
+  background-color: $c-secondary;
 
   &-modal {
     position: absolute;
@@ -17,7 +17,7 @@
     left:$m-xl;
     right:$m-xl;
     border: 1px solid;
-    background-color: $c-primary;
+    background-color: $c-secondary;
     overflow: scroll-y;
     padding: $p-m;
   }

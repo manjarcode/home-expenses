@@ -1,7 +1,9 @@
-import "./index.scss";
+import PropTypes from 'prop-types'
 
-function Modal({ isVisible, ...props }) {
-  console.log("isVisible", isVisible);
+import './index.scss'
+
+function Modal({isVisible, ...props}) {
+  console.log('isVisible', isVisible)
   return (
     isVisible && (
       <>
@@ -9,7 +11,11 @@ function Modal({ isVisible, ...props }) {
         <div className="Modal-modal" {...props} />
       </>
     )
-  );
+  )
 }
 
-export default Modal;
+Modal.propTypes = {
+  isVisible: PropTypes.string
+}
+
+export default Modal

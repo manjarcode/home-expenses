@@ -1,27 +1,34 @@
-import { useState } from "react";
-import AddGuest from "../addGuest";
-import useModal from "./useModal";
-import Guest from "../../components/guest/index";
+import {useState} from 'react'
 
-function Guests({ onChange }) {
-  const [guests, setGuests] = useState([]);
-  const { isVisible, open, close } = useModal();
+import PropTypes from 'prop-types'
 
-  const onAccept = (guest) => {
-    const current = [...guests, guest];
-    setGuests(current);
-    onChange(current);
-    close();
-  };
+import Guest from '../../components/guest/index.js'
+import AddGuest from '../addGuest.js'
+import useModal from './useModal.js'
+
+function Guests({onChange}) {
+  const [guests, setGuests] = useState([])
+  const {isVisible, open, close} = useModal()
+
+  const onAccept = guest => {
+    const current = [...guests, guest]
+    setGuests(current)
+    onChange(current)
+    close()
+  }
 
   return (
     <div>
-      {guests.map((guest) => (
-        <Guest {...guest} />
+      {guests.map(guest => (
+        <Guest {...guest} key={guest.name} />
       ))}
       <button onClick={open}>Añadir huésped</button>
       <AddGuest isVisible={isVisible} onAccept={onAccept} onCancel={close} />
     </div>
-  );
+  )
 }
-export default Guests;
+
+Guests.propTypes = {
+  onChange: PropTypes.func
+}
+export default Guests

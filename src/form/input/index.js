@@ -1,9 +1,11 @@
-import "./index.scss";
+import PropTypes from 'prop-types'
 
-function Input({ label, onChange, ...props }) {
-  const onInputChange = (ev) => {
-    onChange(ev.target.value);
-  };
+import './index.scss'
+
+function Input({label, onChange, ...props}) {
+  const onInputChange = ev => {
+    onChange(ev.target.value)
+  }
   return (
     <>
       {label && <label className="Input-label">{label}</label>}
@@ -13,7 +15,12 @@ function Input({ label, onChange, ...props }) {
         {...props}
       ></input>
     </>
-  );
+  )
 }
 
-export default Input;
+Input.propTypes = {
+  label: PropTypes.string,
+  onChange: PropTypes.func
+}
+
+export default Input

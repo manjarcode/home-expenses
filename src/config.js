@@ -1,1 +1,1 @@
-export const CULTURE = "es-ES";
+export const CULTURE = 'es-ES'

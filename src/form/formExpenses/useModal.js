@@ -1,17 +1,17 @@
-import { useState } from "react";
+import {useState} from 'react'
 
 function useModal() {
-  const [isVisible, setIsVisible] = useState();
+  const [isVisible, setIsVisible] = useState()
 
   const open = () => {
-    setIsVisible(true);
-  };
+    setIsVisible(true)
+  }
 
   const close = () => {
-    setIsVisible(false);
-  };
+    setIsVisible(false)
+  }
 
-  return { isVisible, open, close };
+  return {isVisible, open, close}
 }
 
-export default useModal;
+export default useModal

@@ -1,35 +1,41 @@
-import { useState } from "react";
-import AddExpense from "../addExpense";
-import useModal from "./useModal";
-import Expense from "../../components/Expense";
+import {useState} from 'react'
 
-function Expenses({ onChange }) {
-  const [expenses, setExpenses] = useState([]);
+import PropTypes from 'prop-types'
 
-  const { isVisible, open, close } = useModal();
+import Expense from '../../components/expense/index.js'
+import AddExpense from '../addExpense.js'
+import useModal from './useModal.js'
 
-  const onAccept = (period) => {
-    setExpenses((value) => {
-      const current = [...value, period];
-      onChange(current);
-      return current;
-    });
-    close();
-  };
+function Expenses({onChange}) {
+  const [expenses, setExpenses] = useState([])
+
+  const {isVisible, open, close} = useModal()
+
+  const onAccept = period => {
+    setExpenses(value => {
+      const current = [...value, period]
+      onChange(current)
+      return current
+    })
+    close()
+  }
 
   const onAddClick = () => {
-    open();
-  };
+    open()
+  }
 
   return (
     <div>
-      {expenses.map((expense) => (
-        <Expense {...expense} s />
+      {expenses.map(expense => (
+        <Expense {...expense} key={expense.name} />
       ))}
       <button onClick={onAddClick}>Añadir Gasto</button>
       <AddExpense onAccept={onAccept} onCancel={close} isVisible={isVisible} />
     </div>
-  );
+  )
 }
 
-export default Expenses;
+Expenses.propTypes = {
+  onChange: PropTypes.func
+}
+export default Expenses

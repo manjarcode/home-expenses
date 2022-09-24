@@ -1,6 +1,6 @@
-import "./styles.css";
+import FormExpenses from './form/formExpenses.js'
 
-import FormExpenses from "./form/formExpenses";
+import './styles.css'
 
 export default function App() {
   return (
@@ -8,5 +8,5 @@ export default function App() {
       <h1>Gastos</h1>
       <FormExpenses />
     </div>
-  );
+  )
 }
