@@ -1,25 +1,38 @@
-import Expense from './Expenses'
-import {JULY, MAY, SEPTEMBER} from './months'
-import Period from './Period'
+import ExpenseEntity from './domain/ExpensesEntity.js'
+import GuestEntity from './domain/GuestEntity.js'
+import JanderAggregate from './domain/JanderAggregate.js'
+import Period from './domain/PeriodValueObject.js'
+import * as MONTH from './months.js'
 
-const electricity = new Expense(
-  new Period({
-    from: new Date(2022, MAY, 19),
-    to: new Date(2022, JULY, 19)
+const electricity = new ExpenseEntity({
+  name: 'Electricity',
+  period: new Period({
+    from: new Date(2022, MONTH.MAY, 19),
+    to: new Date(2022, MONTH.JULY, 19)
   }),
-  43.65,
-  4
-)
-
-const bego = new Period({
-  from: new Date(2022, JULY, 1),
-  to: new Date(2022, SEPTEMBER, 30)
+  ammount: 43.65,
+  split: 4
 })
 
-console.log('electricity for begoña', electricity.getExpense(bego))
-
-const period = new Period({
-  from: new Date(2022, MAY, 19),
-  to: new Date(2022, MAY, 20)
+const bego = new GuestEntity({
+  name: 'Begoña',
+  period: new Period({
+    from: new Date(2022, MONTH.JULY, 1),
+    to: new Date(2022, MONTH.SEPTEMBER, 30)
+  })
 })
-console.log('aja', period.days())
+
+const maria = new GuestEntity({
+  name: 'Maria',
+  period: new Period({
+    from: new Date(2022, MONTH.JUNE, 1),
+    to: new Date(2022, MONTH.SEPTEMBER, 30)
+  })
+})
+
+const jander = new JanderAggregate({
+  expenses: [electricity],
+  guests: [bego, maria]
+})
+
+jander.calcultate()

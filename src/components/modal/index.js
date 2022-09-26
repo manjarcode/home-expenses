@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import './index.scss'
 
 function Modal({isVisible, ...props}) {
-  console.log('isVisible', isVisible)
   return (
     isVisible && (
       <>

@@ -1,3 +1,5 @@
+const DAY = 1000 * 3600 * 24
+
 class PeriodValueObject {
   constructor({from, to, name}) {
     this.validateDate(from)
@@ -22,15 +24,15 @@ class PeriodValueObject {
 
   _calculateDays(from, to) {
     const timespam = to - from
-    const millisecondsPerDay = 1000 * 3600 * 24
 
-    const days = timespam / millisecondsPerDay
+    const days = timespam / DAY
 
     return days + 1
   }
 
   days() {
-    return this._calculateDays(this.from, this.to)
+    this._dayCount = this.dayCount ?? this._calculateDays(this.from, this.to)
+    return this._dayCount
   }
 
   intersectionDays(period) {
@@ -54,6 +56,18 @@ class PeriodValueObject {
     return isHigherInsideLower
       ? this._calculateDays(higher.from, higher.to)
       : this._calculateDays(higher.from, lower.to)
+  }
+
+  contains(date) {
+    return date > this.from && date < this.to
+  }
+
+  iterate(iteratorFunc) {
+    const date = this.from
+    while (date < this.to) {
+      iteratorFunc(date)
+      date.setDate(date.getDate() + 1)
+    }
   }
 }
 

@@ -1,22 +1,27 @@
 class ExpenseEntity {
-  constructor({name, period, ammount, split = 1}) {
+  constructor({name, period, ammount}) {
     this.name = name
     this.period = period
     this.ammount = ammount
-    this.split = split
   }
 
-  getExpense(guestPeriod) {
+  getExpense(period, split) {
     const totalDays = this.period.days()
 
-    const intersectionDays = this.period.intersectionDays(guestPeriod)
+    const intersectionDays = this.period.intersectionDays(period)
 
     const ratio = intersectionDays / totalDays
-    const ratioPerGuest = ratio / this.split
+    const ratioPerGuest = ratio / split
 
     const value = this.ammount * ratioPerGuest
 
     return value
+  }
+
+  ammountPerDay() {
+    this._ammountPerDay =
+      this._ammountPerDay ?? this.ammount / this.period.days()
+    return this._ammountPerDay
   }
 }
 
