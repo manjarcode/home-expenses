@@ -1,3 +1,5 @@
+import {CULTURE} from '../config.js'
+
 const DAY = 1000 * 3600 * 24
 
 class PeriodValueObject {
@@ -59,15 +61,21 @@ class PeriodValueObject {
   }
 
   contains(date) {
-    return date > this.from && date < this.to
+    return date >= this.from && date <= this.to
   }
 
   iterate(iteratorFunc) {
     const date = this.from
-    while (date < this.to) {
+    while (date <= this.to) {
       iteratorFunc(date)
       date.setDate(date.getDate() + 1)
     }
+  }
+
+  toString() {
+    return `${this.from.toLocaleDateString(
+      CULTURE
+    )} - ${this.to.toLocaleDateString(CULTURE)}`
   }
 }
 

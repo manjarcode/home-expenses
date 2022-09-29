@@ -7,7 +7,6 @@ class ShareValueObject {
     this.ensureExpense(expense)
     this.ensureGuest(expense, guest)
 
-    console.log('guest ammount here', this._dictionary[expense][guest], ammount)
     this._dictionary[expense][guest] += ammount
   }
 

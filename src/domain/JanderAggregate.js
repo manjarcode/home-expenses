@@ -1,4 +1,4 @@
-import ShareValueObject from './ShareValueObject'
+import ShareValueObject from './ShareValueObject.js'
 
 class JanderAggregate {
   constructor({expenses, guests}) {
@@ -27,19 +27,12 @@ class JanderAggregate {
 
         const ammount = isInvolved ? expense.ammountPerDay() / guestInvolved : 0
 
-        console.log('guest name', guest.name)
-        console.log('expense name', expense.name)
-        console.log('guestShare', ammount)
-
         share.addAmmount({
           guest: guest.name,
           expense: expense.name,
           ammount
         })
       })
-
-      console.log('share', share)
-      console.log('date', date.toLocaleDateString('es-ES'))
     })
   }
 
