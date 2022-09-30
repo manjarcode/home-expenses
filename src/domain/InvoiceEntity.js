@@ -1,5 +1,6 @@
-class ShareValueObject {
-  constructor() {
+class InvoiceEntity {
+  constructor({id}) {
+    this._id = id
     this._dictionary = {}
   }
 
@@ -26,4 +27,4 @@ class ShareValueObject {
   }
 }
 
-export default ShareValueObject
+export default InvoiceEntity

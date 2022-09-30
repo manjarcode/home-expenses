@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-import JanderAggregate from '../../domain/JanderAggregate.js'
+import InvoiceService from '../../domain/InvoiceService.js'
 import Expenses from './expenses.js'
 import Guests from './guests.js'
 
@@ -9,8 +9,8 @@ function FormExpenses() {
   const [guests, setGuests] = useState([])
 
   const onClick = () => {
-    const jander = new JanderAggregate({expenses, guests})
-    jander.calcultate()
+    const invoiceService = new InvoiceService()
+    invoiceService.calculate({expenses, guests})
   }
 
   return (

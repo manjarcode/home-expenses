@@ -1,6 +1,6 @@
 import ExpenseEntity from './domain/ExpensesEntity.js'
 import GuestEntity from './domain/GuestEntity.js'
-import JanderAggregate from './domain/JanderAggregate.js'
+import InvoiceService from './domain/InvoiceService.js'
 import Period from './domain/PeriodValueObject.js'
 import * as MONTH from './months.js'
 
@@ -30,9 +30,11 @@ const maria = new GuestEntity({
   })
 })
 
-const jander = new JanderAggregate({
+const invoiceService = new InvoiceService()
+const invoice = invoiceService.calculate({
   expenses: [electricity],
   guests: [bego, maria]
 })
 
-jander.calcultate()
+// eslint-disable-next-line no-console
+console.log(invoice)
