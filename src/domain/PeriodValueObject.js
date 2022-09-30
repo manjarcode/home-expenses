@@ -3,15 +3,14 @@ import {CULTURE} from '../config.js'
 const DAY = 1000 * 3600 * 24
 
 class PeriodValueObject {
-  constructor({from, to, name}) {
-    this.validateDate(from)
-    this.validateDate(to)
+  constructor({from, to}) {
+    this._validateDate(from)
+    this._validateDate(to)
     this.from = from
     this.to = to
-    this.name = name
   }
 
-  validateDate(value) {
+  _validateDate(value) {
     const isDate = value instanceof Date
     if (!isDate) {
       throw new Error(`invalid date value ${value}`)
