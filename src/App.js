@@ -1,5 +1,3 @@
-import './example.js'
-
 import FormExpenses from './form/formExpenses/index.js'
 
 import './styles.css'
