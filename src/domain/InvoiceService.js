@@ -4,15 +4,16 @@ import InvoiceEntity from './InvoiceEntity.js'
 
 class InvoiceService {
   calculate({expenses, guests}) {
+    const invoice = new InvoiceEntity({id: uuid()})
+
     return expenses
       .map(expense => {
-        return this._calculateExpense(expense, guests)
+        return this._calculateExpense(expense, guests, invoice)
       })
       .reduce((acum, current) => current)
   }
 
-  _calculateExpense(expense, guests) {
-    const invoice = new InvoiceEntity({id: uuid()})
+  _calculateExpense(expense, guests, invoice) {
     expense.period.iterate(date => {
       const guestInvolved = guests
         .map(guest => (guest.period.contains(date) ? 1 : 0))
