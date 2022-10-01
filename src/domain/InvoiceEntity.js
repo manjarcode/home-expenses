@@ -1,39 +1,46 @@
+import {formatDate} from './utils/formatDate.js'
+
 class InvoiceEntity {
   constructor({id}) {
     this._id = id
     this._dictionary = {}
   }
 
-  addAmmount({guest, expense, ammount}) {
-    this._ensureGuest(guest)
-    this._ensureExpense(guest, expense)
+  addAmmount({guest, expense, ammount, date}) {
+    const guestPointer = this._guest(guest)
+    const expensePointer = this._expense(guest, expense)
 
-    this._dictionary[guest][expense] += ammount
+    guestPointer.total += ammount
+    expensePointer.value += ammount
+    expensePointer.dates.push(formatDate(date))
   }
 
-  _ensureGuest(guest) {
-    if (this._dictionary[guest]) {
-      return
+  _guest(guest) {
+    if (!this._dictionary[guest]) {
+      this._dictionary[guest] = {total: 0}
     }
-    this._dictionary[guest] = {}
+
+    return this._dictionary[guest]
   }
 
-  _ensureExpense(guest, expense) {
-    if (this._dictionary[guest][expense]) {
-      return
+  _expense(guest, expense) {
+    if (!this._dictionary[guest][expense]) {
+      this._dictionary[guest][expense] = {
+        value: 0,
+        dates: []
+      }
     }
 
-    this._dictionary[guest][expense] = 0
+    return this._dictionary[guest][expense]
   }
 
   byGuest(guest) {
-    const expenses = Object.values(this._dictionary[guest])
+    const {total} = this._guest(guest)
+    return total
+  }
 
-    const total = expenses.reduce((acum, current) => acum + current)
-
-    return {
-      total
-    }
+  toJSON() {
+    return this._dictionary
   }
 }
 

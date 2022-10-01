@@ -22,7 +22,7 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity], [tyrion])
 
-      expect(invoice.byGuest('Tyrion').total).toBe(50)
+      expect(invoice.byGuest('Tyrion')).toBe(50)
     })
 
     test('guest with half period of intersection must pay half ammount', () => {
@@ -31,7 +31,7 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity], [tyrion])
 
-      expect(invoice.byGuest('Tyrion').total).toBe(50)
+      expect(invoice.byGuest('Tyrion')).toBe(50)
     })
 
     test('guest without intersection must pay nothing', () => {
@@ -40,7 +40,7 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity], [tyrion])
 
-      expect(invoice.byGuest('Tyrion').total).toBe(0)
+      expect(invoice.byGuest('Tyrion')).toBe(0)
     })
   })
 
@@ -52,7 +52,7 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity, gas], [tyrion])
 
-      expect(invoice.byGuest('Tyrion').total).toBe(200)
+      expect(invoice.byGuest('Tyrion')).toBe(200)
     })
 
     test('guest stays half period must pay half ammount', () => {
@@ -62,7 +62,7 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity, gas], [tyrion])
 
-      expect(invoice.byGuest('Tyrion').total).toBe(100)
+      expect(invoice.byGuest('Tyrion')).toBe(100)
     })
   })
 
@@ -75,8 +75,8 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity], [tyrion, cersei])
 
-      expect(invoice.byGuest('Tyrion').total).toBe(50)
-      expect(invoice.byGuest('Cersei').total).toBe(50)
+      expect(invoice.byGuest('Tyrion')).toBe(50)
+      expect(invoice.byGuest('Cersei')).toBe(50)
     })
 
     test('guests not meeting but same number of days must split payment equally', () => {
@@ -87,8 +87,8 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity], [tyrion, cersei])
 
-      expect(invoice.byGuest('Tyrion').total).toBe(50)
-      expect(invoice.byGuest('Cersei').total).toBe(50)
+      expect(invoice.byGuest('Tyrion')).toBe(50)
+      expect(invoice.byGuest('Cersei')).toBe(50)
     })
   })
 
@@ -102,8 +102,8 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity, gas], [tyrion, cersei])
 
-      expect(invoice.byGuest('Tyrion').total).toBe(100)
-      expect(invoice.byGuest('Cersei').total).toBe(100)
+      expect(invoice.byGuest('Tyrion')).toBe(100)
+      expect(invoice.byGuest('Cersei')).toBe(100)
     })
 
     test('guest meeting different periods pay different ammount', () => {
@@ -115,8 +115,8 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity, gas], [tyrion, cersei])
 
-      expect(invoice.byGuest('Tyrion').total).toBe(150)
-      expect(invoice.byGuest('Cersei').total).toBe(100)
+      expect(invoice.byGuest('Tyrion')).toBe(150)
+      expect(invoice.byGuest('Cersei')).toBe(100)
     })
   })
 })

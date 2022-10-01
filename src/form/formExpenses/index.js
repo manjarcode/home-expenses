@@ -8,9 +8,13 @@ function FormExpenses() {
   const [expenses, setExpenses] = useState([])
   const [guests, setGuests] = useState([])
 
+  const [invoice, setInvoice] = useState()
+  console.log(invoice)
+
   const onClick = () => {
     const invoiceService = new InvoiceService()
-    invoiceService.calculate({expenses, guests})
+    const result = invoiceService.calculate({expenses, guests})
+    setInvoice(result)
   }
 
   return (

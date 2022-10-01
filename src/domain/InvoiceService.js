@@ -29,7 +29,8 @@ class InvoiceService {
         invoice.addAmmount({
           guest: guest.name,
           expense: expense.name,
-          ammount
+          ammount,
+          date
         })
       })
     })
