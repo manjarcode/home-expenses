@@ -13,7 +13,6 @@ class InvoiceService {
 
   _calculateExpense(expense, guests) {
     const invoice = new InvoiceEntity({id: uuid()})
-
     expense.period.iterate(date => {
       const guestInvolved = guests
         .map(guest => (guest.period.contains(date) ? 1 : 0))

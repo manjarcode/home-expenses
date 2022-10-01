@@ -4,26 +4,36 @@ class InvoiceEntity {
     this._dictionary = {}
   }
 
-  addAmmount({expense, guest, ammount}) {
-    this.ensureExpense(expense)
-    this.ensureGuest(expense, guest)
+  addAmmount({guest, expense, ammount}) {
+    this._ensureGuest(guest)
+    this._ensureExpense(guest, expense)
 
-    this._dictionary[expense][guest] += ammount
+    this._dictionary[guest][expense] += ammount
   }
 
-  ensureExpense(expense) {
-    if (this._dictionary[expense]) {
+  _ensureGuest(guest) {
+    if (this._dictionary[guest]) {
       return
     }
-    this._dictionary[expense] = {}
+    this._dictionary[guest] = {}
   }
 
-  ensureGuest(expense, guest) {
-    if (this._dictionary[expense][guest]) {
+  _ensureExpense(guest, expense) {
+    if (this._dictionary[guest][expense]) {
       return
     }
 
-    this._dictionary[expense][guest] = 0
+    this._dictionary[guest][expense] = 0
+  }
+
+  byGuest(guest) {
+    const expenses = Object.values(this._dictionary[guest])
+
+    const total = expenses.reduce((acum, current) => acum + current)
+
+    return {
+      total
+    }
   }
 }
 

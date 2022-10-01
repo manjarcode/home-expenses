@@ -64,7 +64,7 @@ class PeriodValueObject {
   }
 
   iterate(iteratorFunc) {
-    const date = this.from
+    const date = new Date(this.from)
     while (date <= this.to) {
       iteratorFunc(date)
       date.setDate(date.getDate() + 1)
