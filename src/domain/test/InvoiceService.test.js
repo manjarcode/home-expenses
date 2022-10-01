@@ -8,6 +8,7 @@ describe('InvoiceService calculate invoice', () => {
   const may6 = Factory.date(2020, MONTH.MAY, 6)
   const may10 = Factory.date(2020, MONTH.MAY, 10)
   const may15 = Factory.date(2020, MONTH.MAY, 15)
+  const may20 = Factory.date(2020, MONTH.MAY, 20)
 
   const calculate = (expenses, guests) => {
     const invoiceService = new InvoiceService()
@@ -102,6 +103,19 @@ describe('InvoiceService calculate invoice', () => {
       const invoice = calculate([electricity, gas], [tyrion, cersei])
 
       expect(invoice.byGuest('Tyrion').total).toBe(100)
+      expect(invoice.byGuest('Cersei').total).toBe(100)
+    })
+
+    test('guest meeting different periods pay different ammount', () => {
+      const tyrion = Factory.guest('Tyrion', may1, may10)
+      const cersei = Factory.guest('Cersei', may6, may15)
+
+      const electricity = Factory.expense('Electricity', may1, may10, 100)
+      const gas = Factory.expense('Gas', may1, may20, 200)
+
+      const invoice = calculate([electricity, gas], [tyrion, cersei])
+
+      expect(invoice.byGuest('Tyrion').total).toBe(150)
       expect(invoice.byGuest('Cersei').total).toBe(100)
     })
   })
