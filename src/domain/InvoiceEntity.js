@@ -40,7 +40,7 @@ class InvoiceEntity {
   }
 
   toJSON() {
-    const guests = Object.entries(this._dictionary).map(
+    return Object.entries(this._dictionary).map(
       ([guestName, {total, ...expensesDto}]) => {
         const expenses = Object.entries(expensesDto).map(
           ([expenseName, {value, dates}]) => {
@@ -50,7 +50,6 @@ class InvoiceEntity {
         return {name: guestName, total, expenses}
       }
     )
-    return {guests}
   }
 }
 

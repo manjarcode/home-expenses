@@ -6,11 +6,11 @@ class InvoiceService {
   calculate({expenses, guests}) {
     const invoice = new InvoiceEntity({id: uuid()})
 
-    return expenses
-      .map(expense => {
-        return this._calculateExpense(expense, guests, invoice)
-      })
-      .reduce((acum, current) => current)
+    expenses.forEach(expense => {
+      this._calculateExpense(expense, guests, invoice)
+    })
+
+    return invoice
   }
 
   _calculateExpense(expense, guests, invoice) {
