@@ -2,6 +2,7 @@ import {useState} from 'react'
 
 import Invoice from '../../components/invoice/index.js'
 import InvoiceService from '../../domain/InvoiceService.js'
+import Button from '../button/index.js'
 import Expenses from './expenses.js'
 import Guests from './guests.js'
 
@@ -21,7 +22,7 @@ function FormExpenses() {
     <div>
       <Expenses onChange={setExpenses} />
       <Guests onChange={setGuests} />
-      <button onClick={onClick}>Calcular</button>
+      <Button onClick={onClick}>Calcular</Button>
       <Invoice invoice={invoice} />
     </div>
   )

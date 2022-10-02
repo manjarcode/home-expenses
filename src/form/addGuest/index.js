@@ -6,6 +6,7 @@ import Modal from '../../components/modal/index.js'
 import GuestEntity from '../../domain/GuestEntity.js'
 import PeriodValueObject from '../../domain/PeriodValueObject.js'
 import AddPeriod from '../addPeriod/index.js'
+import Button from '../button/index.js'
 import Input from '../input/index.js'
 
 function AddGuest({onAccept, onCancel, isVisible}) {
@@ -21,12 +22,14 @@ function AddGuest({onAccept, onCancel, isVisible}) {
   }
   return (
     <Modal isVisible={isVisible}>
-      <h2>Añadir huésped</h2>
+      <Modal.Title>Añadir huésped</Modal.Title>
       <Input label="Nombre" onChange={setName} />
       <AddPeriod label="Desde: " onChange={setFrom} />
       <AddPeriod label="Hasta: " onChange={setTo} />
-      <button onClick={acceptHandler}>Aceptar</button>
-      <button onClick={onCancel}>Cancelar</button>
+      <Modal.Footer>
+        <Button onClick={acceptHandler}>Aceptar</Button>
+        <Button onClick={onCancel}>Cancelar</Button>
+      </Modal.Footer>
     </Modal>
   )
 }

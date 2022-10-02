@@ -8,12 +8,26 @@ $p-m: 16px;
 $p-l: 32px;
 $p-xl: 64px;
 
-
-$c-primary: black;
-$c-secondary: white;
-$c-link: hsl(206, 85%, 22%);
+$c-primary: #607196;
+$c-secondary: #EAE8ED;
+$c-third: #BABFD1;
+$c-accent: #FF7B9C;
+$c-contrast: #FFC759;
+$c-dark: hsla(60, 1%, 23%, 1);
 $o-0: 0%;
 $o-25: 25%;
 $o-50: 50%;
 $o-75: 75%;
 $o-100: 100%;
+
+$br-s: 4px;
+$br-m: 8px;
+$br-l: 16px;
+$br-xl: 32px;
+
+$bd-w: 1px;
+
+body {
+    color: $c-dark;
+    background-color: $c-secondary;
+}

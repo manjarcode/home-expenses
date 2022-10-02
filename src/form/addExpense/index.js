@@ -6,6 +6,7 @@ import Modal from '../../components/modal/index.js'
 import ExpenseEntity from '../../domain/ExpensesEntity.js'
 import PeriodValueObject from '../../domain/PeriodValueObject.js'
 import AddPeriod from '../addPeriod/index.js'
+import Button from '../button/index.js'
 import Input from '../input/index.js'
 
 function AddExpense({onAccept, onCancel, isVisible}) {
@@ -24,13 +25,15 @@ function AddExpense({onAccept, onCancel, isVisible}) {
 
   return (
     <Modal isVisible={isVisible}>
-      <h2>Añadir gasto</h2>
+      <Modal.Title>Añadir gasto</Modal.Title>
       <Input onChange={setName} label="Nombre: " />
       <Input onChange={setAmmount} label="Cantidad: " />
       <AddPeriod label="Desde: " onChange={setFrom} />
       <AddPeriod label="Hasta: " onChange={setTo} />
-      <button onClick={onClick}>Aceptar</button>
-      <button onClick={onCancel}>Cancelar</button>
+      <Modal.Footer>
+        <Button onClick={onClick}>Aceptar</Button>
+        <Button onClick={onCancel}>Cancelar</Button>
+      </Modal.Footer>
     </Modal>
   )
 }

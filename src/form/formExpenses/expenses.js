@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import Expense from '../../components/expense/index.js'
 import AddExpense from '../addExpense/index.js'
+import Button from '../button/index.js'
 import useModal from './useModal.js'
 
 function Expenses({onChange}) {
@@ -29,7 +30,7 @@ function Expenses({onChange}) {
       {expenses.map(expense => (
         <Expense {...expense} key={expense.name} />
       ))}
-      <button onClick={onAddClick}>Añadir Gasto</button>
+      <Button onClick={onAddClick}>Añadir Gasto</Button>
       <AddExpense onAccept={onAccept} onCancel={close} isVisible={isVisible} />
     </div>
   )
