@@ -1,10 +1,10 @@
 import {useState} from 'react'
 
+import ExpenseEntity from 'home-expenses-domain/src/ExpensesEntity'
+import PeriodValueObject from 'home-expenses-domain/src/PeriodValueObject'
 import PropTypes from 'prop-types'
 
 import Modal from '../../components/modal/index.js'
-import ExpenseEntity from '../../domain/ExpensesEntity.js'
-import PeriodValueObject from '../../domain/PeriodValueObject.js'
 import AddPeriod from '../addPeriod/index.js'
 import Button from '../button/index.js'
 import Input from '../input/index.js'

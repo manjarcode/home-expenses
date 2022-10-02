@@ -1,7 +1,8 @@
 import {useState} from 'react'
 
+import InvoiceService from 'home-expenses-domain/src/InvoiceService.js'
+
 import Invoice from '../../components/invoice/index.js'
-import InvoiceService from '../../domain/InvoiceService.js'
 import Button from '../button/index.js'
 import Expenses from './expenses.js'
 import Guests from './guests.js'

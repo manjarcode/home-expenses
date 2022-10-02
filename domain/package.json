@@ -1,0 +1,23 @@
+{
+  "name": "home-expenses-domain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slaverise/home-expenses.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slaverise/home-expenses/issues"
+  },
+  "homepage": "https://github.com/slaverise/home-expenses#readme"
+}
