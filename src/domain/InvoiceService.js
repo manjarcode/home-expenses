@@ -26,12 +26,14 @@ class InvoiceService {
 
         const ammount = isInvolved ? expense.ammountPerDay() / guestInvolved : 0
 
-        invoice.addAmmount({
-          guest: guest.name,
-          expense: expense.name,
-          ammount,
-          date
-        })
+        if (isInvolved) {
+          invoice.addAmmount({
+            guest: guest.name,
+            expense: expense.name,
+            ammount,
+            date
+          })
+        }
       })
     })
 
