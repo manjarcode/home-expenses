@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-import InvoiceService from 'home-expenses-domain/src/InvoiceService.js'
+import InvoiceService from 'home-expenses-domain/src/invoices/services/InvoiceService.js'
 
 import Button from '../../components/button/index.js'
 import Invoice from '../../components/invoice/index.js'

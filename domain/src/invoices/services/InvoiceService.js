@@ -1,6 +1,6 @@
 import {v4 as uuid} from 'uuid'
 
-import InvoiceEntity from './InvoiceEntity.js'
+import InvoiceEntity from '../entities/InvoiceEntity.js'
 
 class InvoiceService {
   calculate({expenses, guests}) {

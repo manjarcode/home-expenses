@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
-import ExpenseEntity from 'home-expenses-domain/src/ExpensesEntity'
-import PeriodValueObject from 'home-expenses-domain/src/PeriodValueObject'
+import ExpenseEntity from 'home-expenses-domain/src/expenses/entities/ExpensesEntity.js'
+import PeriodValueObject from 'home-expenses-domain/src/periods/valueObjects/PeriodValueObject.js'
 import PropTypes from 'prop-types'
 
 import AddPeriod from '../addPeriod/index.js'

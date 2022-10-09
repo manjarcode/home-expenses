@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
-import GuestEntity from 'home-expenses-domain/src/GuestEntity.js'
-import PeriodValueObject from 'home-expenses-domain/src/PeriodValueObject.js'
+import GuestEntity from 'home-expenses-domain/src/guests/entities/GuestEntity.js'
+import PeriodValueObject from 'home-expenses-domain/src/periods/valueObjects/PeriodValueObject.js'
 import PropTypes from 'prop-types'
 
 import AddPeriod from '../addPeriod/index.js'
