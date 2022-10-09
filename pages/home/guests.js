@@ -5,12 +5,12 @@ import PropTypes from 'prop-types'
 import AddGuest from '../../components/addGuest/index.js'
 import Button from '../../components/button/index.js'
 import Guest from '../../components/guest/index.js'
+import useGuests from '../../hooks/useGuests.js'
 import useModal from '../../hooks/useModal.js'
 
 function Guests({onChange}) {
-  const [guests, setGuests] = useState([])
+  const {guests, setGuests} = useGuests()
   const {isVisible, open, close} = useModal()
-
   const onAccept = guest => {
     const current = [...guests, guest]
     setGuests(current)

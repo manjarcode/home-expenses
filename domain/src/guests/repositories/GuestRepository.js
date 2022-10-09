@@ -20,8 +20,6 @@ export default class GuestRepository {
       })
     })
 
-    const items = await promise
-
-    return items.map(item => GuestEntityFactory.guest(item))
+    return promise
   }
 }

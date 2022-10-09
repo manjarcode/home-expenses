@@ -13,12 +13,14 @@ export default class GuestEntityFactory {
 
     to = currently ? today : to
 
-    return new GuestEntity({
+    const entity = new GuestEntity({
       name,
       period: new PeriodValueObject({
         from: new Date(from),
         to: new Date(to)
       })
     })
+
+    return entity
   }
 }
