@@ -4,3 +4,6 @@ package-lock.json
 
 # Nest Js files
 .next
+
+# NextJS local configuration
+.env.local
