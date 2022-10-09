@@ -6,12 +6,13 @@
   "main": "src/index.js",
   "dependencies": {
     "classnames": "2.3.2",
-    "home-expenses-domain": "^1.0.0",
-    "prop-types": "^15.8.1",
+    "home-expenses-domain": "1",
+    "next": "12.3.1",
+    "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-scripts": "4.0.0",
-    "uuid": "^9.0.0"
+    "uuid": "9.0.0"
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",
@@ -19,10 +20,10 @@
     "sass": "^1.55.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "next start",
+    "build": "next build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "dev": "next dev"
   },
   "browserslist": [
     ">0.2%",

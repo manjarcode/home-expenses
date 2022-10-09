@@ -1,5 +1,5 @@
-import * as MONTH from '../../months.js'
 import InvoiceService from '../InvoiceService.js'
+import * as MONTH from '../months.js'
 import Factory from './utils.js'
 
 describe('InvoiceService calculate invoice', () => {

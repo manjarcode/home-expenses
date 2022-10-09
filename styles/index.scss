@@ -1,0 +1,8 @@
+@import './color.module.scss';
+
+body {
+    color: $c-dark;
+    background-color: $c-secondary;
+    font-family: sans-serif;
+}
+

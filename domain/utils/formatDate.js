@@ -1,4 +1,4 @@
-import {CULTURE} from '../../src/config.js'
+import {CULTURE} from '../config.js'
 
 export const formatDate = date => {
   if (!(date instanceof Date)) {

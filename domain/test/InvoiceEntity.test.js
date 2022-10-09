@@ -1,5 +1,5 @@
-import * as MONTH from '../../months.js'
 import InvoiceEntity from '../InvoiceEntity.js'
+import * as MONTH from '../months.js'
 import {invoiceExpected} from './fixtures/invoiceExpected.js'
 import Factory from './utils.js'
 
