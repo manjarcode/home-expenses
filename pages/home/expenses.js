@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import AddExpense from '../../components/addExpense/index.js'
 import Button from '../../components/button/index.js'
 import Expense from '../../components/expense/index.js'
-import useModal from './useModal.js'
+import useModal from '../../hooks/useModal.js'
 
 function Expenses({onChange}) {
   const [expenses, setExpenses] = useState([])
