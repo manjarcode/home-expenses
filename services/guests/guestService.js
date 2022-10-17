@@ -1,7 +1,7 @@
 import {ENTITIES} from '../config.js'
 import dynamoDbClient from '../dynamoDbClient.js'
 
-export default class GuestRepository {
+export default class GuestService {
   async list() {
     const params = {
       ExpressionAttributeValues: {

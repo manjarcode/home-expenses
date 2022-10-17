@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   res.status(200).json(result)
 }
 
-async function list(guestService) {
+async function list({guestService}) {
   return guestService.list()
 }
 

@@ -1,18 +1,18 @@
 import {useEffect, useState} from 'react'
 
-import GuestEntityFactory from 'home-expenses-domain/src/guests/entities/factory'
+import GuestRepository from 'home-expenses-domain/src/guests/repositories/GuestRepository'
 
 export default function useGuests() {
   const [guests, setGuests] = useState([])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const guestRepository = new GuestRepository()
+
   useEffect(() => {
-    fetch(`/api/guests`)
-      .then(response => response.json())
-      .then(response => {
-        const entities = response.map(data => GuestEntityFactory.guest(data))
-        setGuests(entities)
-      })
-  }, [setGuests])
+    guestRepository.list().then(entities => {
+      setGuests(entities)
+    })
+  }, [setGuests, guestRepository])
 
   return {guests, setGuests}
 }
