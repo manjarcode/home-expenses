@@ -1,0 +1,15 @@
+@import '../../styles/margin.module.scss';
+
+.container {
+    width: max-content;
+}
+
+.header {
+    display: flex;
+    gap: $m-m;
+    align-items: center;
+}
+
+.list {
+    background-color: white;
+}
