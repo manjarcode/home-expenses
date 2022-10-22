@@ -5,6 +5,9 @@ import GuestRepository from 'home-expenses-domain/src/guests/repositories/GuestR
 export default function useGuests() {
   const [guests, setGuests] = useState([])
 
+  const addGuest = guest => {
+    setGuests(value => [...guests, guest])
+  }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const guestRepository = new GuestRepository()
 
@@ -14,5 +17,5 @@ export default function useGuests() {
     })
   }, [setGuests, guestRepository])
 
-  return {guests, setGuests}
+  return {guests, addGuest}
 }
