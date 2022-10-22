@@ -4,8 +4,9 @@ import ExpenseEntity from 'home-expenses-domain/src/expenses/entities/ExpensesEn
 import PeriodValueObject from 'home-expenses-domain/src/periods/valueObjects/PeriodValueObject.js'
 import PropTypes from 'prop-types'
 
+import Button from '@mui/material/Button'
+
 import AddPeriod from '../addPeriod/index.js'
-import Button from '../button/index.js'
 import Input from '../input/index.js'
 import Modal from '../modal/index.js'
 
@@ -31,7 +32,9 @@ function AddExpense({onAccept, onCancel, isVisible}) {
       <AddPeriod label="Desde: " onChange={setFrom} />
       <AddPeriod label="Hasta: " onChange={setTo} />
       <Modal.Footer>
-        <Button onClick={onClick}>Aceptar</Button>
+        <Button variant="contained" onClick={onClick}>
+          Aceptar
+        </Button>
         <Button onClick={onCancel}>Cancelar</Button>
       </Modal.Footer>
     </Modal>

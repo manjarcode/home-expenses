@@ -5,8 +5,9 @@ import PeriodValueObject from 'home-expenses-domain/src/periods/valueObjects/Per
 import PropTypes from 'prop-types'
 import {v4 as uuid} from 'uuid'
 
+import Button from '@mui/material/Button'
+
 import AddPeriod from '../addPeriod/index.js'
-import Button from '../button/index.js'
 import Input from '../input/index.js'
 import Modal from '../modal/index.js'
 

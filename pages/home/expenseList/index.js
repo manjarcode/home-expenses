@@ -2,10 +2,14 @@ import {useState} from 'react'
 
 import PropTypes from 'prop-types'
 
-import AddExpense from '../../components/addExpense/index.js'
-import Button from '../../components/button/index.js'
-import Expense from '../../components/expense/index.js'
-import useModal from '../../hooks/useModal.js'
+import AddIcon from '@mui/icons-material/Add'
+import Button from '@mui/material/Button'
+
+import AddExpense from '../../../components/addExpense/index.js'
+import Expense from '../../../components/expense/index.js'
+import useModal from '../../../hooks/useModal.js'
+
+import styles from './index.module.scss'
 
 function Expenses({onChange}) {
   const [expenses, setExpenses] = useState([])
@@ -26,11 +30,16 @@ function Expenses({onChange}) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h2>Gastos</h2>
+        <Button onClick={onAddClick} startIcon={<AddIcon />}>
+          Añadir
+        </Button>
+      </div>
       {expenses.map(expense => (
         <Expense {...expense} key={expense.name} />
       ))}
-      <Button onClick={onAddClick}>Añadir Gasto</Button>
       <AddExpense onAccept={onAccept} onCancel={close} isVisible={isVisible} />
     </div>
   )

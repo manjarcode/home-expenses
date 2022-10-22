@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types'
-
 import {CULTURE} from 'home-expenses-domain/config.js'
+import PropTypes from 'prop-types'
 
 function Period({from, to}) {
   return (

@@ -2,11 +2,12 @@ import {useState} from 'react'
 
 import InvoiceService from 'home-expenses-domain/src/invoices/services/InvoiceService.js'
 
-import Button from '../../components/button/index.js'
+import Button from '@mui/material/Button'
+
 import Invoice from '../../components/invoice/index.js'
 import useGuests from '../../hooks/useGuests.js'
-import Expenses from './expenses.js'
-import Guests from './guests.js'
+import Expenses from './expenseList/index.js'
+import Guests from './guests/index.js'
 
 function HomePage() {
   const [expenses, setExpenses] = useState([])
@@ -23,7 +24,9 @@ function HomePage() {
     <div>
       <Expenses onChange={setExpenses} />
       <Guests guests={guests} onGuestAdded={addGuest} />
-      <Button onClick={onClick}>Calcular</Button>
+      <Button onClick={onClick} variant="contained">
+        Calcular
+      </Button>
       <Invoice invoice={invoice} />
     </div>
   )
