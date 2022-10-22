@@ -2,7 +2,7 @@ import PeriodValueObject from '../../periods/valueObjects/PeriodValueObject.js'
 import GuestEntity from './GuestEntity.js'
 
 export default class GuestEntityFactory {
-  static guest({name, from, to, currently}) {
+  static guest({id, name, from, to, currently}) {
     const todayLocale = new Date()
 
     const today = Date.UTC(
@@ -14,6 +14,7 @@ export default class GuestEntityFactory {
     to = currently ? today : to
 
     const entity = new GuestEntity({
+      id,
       name,
       period: new PeriodValueObject({
         from: new Date(from),

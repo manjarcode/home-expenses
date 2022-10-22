@@ -17,7 +17,12 @@ describe('InvoiceService calculate invoice', () => {
 
   describe('one guest one expense', () => {
     test('guest stays half period must pay half ammount', () => {
-      const tyrion = Factory.guest('Tyrion', may1, may5)
+      const tyrion = Factory.guest(
+        'b7df1750-9fac-4b3c-8ab0-4547e4ee4b37',
+        'Tyrion',
+        may1,
+        may5
+      )
       const electricity = Factory.expense('Electricity', may1, may10, 100)
 
       const invoice = calculate([electricity], [tyrion])

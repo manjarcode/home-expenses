@@ -3,6 +3,7 @@ import {useState} from 'react'
 import GuestEntity from 'home-expenses-domain/src/guests/entities/GuestEntity.js'
 import PeriodValueObject from 'home-expenses-domain/src/periods/valueObjects/PeriodValueObject.js'
 import PropTypes from 'prop-types'
+import {v4 as uuid} from 'uuid'
 
 import AddPeriod from '../addPeriod/index.js'
 import Button from '../button/index.js'
@@ -16,7 +17,7 @@ function AddGuest({onAccept, onCancel, isVisible}) {
 
   const acceptHandler = () => {
     const period = new PeriodValueObject({from, to})
-    const guest = new GuestEntity({name, period})
+    const guest = new GuestEntity({id: uuid(), name, period})
 
     onAccept(guest)
   }

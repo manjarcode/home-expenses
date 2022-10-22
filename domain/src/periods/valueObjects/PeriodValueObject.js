@@ -76,6 +76,14 @@ class PeriodValueObject {
       CULTURE
     )} - ${this.to.toLocaleDateString(CULTURE)}`
   }
+
+  flatten() {
+    return {
+      from: this.from.getTime(),
+      to: this.to.getTime(),
+      currently: false
+    }
+  }
 }
 
 PeriodValueObject.prototype.valueOf = function () {
