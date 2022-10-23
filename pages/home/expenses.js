@@ -2,9 +2,9 @@ import {useState} from 'react'
 
 import PropTypes from 'prop-types'
 
-import AddExpense from '../../../components/addExpense/index.js'
-import ListCard from '../../../components/ListCard/index.js'
-import useModal from '../../../hooks/useModal.js'
+import AddExpense from '../../components/addExpense/index.js'
+import ListCard from '../../components/ListCard/index.js'
+import useModal from '../../hooks/useModal.js'
 
 function Expenses({onChange}) {
   const [expenses, setExpenses] = useState([])

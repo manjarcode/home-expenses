@@ -6,8 +6,8 @@ import Button from '@mui/material/Button'
 
 import Invoice from '../../components/invoice/index.js'
 import useGuests from '../../hooks/useGuests.js'
-import Expenses from './expenseList/index.js'
-import Guests from './guests/index.js'
+import Expenses from './expenses.js'
+import Guests from './guests.js'
 
 function HomePage() {
   const [expenses, setExpenses] = useState([])

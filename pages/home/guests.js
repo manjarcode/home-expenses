@@ -3,13 +3,11 @@ import PropTypes from 'prop-types'
 import AddIcon from '@mui/icons-material/Add'
 import Button from '@mui/material/Button'
 
-import AddGuest from '../../../components/addGuest/index.js'
-import Guest from '../../../components/guest/index.js'
-import useModal from '../../../hooks/useModal.js'
+import AddGuest from '../../components/addGuest/index.js'
+import Guest from '../../components/guest/index.js'
+import useModal from '../../hooks/useModal.js'
 
-import styles from './index.module.scss'
-
-function Guests({guests, onGuestAdded}) {
+function Guests({guests = [], onGuestAdded}) {
   const {isVisible, open, close} = useModal()
   const onAccept = guest => {
     close()
@@ -17,8 +15,8 @@ function Guests({guests, onGuestAdded}) {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
+    <div>
+      <div>
         <h2>Huéspedes</h2>
         <Button onClick={open} startIcon={<AddIcon />}>
           Añadir

@@ -1,4 +1,4 @@
-import {CULTURE} from '../../config.js'
+import {CULTURE} from '../../../config.js'
 
 const DAY = 1000 * 3600 * 24
 

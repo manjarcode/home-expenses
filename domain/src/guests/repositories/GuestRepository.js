@@ -1,4 +1,4 @@
-import {HTTP_STATUS} from '../../../../pages/config.js'
+import {HTTP_STATUS} from '../../../config.js'
 import GuestEntityFactory from '../entities/factory.js'
 
 const RESOURCE = '/api/guests'
