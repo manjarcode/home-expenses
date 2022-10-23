@@ -5,10 +5,15 @@ import PeriodValueObject from 'home-expenses-domain/src/periods/valueObjects/Per
 import PropTypes from 'prop-types'
 
 import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogTitle from '@mui/material/DialogTitle'
 
 import AddPeriod from '../../addPeriod/index.js'
 import Input from '../../input/index.js'
-import Modal from '../../modal/index.js'
+
+import styles from './index.module.scss'
 
 function AddExpense({onAccept, onCancel, isVisible}) {
   const [name, setName] = useState()
@@ -25,19 +30,21 @@ function AddExpense({onAccept, onCancel, isVisible}) {
   }
 
   return (
-    <Modal isVisible={isVisible}>
-      <Modal.Title>Añadir gasto</Modal.Title>
-      <Input onChange={setName} label="Nombre: " />
-      <Input onChange={setAmmount} label="Cantidad: " />
-      <AddPeriod label="Desde: " onChange={setFrom} />
-      <AddPeriod label="Hasta: " onChange={setTo} />
-      <Modal.Footer>
+    <Dialog open={isVisible}>
+      <DialogTitle>Añadir gasto</DialogTitle>
+      <DialogContent className={styles.content}>
+        <Input onChange={setName} label="Nombre: " />
+        <Input onChange={setAmmount} label="Cantidad: " />
+        <AddPeriod label="Desde: " onChange={setFrom} />
+        <AddPeriod label="Hasta: " onChange={setTo} />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onCancel}>Cancelar</Button>
         <Button variant="contained" onClick={onClick}>
           Aceptar
         </Button>
-        <Button onClick={onCancel}>Cancelar</Button>
-      </Modal.Footer>
-    </Modal>
+      </DialogActions>
+    </Dialog>
   )
 }
 
