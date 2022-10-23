@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import AddIcon from '@mui/icons-material/Add'
 import {ListItemText} from '@mui/material'
 import Button from '@mui/material/Button'
@@ -18,11 +20,15 @@ const StyledList = props => (
     <List {...props} />
   </div>
 )
-const Item = props => (
-  <ListItem>
-    <ListItemText {...props}></ListItemText>
+const Item = ({secondaryAction, ...props}) => (
+  <ListItem secondaryAction={secondaryAction}>
+    <ListItemText {...props} />
   </ListItem>
 )
+
+Item.propTypes = {
+  secondaryAction: PropTypes.node
+}
 ListCard.Header = Header
 ListCard.Title = Title
 ListCard.Action = Action

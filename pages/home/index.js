@@ -11,7 +11,7 @@ import useGuests from '../../hooks/useGuests.js'
 
 function HomePage() {
   const [expenses, setExpenses] = useState([])
-  const {guests, addGuest} = useGuests([])
+  const {guests, add, remove} = useGuests([])
   const [invoice, setInvoice] = useState([])
 
   const onClick = () => {
@@ -23,7 +23,7 @@ function HomePage() {
   return (
     <div>
       <ExpenseList onChange={setExpenses} />
-      <GuestList guests={guests} onGuestAdded={addGuest} />
+      <GuestList guests={guests} onGuestAdded={add} onGuestDeleted={remove} />
       <Button onClick={onClick} variant="contained">
         Calcular
       </Button>

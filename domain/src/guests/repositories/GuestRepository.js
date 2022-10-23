@@ -21,4 +21,10 @@ export default class GuestRepository {
         return entities
       })
   }
+
+  delete(id) {
+    return fetch(`${RESOURCE}/${id}`, {
+      method: HTTP_STATUS.DELETE
+    })
+  }
 }

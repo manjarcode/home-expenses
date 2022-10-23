@@ -7,11 +7,15 @@ const guestRepository = new GuestRepository()
 export default function useGuests() {
   const [guests, setGuests] = useState([])
 
-  const addGuest = guest => {
+  const add = guest => {
     setGuests(value => [...guests, guest])
     guestRepository.add(guest)
   }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  const remove = id => {
+    setGuests(value => guests.filter(item => item.id !== id))
+    guestRepository.delete(id)
+  }
 
   useEffect(() => {
     guestRepository.list().then(entities => {
@@ -19,5 +23,5 @@ export default function useGuests() {
     })
   }, [setGuests])
 
-  return {guests, addGuest}
+  return {guests, add, remove}
 }

@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types'
 
+import DeleteIcon from '@mui/icons-material/Delete'
+import {IconButton} from '@mui/material'
+
 import useModal from '../../../hooks/useModal.js'
 import ListCard from '../../ListCard/index.js'
 import AddGuest from '../addGuest/index.js'
 
-function GuestList({guests = [], onGuestAdded}) {
+function GuestList({guests = [], onGuestAdded, onGuestDeleted}) {
   const {isVisible, open, close} = useModal()
   const onAccept = guest => {
     close()
@@ -21,8 +24,20 @@ function GuestList({guests = [], onGuestAdded}) {
       </ListCard.Header>
       {hasGuests && (
         <ListCard.List>
-          {guests.map(({name, period}) => (
-            <ListCard.Item primary={name} secondary={period.toString()} />
+          {guests.map(({id, name, period}) => (
+            <ListCard.Item
+              key={id}
+              primary={name}
+              secondary={period.toString()}
+              secondaryAction={
+                <IconButton
+                  aria-label="delete-guest"
+                  onClick={() => onGuestDeleted(id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              }
+            />
           ))}
         </ListCard.List>
       )}
@@ -33,6 +48,8 @@ function GuestList({guests = [], onGuestAdded}) {
 
 GuestList.propTypes = {
   guests: PropTypes.array,
-  onGuestAdded: PropTypes.func
+  onGuestAdded: PropTypes.func,
+  onGuestDeleted: PropTypes.func
 }
+
 export default GuestList
