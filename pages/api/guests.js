@@ -1,4 +1,4 @@
-import GuestService from 'home-expenses-services/guests/GuestService.js'
+import GuestService from 'home-expenses-services/guests/guestService'
 
 import {HTTP_STATUS} from '../config.js'
 
