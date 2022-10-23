@@ -3,8 +3,8 @@ import {useState} from 'react'
 import PropTypes from 'prop-types'
 
 import useModal from '../../../hooks/useModal.js'
-import AddExpense from '../../addExpense/index.js'
 import ListCard from '../../ListCard/index.js'
+import AddExpense from '../addExpense/index.js'
 
 import styles from './index.module.scss'
 

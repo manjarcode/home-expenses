@@ -6,9 +6,9 @@ import PropTypes from 'prop-types'
 
 import Button from '@mui/material/Button'
 
-import AddPeriod from '../addPeriod/index.js'
-import Input from '../input/index.js'
-import Modal from '../modal/index.js'
+import AddPeriod from '../../addPeriod/index.js'
+import Input from '../../input/index.js'
+import Modal from '../../modal/index.js'
 
 function AddExpense({onAccept, onCancel, isVisible}) {
   const [name, setName] = useState()

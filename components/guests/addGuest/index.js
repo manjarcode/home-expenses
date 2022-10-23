@@ -7,9 +7,9 @@ import {v4 as uuid} from 'uuid'
 
 import Button from '@mui/material/Button'
 
-import AddPeriod from '../addPeriod/index.js'
-import Input from '../input/index.js'
-import Modal from '../modal/index.js'
+import AddPeriod from '../../addPeriod/index.js'
+import Input from '../../input/index.js'
+import Modal from '../../modal/index.js'
 
 function AddGuest({onAccept, onCancel, isVisible}) {
   const [name, setName] = useState()

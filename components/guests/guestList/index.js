@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 
 import useModal from '../../../hooks/useModal.js'
-import AddGuest from '../../addGuest/index.js'
 import ListCard from '../../ListCard/index.js'
+import AddGuest from '../addGuest/index.js'
 
 function GuestList({guests = [], onGuestAdded}) {
   const {isVisible, open, close} = useModal()
