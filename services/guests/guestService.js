@@ -1,6 +1,8 @@
 import {ENTITIES} from '../config.js'
 import dynamoDbClient from '../dynamoDbClient.js'
 
+const TABLE_NAME = 'home-expenses'
+
 export default class GuestService {
   async list() {
     const params = {
@@ -8,7 +10,7 @@ export default class GuestService {
         ':entity': 'guest'
       },
       FilterExpression: 'entity = :entity',
-      TableName: 'home-expenses'
+      TableName: TABLE_NAME
     }
 
     const promise = new Promise((resolve, reject) => {
@@ -33,11 +35,32 @@ export default class GuestService {
         to,
         currently
       },
-      TableName: 'home-expenses'
+      TableName: TABLE_NAME
     }
 
     const promise = new Promise((resolve, reject) => {
       dynamoDbClient.put(params, function (error, data) {
+        if (error) {
+          reject(error)
+        }
+        resolve(data.Items)
+      })
+    })
+
+    return promise
+  }
+
+  async delete({id}) {
+    const params = {
+      TableName: TABLE_NAME,
+      Key: {
+        entity: ENTITIES.GUEST,
+        id
+      }
+    }
+
+    const promise = new Promise((resolve, reject) => {
+      dynamoDbClient.delete(params, function (error, data) {
         if (error) {
           reject(error)
         }
