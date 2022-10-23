@@ -6,10 +6,15 @@ import PropTypes from 'prop-types'
 import {v4 as uuid} from 'uuid'
 
 import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogTitle from '@mui/material/DialogTitle'
 
 import AddPeriod from '../../addPeriod/index.js'
 import Input from '../../input/index.js'
-import Modal from '../../modal/index.js'
+
+import styles from './index.module.scss'
 
 function AddGuest({onAccept, onCancel, isVisible}) {
   const [name, setName] = useState()
@@ -23,16 +28,20 @@ function AddGuest({onAccept, onCancel, isVisible}) {
     onAccept(guest)
   }
   return (
-    <Modal isVisible={isVisible}>
-      <Modal.Title>Añadir huésped</Modal.Title>
-      <Input label="Nombre" onChange={setName} />
-      <AddPeriod label="Desde: " onChange={setFrom} />
-      <AddPeriod label="Hasta: " onChange={setTo} />
-      <Modal.Footer>
-        <Button onClick={acceptHandler}>Aceptar</Button>
+    <Dialog open={isVisible}>
+      <DialogTitle>Añadir huésped</DialogTitle>
+      <DialogContent className={styles.content}>
+        <Input label="Nombre" onChange={setName} />
+        <AddPeriod label="Desde: " onChange={setFrom} />
+        <AddPeriod label="Hasta: " onChange={setTo} />
+      </DialogContent>
+      <DialogActions>
         <Button onClick={onCancel}>Cancelar</Button>
-      </Modal.Footer>
-    </Modal>
+        <Button variant="contained" onClick={acceptHandler}>
+          Aceptar
+        </Button>
+      </DialogActions>
+    </Dialog>
   )
 }
 
