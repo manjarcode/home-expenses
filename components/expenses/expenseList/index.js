@@ -8,19 +8,6 @@ import ListCard from '../../ListCard/index.js'
 
 import styles from './index.module.scss'
 
-const ExpenseItem = ({name, ammount}) => {
-  return (
-    <div className={styles.item}>
-      <span>{name}:</span>
-      <span>{ammount}€</span>
-    </div>
-  )
-}
-ExpenseItem.propTypes = {
-  name: PropTypes.string,
-  ammount: PropTypes.number
-}
-
 function Expenses({onChange}) {
   const [expenses, setExpenses] = useState([])
 
@@ -65,4 +52,18 @@ function Expenses({onChange}) {
 Expenses.propTypes = {
   onChange: PropTypes.func
 }
+
+const ExpenseItem = ({name, ammount}) => {
+  return (
+    <div className={styles.item}>
+      <span>{name}:</span>
+      <span>{ammount}€</span>
+    </div>
+  )
+}
+ExpenseItem.propTypes = {
+  name: PropTypes.string,
+  ammount: PropTypes.number
+}
+
 export default Expenses
