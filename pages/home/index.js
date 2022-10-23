@@ -4,9 +4,9 @@ import InvoiceService from 'home-expenses-domain/src/invoices/services/InvoiceSe
 
 import Button from '@mui/material/Button'
 
+import ExpenseList from '../../components/expenses/expenseList/index.js'
 import Invoice from '../../components/invoice/index.js'
 import useGuests from '../../hooks/useGuests.js'
-import Expenses from './expenses.js'
 import Guests from './guests.js'
 
 function HomePage() {
@@ -22,7 +22,7 @@ function HomePage() {
 
   return (
     <div>
-      <Expenses onChange={setExpenses} />
+      <ExpenseList onChange={setExpenses} />
       <Guests guests={guests} onGuestAdded={addGuest} />
       <Button onClick={onClick} variant="contained">
         Calcular
