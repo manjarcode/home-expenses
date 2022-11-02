@@ -1,13 +1,14 @@
 import {CULTURE} from '../../../config.js'
-
-const DAY = 1000 * 3600 * 24
+import {countDays} from '../../../utils/date.js'
 
 class PeriodValueObject {
   constructor({from, to}) {
     this._validateDate(from)
     this._validateDate(to)
+    this._validateFromTo(from, to)
     this.from = from
     this.to = to
+    this._days = countDays(from, to)
   }
 
   _validateDate(value) {
@@ -17,23 +18,14 @@ class PeriodValueObject {
     }
   }
 
-  validateFromTo(from, to) {
+  _validateFromTo(from, to) {
     if (from > to) {
       throw new Error('invalid period from date can´t be lower than to date')
     }
   }
 
-  _calculateDays(from, to) {
-    const timespam = to - from
-
-    const days = timespam / DAY
-
-    return days + 1
-  }
-
   days() {
-    this._dayCount = this.dayCount ?? this._calculateDays(this.from, this.to)
-    return this._dayCount
+    return this._days
   }
 
   intersectionDays(period) {
@@ -83,6 +75,13 @@ class PeriodValueObject {
       to: this.to.getTime(),
       currently: false
     }
+  }
+
+  static sort(periodList) {
+    if (!Array.isArray(periodList))
+      throw new Error('Must provide a period list instead of', periodList)
+
+    return periodList.sort((a, b) => a.valueOf() - b.valueOf())
   }
 }
 

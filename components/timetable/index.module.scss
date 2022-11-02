@@ -1,0 +1,54 @@
+.timetable {
+    position: relative;
+}
+
+.years {
+    display: flex;
+    position: absolute;
+}
+
+.year {
+    width: fit-content;
+    text-align: center;
+    &Content {
+        display: flex;
+    }
+}
+
+$day-size: 5;
+$sizes: (0: 31, 1: 28, 2: 31, 3: 30, 4: 31, 5: 30, 6: 31, 7: 31, 8: 30, 9: 31, 10: 30, 11: 31);
+
+.month {
+    @each $name, $days in $sizes {           
+        &-#{$name} {
+            width: #{$days*$day-size}px;
+            border-left: 1px dashed;
+            height: 300px;
+            text-align: center;
+        }
+    }
+}
+
+
+.calendar {
+    position: absolute;
+    margin-top: 50px;
+}
+
+.room {
+    position: relative;
+    height: 16px;
+    margin-bottom: 8px;
+}
+
+.line {
+    display:flex;
+    height: 16px;
+    position: absolute;
+
+    &Content {
+        background-color: beige;
+        border-radius: 8px;
+        text-align: center;
+    }
+}

@@ -1,4 +1,4 @@
-import {formatDate} from '../../../utils/formatDate.js'
+import {formatDate} from '../../../utils/date.js'
 
 class InvoiceEntity {
   constructor({id}) {

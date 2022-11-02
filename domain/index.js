@@ -1,5 +1,0 @@
-export * as ExpenseEntity from './src/ExpensesEntity.js'
-export * as GuestEntity from './src/GuestEntity.js'
-export * as InvoiceEntity from './src/InvoiceEntity.js'
-export * as InvoiceService from './src/InvoiceService.js'
-export * as PeriodValueObject from './src/PeriodValueObject.js'
