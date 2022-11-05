@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
+import PeriodValueObject from 'home-expenses-domain/lib/periods/valueObjects/PeriodValueObject.js'
 import ExpenseEntity from 'home-expenses-domain/src/expenses/entities/ExpensesEntity.js'
-import PeriodValueObject from 'home-expenses-domain/src/periods/valueObjects/PeriodValueObject.js'
 import PropTypes from 'prop-types'
 
 import Button from '@mui/material/Button'
