@@ -1,7 +1,5 @@
 import {useState} from 'react'
 
-import GuestEntity from 'home-expenses-domain/src/guests/entities/GuestEntity.js'
-import PeriodValueObject from 'home-expenses-domain/src/periods/valueObjects/PeriodValueObject.js'
 import PropTypes from 'prop-types'
 import {v4 as uuid} from 'uuid'
 
@@ -22,10 +20,8 @@ function AddGuest({onAccept, onCancel, isVisible}) {
   const [to, setTo] = useState()
 
   const acceptHandler = () => {
-    const period = new PeriodValueObject({from, to})
-    const guest = new GuestEntity({id: uuid(), name, period})
-
-    onAccept(guest)
+    const id = uuid()
+    onAccept({id, name, from, to})
   }
   return (
     <Dialog open={isVisible}>

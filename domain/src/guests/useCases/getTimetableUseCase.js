@@ -1,5 +1,5 @@
-import GuestRepository from '../repositories/GuestRepository'
-import TimetableService from '../services/TimetableService'
+import GuestRepository from '../repositories/GuestRepository.js'
+import TimetableService from '../services/TimetableService.js'
 
 export default class GetTimeTableUseCase {
   constructor() {

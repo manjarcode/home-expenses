@@ -1,4 +1,4 @@
-import {CULTURE} from '../config.js'
+import {CULTURE} from '../config/index.js'
 const MILLISECONDS_PER_DAY = 1000 * 3600 * 24
 
 export const formatDate = date => {

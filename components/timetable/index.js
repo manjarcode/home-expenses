@@ -1,8 +1,9 @@
-import * as MONTH from 'home-expenses-domain/months.js'
+import {config} from 'home-expenses-domain'
 import PropTypes from 'prop-types'
 
 import styles from './index.module.scss'
 
+const {MONTH} = config
 const Years = props => {
   return <div className={styles.years} {...props} />
 }

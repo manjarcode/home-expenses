@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "outDir": "./lib",
+        "target": "ES6",
+        "allowJs": true,
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "types": []
+    },
+    "include": ["src/**/*"],    
+    "exclude": ["node_modules"]
+}

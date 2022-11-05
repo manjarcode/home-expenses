@@ -1,24 +1,24 @@
 import {useEffect, useState} from 'react'
 
-import GuestRepository from 'home-expenses-domain/src/guests/repositories/GuestRepository'
+import {useCases} from 'home-expenses-domain'
 
-const guestRepository = new GuestRepository()
+const {addGuestUseCase, removeGuestUseCase, listGuestUseCase} = useCases
 
 export default function useGuests() {
   const [guests, setGuests] = useState([])
 
-  const add = guest => {
+  const add = dto => {
+    const guest = addGuestUseCase.execute(dto)
     setGuests(value => [...guests, guest])
-    guestRepository.add(guest)
   }
 
   const remove = id => {
     setGuests(value => guests.filter(item => item.id !== id))
-    guestRepository.delete(id)
+    removeGuestUseCase({id})
   }
 
   useEffect(() => {
-    guestRepository.list().then(entities => {
+    listGuestUseCase.execute().then(entities => {
       setGuests(entities)
     })
   }, [setGuests])
