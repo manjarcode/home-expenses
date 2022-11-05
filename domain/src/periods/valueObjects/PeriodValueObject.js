@@ -1,5 +1,5 @@
-import {CULTURE} from '../../../config.js'
-import {countDays} from '../../../utils/date.js'
+import {CULTURE} from '../../config/index.js'
+import {countDays} from '../../utils/date.js'
 
 class PeriodValueObject {
   constructor({from, to}) {

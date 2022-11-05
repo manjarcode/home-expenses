@@ -1,4 +1,4 @@
-import {countDays, floorDate, nextMonth} from '../../../utils/date.js'
+import {countDays, floorDate, nextMonth} from '../../utils/date.js'
 import GuestEntity from '../entities/GuestEntity.js'
 
 export default class TimetableService {
