@@ -1,0 +1,8 @@
+{
+  "name": "home-expenses",
+  "verbose": true,
+  "rootDir": ".",
+  "roots": ["./domain/test"],
+  "transform": {}
+}
+

@@ -1,5 +1,5 @@
-import InvoiceService from '../InvoiceService.js'
-import * as MONTH from '../months.js'
+import {MONTH} from '../lib/config/index.js'
+import InvoiceService from '../lib/invoices/services/InvoiceService.js'
 import Factory from './utils.js'
 
 describe('InvoiceService calculate invoice', () => {
@@ -17,12 +17,7 @@ describe('InvoiceService calculate invoice', () => {
 
   describe('one guest one expense', () => {
     test('guest stays half period must pay half ammount', () => {
-      const tyrion = Factory.guest(
-        'b7df1750-9fac-4b3c-8ab0-4547e4ee4b37',
-        'Tyrion',
-        may1,
-        may5
-      )
+      const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may5)
       const electricity = Factory.expense('Electricity', may1, may10, 100)
 
       const invoice = calculate([electricity], [tyrion])
@@ -31,7 +26,7 @@ describe('InvoiceService calculate invoice', () => {
     })
 
     test('guest with half period of intersection must pay half ammount', () => {
-      const tyrion = Factory.guest('Tyrion', may1, may10)
+      const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may10)
       const electricity = Factory.expense('Electricity', may6, may15, 100)
 
       const invoice = calculate([electricity], [tyrion])
@@ -40,7 +35,7 @@ describe('InvoiceService calculate invoice', () => {
     })
 
     test('guest without intersection must pay nothing', () => {
-      const tyrion = Factory.guest('Tyrion', may1, may5)
+      const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may5)
       const electricity = Factory.expense('Electricity', may6, may15, 100)
 
       const invoice = calculate([electricity], [tyrion])
@@ -51,7 +46,7 @@ describe('InvoiceService calculate invoice', () => {
 
   describe('one guest two expenses', () => {
     test('guest stays full period must pay all ammount', () => {
-      const tyrion = Factory.guest('Tyrion', may1, may10)
+      const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may10)
       const electricity = Factory.expense('Electricity', may1, may10, 100)
       const gas = Factory.expense('Gas', may1, may10, 100)
 
@@ -61,7 +56,7 @@ describe('InvoiceService calculate invoice', () => {
     })
 
     test('guest stays half period must pay half ammount', () => {
-      const tyrion = Factory.guest('Tyrion', may1, may5)
+      const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may5)
       const electricity = Factory.expense('Electricity', may1, may10, 100)
       const gas = Factory.expense('Gas', may1, may10, 100)
 
@@ -73,9 +68,8 @@ describe('InvoiceService calculate invoice', () => {
 
   describe('two guests one expense', () => {
     test('guests meeting same period must split payment equally', () => {
-      const tyrion = Factory.guest('Tyrion', may1, may10)
-      const cersei = Factory.guest('Cersei', may1, may10)
-
+      const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may10)
+      const cersei = Factory.guest('cerseiId', 'Cersei', may1, may10)
       const electricity = Factory.expense('Electricity', may1, may10, 100)
 
       const invoice = calculate([electricity], [tyrion, cersei])
@@ -85,8 +79,8 @@ describe('InvoiceService calculate invoice', () => {
     })
 
     test('guests not meeting but same number of days must split payment equally', () => {
-      const tyrion = Factory.guest('Tyrion', may1, may5)
-      const cersei = Factory.guest('Cersei', may6, may10)
+      const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may5)
+      const cersei = Factory.guest('cerseiId', 'Cersei', may6, may10)
 
       const electricity = Factory.expense('Electricity', may1, may10, 100)
 
@@ -99,8 +93,8 @@ describe('InvoiceService calculate invoice', () => {
 
   describe('two guests two expenses', () => {
     test('guest meeting same period must split payment equally', () => {
-      const tyrion = Factory.guest('Tyrion', may1, may10)
-      const cersei = Factory.guest('Cersei', may1, may10)
+      const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may10)
+      const cersei = Factory.guest('cerseiId', 'Cersei', may1, may10)
 
       const electricity = Factory.expense('Electricity', may1, may10, 100)
       const gas = Factory.expense('Gas', may1, may10, 100)
@@ -112,8 +106,8 @@ describe('InvoiceService calculate invoice', () => {
     })
 
     test('guest meeting different periods pay different ammount', () => {
-      const tyrion = Factory.guest('Tyrion', may1, may10)
-      const cersei = Factory.guest('Cersei', may6, may15)
+      const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may10)
+      const cersei = Factory.guest('cerseiId', 'Cersei', may6, may15)
 
       const electricity = Factory.expense('Electricity', may1, may10, 100)
       const gas = Factory.expense('Gas', may1, may20, 200)

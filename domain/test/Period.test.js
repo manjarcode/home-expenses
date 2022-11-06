@@ -1,6 +1,6 @@
 import {jest} from '@jest/globals'
 
-import PeriodValueObject from '../PeriodValueObject.js'
+import PeriodValueObject from '../lib/periods/valueObjects/PeriodValueObject.js'
 import Factory from './utils.js'
 
 describe('PeriodValueObject', () => {
