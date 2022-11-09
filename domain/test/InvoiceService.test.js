@@ -16,22 +16,13 @@ describe('InvoiceService calculate invoice', () => {
   }
 
   describe('one guest one expense', () => {
-    test('guest stays half period must pay half ammount', () => {
+    test('guest stays half period must pay full ammount', () => {
       const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may5)
       const electricity = Factory.expense('Electricity', may1, may10, 100)
 
       const invoice = calculate([electricity], [tyrion])
 
-      expect(invoice.byGuest('Tyrion')).toBe(50)
-    })
-
-    test('guest with half period of intersection must pay half ammount', () => {
-      const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may10)
-      const electricity = Factory.expense('Electricity', may6, may15, 100)
-
-      const invoice = calculate([electricity], [tyrion])
-
-      expect(invoice.byGuest('Tyrion')).toBe(50)
+      expect(invoice.byGuest('Tyrion').total).toBe(100)
     })
 
     test('guest without intersection must pay nothing', () => {
@@ -40,29 +31,29 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity], [tyrion])
 
-      expect(invoice.byGuest('Tyrion')).toBe(0)
+      expect(invoice.byGuest('Tyrion').total).toBe(0)
     })
   })
 
   describe('one guest two expenses', () => {
-    test('guest stays full period must pay all ammount', () => {
+    test('guest stays full period must pay full ammount', () => {
       const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may10)
       const electricity = Factory.expense('Electricity', may1, may10, 100)
       const gas = Factory.expense('Gas', may1, may10, 100)
 
       const invoice = calculate([electricity, gas], [tyrion])
 
-      expect(invoice.byGuest('Tyrion')).toBe(200)
+      expect(invoice.byGuest('Tyrion').total).toBe(200)
     })
 
-    test('guest stays half period must pay half ammount', () => {
+    test('guest stays half period must pay full ammount', () => {
       const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may5)
       const electricity = Factory.expense('Electricity', may1, may10, 100)
       const gas = Factory.expense('Gas', may1, may10, 100)
 
       const invoice = calculate([electricity, gas], [tyrion])
 
-      expect(invoice.byGuest('Tyrion')).toBe(100)
+      expect(invoice.byGuest('Tyrion').total).toBe(200)
     })
   })
 
@@ -74,8 +65,8 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity], [tyrion, cersei])
 
-      expect(invoice.byGuest('Tyrion')).toBe(50)
-      expect(invoice.byGuest('Cersei')).toBe(50)
+      expect(invoice.byGuest('Tyrion').total).toBe(50)
+      expect(invoice.byGuest('Cersei').total).toBe(50)
     })
 
     test('guests not meeting but same number of days must split payment equally', () => {
@@ -86,8 +77,8 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity], [tyrion, cersei])
 
-      expect(invoice.byGuest('Tyrion')).toBe(50)
-      expect(invoice.byGuest('Cersei')).toBe(50)
+      expect(invoice.byGuest('Tyrion').total).toBe(50)
+      expect(invoice.byGuest('Cersei').total).toBe(50)
     })
   })
 
@@ -101,8 +92,8 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity, gas], [tyrion, cersei])
 
-      expect(invoice.byGuest('Tyrion')).toBe(100)
-      expect(invoice.byGuest('Cersei')).toBe(100)
+      expect(invoice.byGuest('Tyrion').total).toBe(100)
+      expect(invoice.byGuest('Cersei').total).toBe(100)
     })
 
     test('guest meeting different periods pay different ammount', () => {
@@ -114,8 +105,8 @@ describe('InvoiceService calculate invoice', () => {
 
       const invoice = calculate([electricity, gas], [tyrion, cersei])
 
-      expect(invoice.byGuest('Tyrion')).toBe(150)
-      expect(invoice.byGuest('Cersei')).toBe(100)
+      expect(invoice.byGuest('Tyrion').total).toBe(166.67)
+      expect(invoice.byGuest('Cersei').total).toBe(133.33)
     })
   })
 })

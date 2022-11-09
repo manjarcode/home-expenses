@@ -13,27 +13,30 @@ class InvoiceService {
     return invoice
   }
 
+  _ammount(days, totalDays, ammount) {
+    const hasDaysOfIntersection = days > 0
+    if (!hasDaysOfIntersection) return 0
+    return (days / totalDays) * ammount
+  }
+
   _calculateExpense(expense, guests, invoice) {
-    expense.period.iterate(date => {
-      const guestInvolved = guests
-        .map(guest => (guest.period.contains(date) ? 1 : 0))
-        .reduce((acum, isInvolved) => {
-          return acum + isInvolved
-        })
+    let totalDays = 0
+    const guestExpenseJoin = guests.map(({name, period}) => {
+      const days = expense.period.intersectionDays(period)
+      totalDays += days
+      return {
+        guest: name,
+        days
+      }
+    })
 
-      guests.forEach(guest => {
-        const isInvolved = guest.period.contains(date)
-
-        const ammount = isInvolved ? expense.ammountPerDay() / guestInvolved : 0
-
-        if (isInvolved) {
-          invoice.addAmmount({
-            guest: guest.name,
-            expense: expense.name,
-            ammount,
-            date
-          })
-        }
+    guestExpenseJoin.forEach(({guest, days}) => {
+      const ammount = this._ammount(days, totalDays, expense.ammount)
+      invoice.addAmmount({
+        guest,
+        expense: expense.name,
+        ammount,
+        days
       })
     })
 

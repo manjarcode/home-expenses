@@ -1,4 +1,4 @@
-import {formatDate} from '../../utils/date.js'
+import {roundMoney} from '../../utils/number.js'
 
 class InvoiceEntity {
   constructor({id}) {
@@ -6,13 +6,13 @@ class InvoiceEntity {
     this._dictionary = {}
   }
 
-  addAmmount({guest, expense, ammount, date}) {
+  addAmmount({guest, expense, ammount, days}) {
     const guestPointer = this._guest(guest)
     const expensePointer = this._expense(guest, expense)
 
     guestPointer.total += ammount
-    expensePointer.value += ammount
-    expensePointer.dates.push(formatDate(date))
+    expensePointer.value = roundMoney(ammount)
+    expensePointer.days = days
   }
 
   _guest(guest) {
@@ -25,29 +25,26 @@ class InvoiceEntity {
 
   _expense(guest, expense) {
     if (!this._dictionary[guest][expense]) {
-      this._dictionary[guest][expense] = {
-        value: 0,
-        dates: []
-      }
+      this._dictionary[guest][expense] = {}
     }
 
     return this._dictionary[guest][expense]
   }
 
   byGuest(guest) {
-    const {total} = this._guest(guest)
-    return total
+    const {total, ...rest} = this._guest(guest)
+    return {...rest, total: roundMoney(total)}
   }
 
   toJSON() {
     return Object.entries(this._dictionary).map(
       ([guestName, {total, ...expensesDto}]) => {
         const expenses = Object.entries(expensesDto).map(
-          ([expenseName, {value, dates}]) => {
-            return {expense: expenseName, value, dates}
+          ([expenseName, {value, days}]) => {
+            return {expense: expenseName, value, days}
           }
         )
-        return {name: guestName, total, expenses}
+        return {name: guestName, total: roundMoney(total), expenses}
       }
     )
   }
