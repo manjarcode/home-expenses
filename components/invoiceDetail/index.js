@@ -16,11 +16,11 @@ export default function InvoiceDetail({expenses}) {
         Desglose
       </span>
       {show &&
-        expenses.map(({expense, value, dates}) => {
+        expenses.map(({expense, value, days}) => {
           return (
             <ul>
               <li>
-                {expense} : {value} ({dates.length} días)
+                {expense}: {value}€ ({days} días)
               </li>
             </ul>
           )

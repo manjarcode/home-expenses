@@ -8,7 +8,7 @@ export default function Invoice({invoice}) {
       {invoice.map(({name, total, expenses}) => {
         return (
           <li>
-            {name} {total}
+            {name} {total}€
             <InvoiceDetail expenses={expenses} />
           </li>
         )
