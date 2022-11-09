@@ -27,7 +27,9 @@
   },
   "scripts": {
     "start": "next start",
-    "build": "next build",
+    "build:domain" : "npm run build --workspace=domain",
+    "build:next" : "next build",
+    "build": "npm run build:domain && npm run build:next",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "npm run test -- --watch",
     "dev": "next dev"
