@@ -4,7 +4,6 @@ import {useCases} from 'home-expenses-domain'
 
 const {addGuestUseCase, removeGuestUseCase, listGuestUseCase} = useCases
 
-console.log('useCases', useCases)
 export default function useGuests() {
   const [guests, setGuests] = useState([])
 
@@ -15,7 +14,7 @@ export default function useGuests() {
 
   const remove = id => {
     setGuests(value => guests.filter(item => item.id !== id))
-    removeGuestUseCase.execute({id})
+    removeGuestUseCase.execute(id)
   }
 
   useEffect(() => {

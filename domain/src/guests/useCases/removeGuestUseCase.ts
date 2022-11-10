@@ -1,11 +1,12 @@
 import GuestRepository from '../repositories/GuestRepository.js'
 
 export default class RemoveGuestUseCase {
-  constructor() {
+  repository: GuestRepository
+  constructor () {
     this.repository = new GuestRepository()
   }
 
-  execute({id}) {
-    this.repository.delete(id)
+  async execute (id: string): Promise<void> {
+    await this.repository.delete(id)
   }
 }

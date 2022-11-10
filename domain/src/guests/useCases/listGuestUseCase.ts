@@ -1,11 +1,12 @@
 import GuestRepository from '../repositories/GuestRepository.js'
 
 export default class ListGuestUseCase {
-  constructor() {
+  repository: GuestRepository
+  constructor () {
     this.repository = new GuestRepository()
   }
 
-  execute() {
-    return this.repository.list()
+  async execute (): Promise<Response> {
+    return await this.repository.list()
   }
 }
