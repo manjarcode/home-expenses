@@ -1,10 +1,10 @@
-import {HTTP_STATUS} from '../../config/index.js'
+import { HTTP_STATUS } from '../../config/index.js'
 import GuestEntityFactory from '../entities/factory.js'
 
 const RESOURCE = '/api/guests'
 export default class GuestRepository {
-  add(guest) {
-    return fetch(RESOURCE, {
+  async add (guest): Promise<Response> {
+    return await fetch(RESOURCE, {
       method: HTTP_STATUS.POST,
       headers: {
         'Content-Type': 'application/json'
@@ -13,17 +13,17 @@ export default class GuestRepository {
     })
   }
 
-  list() {
-    return fetch(RESOURCE)
-      .then(response => response.json())
+  async list (): Promise<Response> {
+    return await fetch(RESOURCE)
+      .then(async response => await response.json())
       .then(response => {
         const entities = response.map(data => GuestEntityFactory.guest(data))
         return entities
       })
   }
 
-  delete(id) {
-    return fetch(`${RESOURCE}/${id}`, {
+  async delete (id: string): Promise<Response> {
+    return await fetch(`${RESOURCE}/${id}`, {
       method: HTTP_STATUS.DELETE
     })
   }

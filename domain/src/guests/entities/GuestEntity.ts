@@ -13,8 +13,8 @@ class GuestEntity {
     return { id: this.id, name: this.name, from, to, currently }
   }
 
-  static sort (guestList): GuestEntity[] {
-    if (!Array.isArray(guestList)) { throw new Error('Must provide a guest list instead of', guestList) }
+  static sort (guestList: GuestEntity[]): GuestEntity[] {
+    if (!Array.isArray(guestList)) { throw new Error(`Must provide a guest list instead of ${String(guestList)}`) }
 
     const sorted = guestList.sort(
       (a, b) => a.period.valueOf() - b.period.valueOf()

@@ -82,7 +82,7 @@ class PeriodValueObject {
   }
 
   static sort (periodList): PeriodValueObject[] {
-    if (!Array.isArray(periodList)) { throw new Error('Must provide a period list instead of', periodList) }
+    if (!Array.isArray(periodList)) { throw new Error(`Must provide a period list instead of ${String(periodList)}`) }
 
     return periodList.sort((a, b) => a.valueOf() - b.valueOf())
   }
