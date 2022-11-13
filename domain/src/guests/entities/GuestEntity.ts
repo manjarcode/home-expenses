@@ -1,7 +1,9 @@
+import PeriodValueObject from '../../periods/valueObjects/PeriodValueObject.js'
+
 class GuestEntity {
   id: string
   name: string
-  period: any
+  period: PeriodValueObject
   constructor ({ id, name, period }) {
     this.id = id
     this.name = name
@@ -17,7 +19,7 @@ class GuestEntity {
     if (!Array.isArray(guestList)) { throw new Error(`Must provide a guest list instead of ${String(guestList)}`) }
 
     const sorted = guestList.sort(
-      (a, b) => a.period.valueOf() - b.period.valueOf()
+      (a, b): number => a.period.valueOf() - b.period.valueOf()
     )
     return sorted
   }

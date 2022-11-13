@@ -2,13 +2,16 @@ import GuestRepository from '../repositories/GuestRepository.js'
 import TimetableService from '../services/TimetableService.js'
 
 export default class GetTimeTableUseCase {
-  constructor() {
+  guestRepository: GuestRepository
+  timetableService: TimetableService
+
+  constructor () {
     this.guestRepository = new GuestRepository()
-    this.timeTableService = new TimetableService()
+    this.timetableService = new TimetableService()
   }
 
-  async execute() {
+  async execute (): Promise<TimetableDto> {
     const guests = await this.guestRepository.list()
-    return this.timeTableService.execute(guests)
+    return this.timetableService.execute(guests)
   }
 }

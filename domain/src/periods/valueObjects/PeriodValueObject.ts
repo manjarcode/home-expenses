@@ -86,10 +86,10 @@ class PeriodValueObject {
 
     return periodList.sort((a, b) => a.valueOf() - b.valueOf())
   }
-}
 
-PeriodValueObject.prototype.valueOf = function () {
-  return this.from.valueOf()
+  valueOf (): number {
+    return this.from.valueOf()
+  }
 }
 
 export default PeriodValueObject
