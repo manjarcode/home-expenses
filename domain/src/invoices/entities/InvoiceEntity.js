@@ -1,4 +1,5 @@
-import {roundMoney} from '../../utils/number.js'
+// eslint-disable-next-line import/extensions
+import {roundMoney} from '../../utils/number'
 
 class InvoiceEntity {
   constructor({id}) {
