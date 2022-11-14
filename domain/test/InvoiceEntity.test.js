@@ -2,7 +2,7 @@ import InvoiceEntity from '../lib/invoices/entities/InvoiceEntity.js'
 import {invoiceExpected} from './fixtures/invoiceExpected.js'
 
 describe('InvoiceEntity', () => {
-  test.only('toJSON must return invoice information', () => {
+  test('toJSON must return invoice information', () => {
     const invoice = new InvoiceEntity({
       id: 'f391b3e2-b9d8-4f46-9a38-e516682efa05'
     })
