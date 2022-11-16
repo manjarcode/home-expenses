@@ -3,15 +3,16 @@ import GuestEntity from '../entities/GuestEntity.js'
 import GuestRepository from '../repositories/GuestRepository.js'
 
 export default class AddGuestUseCase {
-  constructor() {
+  repository: GuestRepository
+  constructor () {
     this.repository = new GuestRepository()
   }
 
-  execute({id, name, from, to}) {
-    const period = new PeriodValueObject({from, to})
-    const guest = new GuestEntity({id, name, period})
+  execute (id: string, name: string, from: Date, to: Date): GuestEntity {
+    const period = new PeriodValueObject({ from, to })
+    const guest = new GuestEntity({ id, name, period })
 
-    this.repository.add(guest)
+    void this.repository.add(guest)
 
     return guest
   }

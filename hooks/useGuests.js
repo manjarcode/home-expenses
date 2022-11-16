@@ -7,8 +7,8 @@ const {addGuestUseCase, removeGuestUseCase, listGuestUseCase} = useCases
 export default function useGuests() {
   const [guests, setGuests] = useState([])
 
-  const add = dto => {
-    const guest = addGuestUseCase.execute(dto)
+  const add = (id, name, from, to) => {
+    const guest = addGuestUseCase.execute(id, name, from, to)
     setGuests(value => [...guests, guest])
   }
 
