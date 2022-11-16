@@ -1,5 +1,5 @@
 import { HTTP_STATUS } from '../../config/index.js'
-import GuestEntityFactory from '../entities/factory.js'
+import { buildGuest } from '../entities/factory.js'
 
 const RESOURCE = '/api/guests'
 export default class GuestRepository {
@@ -17,7 +17,13 @@ export default class GuestRepository {
     return await fetch(RESOURCE)
       .then(async response => await response.json())
       .then(response => {
-        const entities = response.map(data => GuestEntityFactory.guest(data))
+        const entities = response.map(data => buildGuest(
+          data.id,
+          data.name,
+          data.from,
+          data.to,
+          data.currently))
+
         return entities
       })
   }
