@@ -1,4 +1,4 @@
-import {HTTP_STATUS} from 'home-expenses-domain/src/config/index.js'
+import {HTTP_STATUS} from 'home-expenses-domain/lib/config/index.js'
 import GuestService from 'home-expenses-services/guests/guestService.js'
 
 const ACTION_BY_METHOD = {
