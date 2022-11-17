@@ -1,4 +1,5 @@
 import { countDays, floorDate, nextMonth } from '../../utils/date.js'
+import { guard } from '../../utils/guard.js'
 import GuestEntity from '../entities/GuestEntity.js'
 
 export default class TimetableService {
@@ -60,18 +61,11 @@ export default class TimetableService {
     this._validate(guestList)
     const sorted = GuestEntity.sort(guestList)
 
-    const first = floorDate(ensure(sorted[0]).period.from)
-    const last = ensure(sorted[sorted.length - 1]).period.to
+    const first = floorDate(guard(sorted[0]).period.from)
+    const last = guard(sorted[sorted.length - 1]).period.to
     const guests = this._guests(first, sorted)
     const yearSpan = this._yearSpan(first, last)
 
     return { guests, yearSpan }
   }
-}
-
-function ensure<T> (value: T | undefined): T {
-  if (value === undefined) {
-    throw new Error('Must be defined')
-  }
-  return value
 }

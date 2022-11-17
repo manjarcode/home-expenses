@@ -1,6 +1,6 @@
 import {v4 as uuid} from 'uuid'
 
-import InvoiceEntity from '../entities/InvoiceEntity.js'
+import InvoiceEntity from '../entities/InvoiceEntity'
 
 class InvoiceService {
   calculate({expenses, guests}) {
@@ -32,12 +32,7 @@ class InvoiceService {
 
     guestExpenseJoin.forEach(({guest, days}) => {
       const ammount = this._ammount(days, totalDays, expense.ammount)
-      invoice.addAmmount({
-        guest,
-        expense: expense.name,
-        ammount,
-        days
-      })
+      invoice.addAmmount(guest, expense.name, ammount, days)
     })
 
     return invoice
