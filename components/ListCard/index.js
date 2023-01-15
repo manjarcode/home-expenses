@@ -5,6 +5,7 @@ import {ListItemText} from '@mui/material'
 import Button from '@mui/material/Button'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
+import Typography from '@mui/material/Typography'
 
 import styles from './index.module.scss'
 
@@ -13,7 +14,7 @@ export default function ListCard(props) {
 }
 
 const Header = props => <div className={styles.header} {...props} />
-const Title = props => <h2 {...props} />
+const Title = props => <Typography variant="h5" {...props} />
 const Action = props => <Button startIcon={<AddIcon />} {...props} />
 const StyledList = props => (
   <div className={styles.list}>

@@ -1,0 +1,7 @@
+@import '../../styles/margin.module.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: $m-l;
+}

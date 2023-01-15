@@ -4,9 +4,8 @@ import PropTypes from 'prop-types'
 
 import useModal from '../../../hooks/useModal.js'
 import ListCard from '../../ListCard/index.js'
+import TextAmmount from '../../textAmmount/index.js'
 import AddExpense from '../addExpense/index.js'
-
-import styles from './index.module.scss'
 
 function Expenses({onChange}) {
   const [expenses, setExpenses] = useState([])
@@ -38,7 +37,7 @@ function Expenses({onChange}) {
         <ListCard.List>
           {expenses.map(({name, ammount, period}) => (
             <ListCard.Item
-              primary={<ExpenseItem name={name} ammount={ammount} />}
+              primary={<TextAmmount name={name} ammount={ammount} />}
               secondary={period.toString()}
             ></ListCard.Item>
           ))}
@@ -51,19 +50,6 @@ function Expenses({onChange}) {
 
 Expenses.propTypes = {
   onChange: PropTypes.func
-}
-
-const ExpenseItem = ({name, ammount}) => {
-  return (
-    <div className={styles.item}>
-      <span>{name}:</span>
-      <span>{ammount}€</span>
-    </div>
-  )
-}
-ExpenseItem.propTypes = {
-  name: PropTypes.string,
-  ammount: PropTypes.number
 }
 
 export default Expenses
