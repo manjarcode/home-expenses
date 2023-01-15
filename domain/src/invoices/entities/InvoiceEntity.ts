@@ -37,7 +37,7 @@ class InvoiceEntity {
     const expenseDto: InvoiceExpenseDto = {
       expense,
       value: roundMoney(ammount),
-      days
+      days: Math.round(days)
     }
     guest.expenses.push(expenseDto)
   }
