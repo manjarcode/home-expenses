@@ -1,7 +1,6 @@
 import {useState} from 'react'
 
 import {Box} from '@mui/material'
-import Button from '@mui/material/Button'
 
 import ExpenseList from '../../components/expenses/expenseList/index.js'
 import GuestList from '../../components/guests/guestList/index.js'
