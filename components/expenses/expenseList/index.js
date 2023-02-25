@@ -1,5 +1,3 @@
-import {useState} from 'react'
-
 import PropTypes from 'prop-types'
 
 import useModal from '../../../hooks/useModal.js'
@@ -7,17 +5,11 @@ import ListCard from '../../ListCard/index.js'
 import TextAmmount from '../../textAmmount/index.js'
 import AddExpense from '../addExpense/index.js'
 
-function Expenses({onChange}) {
-  const [expenses, setExpenses] = useState([])
-
+function Expenses({expenses, onExpenseAdded, onExpenseDeleted}) {
   const {isVisible, open, close} = useModal()
 
-  const onAccept = period => {
-    setExpenses(value => {
-      const current = [...value, period]
-      onChange(current)
-      return current
-    })
+  const onAccept = expense => {
+    onExpenseAdded(expense)
     close()
   }
 
@@ -49,7 +41,9 @@ function Expenses({onChange}) {
 }
 
 Expenses.propTypes = {
-  onChange: PropTypes.func
+  expenses: PropTypes.array,
+  onExpenseAdded: PropTypes.func,
+  onExpenseDeleted: PropTypes.func
 }
 
 export default Expenses

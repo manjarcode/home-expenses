@@ -1,3 +1,4 @@
 export const ENTITIES = {
-  GUEST: 'guest'
+  GUEST: 'guest',
+  EXPENSE: 'expense'
 }

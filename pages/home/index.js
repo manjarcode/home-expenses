@@ -1,22 +1,29 @@
-import {useState} from 'react'
-
 import {Box} from '@mui/material'
 
 import ExpenseList from '../../components/expenses/expenseList/index.js'
 import GuestList from '../../components/guests/guestList/index.js'
 import Invoice from '../../components/invoice/index.js'
+import useExpenses from '../../hooks/useExpenses.js'
 import useGuests from '../../hooks/useGuests.js'
 
 import styles from './index.module.scss'
 
 function HomePage() {
-  const [expenses, setExpenses] = useState([])
-  const {guests, add, remove} = useGuests([])
+  const {expenses, add: addExpense, remove: removeExpense} = useExpenses([])
+  const {guests, add: addGuest, remove: removeGuest} = useGuests([])
 
   return (
     <Box className={styles.container}>
-      <GuestList guests={guests} onGuestAdded={add} onGuestDeleted={remove} />
-      <ExpenseList onChange={setExpenses} />
+      <GuestList
+        guests={guests}
+        onGuestAdded={addGuest}
+        onGuestDeleted={removeGuest}
+      />
+      <ExpenseList
+        expenses={expenses}
+        onExpenseAdded={addExpense}
+        onExpenseDeleted={removeExpense}
+      />
       <Invoice expenses={expenses} guests={guests} />
     </Box>
   )
