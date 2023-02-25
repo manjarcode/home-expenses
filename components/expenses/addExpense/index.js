@@ -1,8 +1,8 @@
 import {useState} from 'react'
 
-import ExpenseEntity from 'home-expenses-domain/lib/expenses/entities/ExpensesEntity.js'
-import PeriodValueObject from 'home-expenses-domain/lib/periods/valueObjects/PeriodValueObject.js'
+import {buildExpense} from 'home-expenses-domain/lib/expenses/entities/factory.js'
 import PropTypes from 'prop-types'
+import {v4 as uuid} from 'uuid'
 
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
@@ -24,8 +24,10 @@ function AddExpense({onAccept, onCancel, isVisible}) {
   const onClick = () => {
     // TODO: Validar datos
 
-    const period = new PeriodValueObject({name, from, to})
-    const expense = new ExpenseEntity({name, period, ammount})
+    const id = uuid()
+    // TODO: Pending to pass paid flag
+    const paid = false
+    const expense = buildExpense(id, name, ammount, paid, from, to)
     onAccept(expense)
   }
 

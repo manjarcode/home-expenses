@@ -2,6 +2,7 @@ import ExpenseEntity from '../entities/ExpensesEntity.js'
 import { buildExpense } from '../entities/factory.js'
 
 const RESOURCE = '/api/expenses'
+
 export default class ExpenseRepository {
   async list (): Promise<ExpenseEntity> {
     return await fetch(RESOURCE)
@@ -13,5 +14,15 @@ export default class ExpenseRepository {
         })
         return entities
       })
+  }
+
+  async add (expense: ExpenseEntity): Promise<void> {
+    await fetch(RESOURCE, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(expense.toJSON())
+    })
   }
 }

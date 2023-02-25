@@ -14,6 +14,17 @@ class ExpenseEntity {
     this.ammount = ammount
     this.paid = paid
   }
+
+  toJSON (): object {
+    return {
+      id: this.id,
+      name: this.name,
+      from: this.period.from.getTime(),
+      to: this.period.to.getTime(),
+      ammount: this.ammount,
+      paid: this.paid
+    }
+  }
 }
 
 export default ExpenseEntity

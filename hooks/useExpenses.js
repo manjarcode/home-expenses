@@ -2,13 +2,20 @@ import {useEffect, useState} from 'react'
 
 import {useCases} from 'home-expenses-domain'
 
-const {listExpensesUseCase} = useCases
+const {listExpensesUseCase, addExpenseUseCase} = useCases
 
 export default function useExpenses() {
   const [expenses, setExpenses] = useState([])
 
   const add = expense => {
-    setExpenses([...expenses, expense])
+    addExpenseUseCase
+      .execute(expense)
+      .then(() => {
+        setExpenses([...expenses, expense])
+      })
+      .catch(error => {
+        console.error(error)
+      })
   }
 
   const remove = () => {}
