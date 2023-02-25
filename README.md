@@ -2,7 +2,6 @@
 This application allows to manage the expenses of a home.
 
 # TODO: 
-- Delete expense
 - Expense paid flag
 - Page with info for guests
 - Watch change in domain to automatically build the package

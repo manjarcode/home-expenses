@@ -2,24 +2,6 @@ import dynamoDbClient from '../dynamoDbClient.js'
 const TABLE_NAME = 'expenses'
 
 export class ExpenseService {
-  list() {
-    const params = {
-      TableName: TABLE_NAME
-    }
-
-    const promise = new Promise((resolve, reject) => {
-      dynamoDbClient.scan(params, function (error, data) {
-        if (error) {
-          reject(error)
-        }
-
-        resolve(data.Items)
-      })
-    })
-
-    return promise
-  }
-
   async add({id, name, ammount, paid, from, to}) {
     const params = {
       Item: {
@@ -34,11 +16,22 @@ export class ExpenseService {
     }
 
     const promise = new Promise((resolve, reject) => {
-      dynamoDbClient.put(params, function (error, data) {
-        if (error) {
-          reject(error)
-        }
-        resolve(data.Items)
+      dynamoDbClient.put(params, function (error) {
+        error ? reject(error) : resolve()
+      })
+    })
+
+    return promise
+  }
+
+  async list() {
+    const params = {
+      TableName: TABLE_NAME
+    }
+
+    const promise = new Promise((resolve, reject) => {
+      dynamoDbClient.scan(params, function (error, data) {
+        error ? reject(error) : resolve(data.Items)
       })
     })
 
@@ -48,17 +41,12 @@ export class ExpenseService {
   async delete({id}) {
     const params = {
       TableName: TABLE_NAME,
-      Key: {
-        id
-      }
+      Key: {id}
     }
 
     const promise = new Promise((resolve, reject) => {
-      dynamoDbClient.delete(params, function (error, data) {
-        if (error) {
-          reject(error)
-        }
-        resolve(data.Items)
+      dynamoDbClient.delete(params, function (error) {
+        error ? reject(error) : resolve()
       })
     })
 

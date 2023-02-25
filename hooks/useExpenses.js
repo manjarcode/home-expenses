@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 
 import {useCases} from 'home-expenses-domain'
 
-const {listExpensesUseCase, addExpenseUseCase} = useCases
+const {listExpensesUseCase, addExpenseUseCase, removeExpenseUseCase} = useCases
 
 export default function useExpenses() {
   const [expenses, setExpenses] = useState([])
@@ -18,7 +18,16 @@ export default function useExpenses() {
       })
   }
 
-  const remove = () => {}
+  const remove = id => {
+    removeExpenseUseCase
+      .execute(id)
+      .then(() => {
+        setExpenses(expenses => expenses.filter(expense => expense.id !== id))
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
 
   useEffect(() => {
     listExpensesUseCase.execute().then(entities => {

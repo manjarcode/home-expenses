@@ -3,7 +3,8 @@ import ExpenseService from 'home-expenses-services/expenses/expenseService.js'
 
 const ACTION_BY_METHOD = {
   [HTTP_STATUS.GET]: list,
-  [HTTP_STATUS.POST]: add
+  [HTTP_STATUS.POST]: add,
+  [HTTP_STATUS.DELETE]: remove
 }
 
 export default async function handler(req, res) {
@@ -20,10 +21,14 @@ export default async function handler(req, res) {
   res.status(200).json(result)
 }
 
+async function add({expenseService, id, name, ammount, paid, from, to}) {
+  return expenseService.add({id, name, ammount, paid, from, to})
+}
+
 async function list({expenseService}) {
   return expenseService.list()
 }
 
-async function add({expenseService, id, name, ammount, paid, from, to}) {
-  return expenseService.add({id, name, ammount, paid, from, to})
+async function remove({expenseService, id}) {
+  return expenseService.delete({id})
 }

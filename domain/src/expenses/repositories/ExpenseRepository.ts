@@ -4,6 +4,16 @@ import { buildExpense } from '../entities/factory.js'
 const RESOURCE = '/api/expenses'
 
 export default class ExpenseRepository {
+  async add (expense: ExpenseEntity): Promise<void> {
+    await fetch(RESOURCE, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(expense.toJSON())
+    })
+  }
+
   async list (): Promise<ExpenseEntity> {
     return await fetch(RESOURCE)
       .then(async response => await response.json())
@@ -16,13 +26,10 @@ export default class ExpenseRepository {
       })
   }
 
-  async add (expense: ExpenseEntity): Promise<void> {
-    await fetch(RESOURCE, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(expense.toJSON())
+  async delete (id: string): Promise<void> {
+    const endpoint = `${RESOURCE}/${id}`
+    await fetch(endpoint, {
+      method: 'DELETE'
     })
   }
 }

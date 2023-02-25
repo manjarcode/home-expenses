@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types'
 
+import DeleteIcon from '@mui/icons-material/Delete'
+import IconButton from '@mui/material/IconButton'
+
 import useModal from '../../../hooks/useModal.js'
 import ListCard from '../../ListCard/index.js'
 import TextAmmount from '../../textAmmount/index.js'
@@ -27,10 +30,18 @@ function Expenses({expenses, onExpenseAdded, onExpenseDeleted}) {
       </ListCard.Header>
       {hasExpenses && (
         <ListCard.List>
-          {expenses.map(({name, ammount, period}) => (
+          {expenses.map(({id, name, ammount, period}) => (
             <ListCard.Item
               primary={<TextAmmount name={name} ammount={ammount} />}
               secondary={period.toString()}
+              secondaryAction={
+                <IconButton
+                  aria-label="delete-guest"
+                  onClick={() => onExpenseDeleted(id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              }
             ></ListCard.Item>
           ))}
         </ListCard.List>

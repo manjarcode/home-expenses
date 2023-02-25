@@ -60,11 +60,11 @@ export default class GuestService {
     }
 
     const promise = new Promise((resolve, reject) => {
-      dynamoDbClient.delete(params, function (error, data) {
+      dynamoDbClient.delete(params, function (error) {
         if (error) {
           reject(error)
         }
-        resolve(data.Items)
+        resolve()
       })
     })
 
