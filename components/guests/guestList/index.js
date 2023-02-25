@@ -9,9 +9,9 @@ import AddGuest from '../addGuest/index.js'
 
 function GuestList({guests = [], onGuestAdded, onGuestDeleted}) {
   const {isVisible, open, close} = useModal()
-  const onAccept = guest => {
+  const onAccept = ({id, name, from, to}) => {
     close()
-    onGuestAdded(guest)
+    onGuestAdded(id, name, from, to)
   }
 
   const hasGuests = Array.isArray(guests) && guests.length > 0
