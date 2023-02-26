@@ -1,6 +1,7 @@
 # home-expenses
 This application allows to manage the expenses of a home.
 
+
 # TODO: 
 - Expense paid flag
 - Page with info for guests
