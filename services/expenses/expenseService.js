@@ -52,6 +52,35 @@ export class ExpenseService {
 
     return promise
   }
+
+  async update({id, name, ammount, paid, from, to}) {
+    const params = {
+      TableName: TABLE_NAME,
+      Key: {id},
+      UpdateExpression:
+        'set #name = :name, ammount = :ammount, paid = :paid, #from = :from, #to = :to',
+      ExpressionAttributeNames: {
+        '#name': 'name',
+        '#from': 'from',
+        '#to': 'to'
+      },
+      ExpressionAttributeValues: {
+        ':name': name,
+        ':ammount': ammount,
+        ':paid': paid,
+        ':from': from,
+        ':to': to
+      }
+    }
+
+    const promise = new Promise((resolve, reject) => {
+      dynamoDbClient.update(params, function (error) {
+        error ? reject(error) : resolve()
+      })
+    })
+
+    return promise
+  }
 }
 
 export default ExpenseService

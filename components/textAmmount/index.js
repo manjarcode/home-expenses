@@ -1,10 +1,14 @@
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 
 import styles from './index.module.scss'
 
-export default function TextAmmount({name, ammount}) {
+export default function TextAmmount({name, ammount, paid}) {
+  const className = cx(styles.ammount, {
+    [styles.paid]: paid
+  })
   return (
-    <div className={styles.item}>
+    <div className={className}>
       <span>{name}:</span>
       <span>{ammount}€</span>
     </div>
@@ -12,5 +16,6 @@ export default function TextAmmount({name, ammount}) {
 }
 TextAmmount.propTypes = {
   name: PropTypes.string,
-  ammount: PropTypes.number
+  ammount: PropTypes.number,
+  paid: PropTypes.bool
 }

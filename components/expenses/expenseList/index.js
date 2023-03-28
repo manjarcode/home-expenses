@@ -30,9 +30,11 @@ function Expenses({expenses, onExpenseAdded, onExpenseDeleted}) {
       </ListCard.Header>
       {hasExpenses && (
         <ListCard.List>
-          {expenses.map(({id, name, ammount, period}) => (
+          {expenses.map(({id, name, ammount, period, paid}) => (
             <ListCard.Item
-              primary={<TextAmmount name={name} ammount={ammount} />}
+              primary={
+                <TextAmmount name={name} ammount={ammount} paid={paid} />
+              }
               secondary={period.toString()}
               secondaryAction={
                 <IconButton
