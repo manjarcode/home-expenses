@@ -9,7 +9,7 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 
-import AddPeriod from '../../addPeriod/index.js'
+import DateInput from '../../dateInput/index.js'
 import Input from '../../input/index.js'
 
 import styles from './index.module.scss'
@@ -28,8 +28,8 @@ function AddGuest({onAccept, onCancel, isVisible}) {
       <DialogTitle>Añadir huésped</DialogTitle>
       <DialogContent className={styles.content}>
         <Input label="Nombre" onChange={setName} />
-        <AddPeriod label="Desde: " onChange={setFrom} />
-        <AddPeriod label="Hasta: " onChange={setTo} />
+        <DateInput label="Desde:" onChange={setFrom} />
+        <DateInput label="Hasta:" onChange={setTo} />
       </DialogContent>
       <DialogActions>
         <Button onClick={onCancel}>Cancelar</Button>

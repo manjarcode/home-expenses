@@ -32,4 +32,15 @@ export default class ExpenseRepository {
       method: 'DELETE'
     })
   }
+
+  async update (expense: ExpenseEntity): Promise<void> {
+    const endpoint = `${RESOURCE}`
+    await fetch(endpoint, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(expense.toJSON())
+    })
+  }
 }

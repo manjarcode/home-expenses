@@ -1,6 +1,7 @@
 import AddExpenseUseCase from './expenses/useCases/addExpenseUseCase.js'
 import ListExpensesUseCase from './expenses/useCases/listExpensesUseCase.js'
 import RemoveExpenseUseCase from './expenses/useCases/removeExpenseUseCase.js'
+import UpdateExpenseUseCase from './expenses/useCases/updateExpenseUseCase.js'
 import AddGuestUseCase from './guests/useCases/addGuestUseCase.js'
 import GetTimeTableUseCase from './guests/useCases/getTimetableUseCase.js'
 import ListGuestUseCase from './guests/useCases/listGuestUseCase.js'
@@ -11,6 +12,7 @@ export const useCases = {
   addExpenseUseCase: new AddExpenseUseCase(),
   removeExpenseUseCase: new RemoveExpenseUseCase(),
   listExpensesUseCase: new ListExpensesUseCase(),
+  updateExpenseUseCase: new UpdateExpenseUseCase(),
   addGuestUseCase: new AddGuestUseCase(),
   getTimeTableUseCase: new GetTimeTableUseCase(),
   listGuestUseCase: new ListGuestUseCase(),

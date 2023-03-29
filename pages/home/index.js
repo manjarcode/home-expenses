@@ -9,7 +9,12 @@ import useGuests from '../../hooks/useGuests.js'
 import styles from './index.module.scss'
 
 function HomePage() {
-  const {expenses, add: addExpense, remove: removeExpense} = useExpenses([])
+  const {
+    expenses,
+    add: addExpense,
+    remove: removeExpense,
+    update: updateExpense
+  } = useExpenses([])
   const {guests, add: addGuest, remove: removeGuest} = useGuests([])
 
   return (
@@ -23,6 +28,7 @@ function HomePage() {
         expenses={expenses}
         onExpenseAdded={addExpense}
         onExpenseDeleted={removeExpense}
+        onExpenseUpdated={updateExpense}
       />
       <Invoice expenses={expenses} guests={guests} />
     </Box>

@@ -2,17 +2,26 @@ import {useEffect, useState} from 'react'
 
 import {useCases} from 'home-expenses-domain'
 
-const {listExpensesUseCase, addExpenseUseCase, removeExpenseUseCase} = useCases
+const {
+  listExpensesUseCase,
+  addExpenseUseCase,
+  removeExpenseUseCase,
+  updateExpenseUseCase
+} = useCases
 
 export default function useExpenses() {
   const [expenses, setExpenses] = useState([])
 
+  const listExpenses = () => {
+    listExpensesUseCase.execute().then(entities => {
+      setExpenses(entities)
+    })
+  }
+
   const add = expense => {
     addExpenseUseCase
       .execute(expense)
-      .then(() => {
-        setExpenses([...expenses, expense])
-      })
+      .then(listExpenses)
       .catch(error => {
         console.error(error)
       })
@@ -21,19 +30,24 @@ export default function useExpenses() {
   const remove = id => {
     removeExpenseUseCase
       .execute(id)
-      .then(() => {
-        setExpenses(expenses => expenses.filter(expense => expense.id !== id))
+      .then(listExpenses)
+      .catch(error => {
+        console.error(error)
       })
+  }
+
+  const update = expense => {
+    updateExpenseUseCase
+      .execute(expense)
+      .then(listExpenses)
       .catch(error => {
         console.error(error)
       })
   }
 
   useEffect(() => {
-    listExpensesUseCase.execute().then(entities => {
-      setExpenses(entities)
-    })
-  }, [setExpenses])
+    listExpenses()
+  }, [])
 
-  return {expenses, add, remove}
+  return {expenses, add, remove, update}
 }
