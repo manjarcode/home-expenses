@@ -1,10 +1,6 @@
 import {useEffect, useState} from 'react'
 
-import {useCases} from 'home-expenses-domain'
-
-import ExpenseService from '../pages/services/expenseService.js'
-
-const {listExpensesUseCase} = useCases
+import ExpenseService from '../services/expenseService.js'
 
 // TODO: arreglar esto:
 

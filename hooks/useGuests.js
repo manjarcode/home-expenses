@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 
-import GuestService from '../pages/services/guestService.js'
+import GuestService from '../services/guestService.js'
 
 const guestService = new GuestService()
 

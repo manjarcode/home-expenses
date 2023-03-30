@@ -1,6 +1,5 @@
 import {useCases} from 'home-expenses-domain'
 import {HTTP_STATUS} from 'home-expenses-domain/lib/config/index.js'
-import ExpenseService from 'home-expenses-services/expenses/expenseService.js'
 
 const ACTION_BY_METHOD = {
   [HTTP_STATUS.GET]: list,
@@ -9,13 +8,11 @@ const ACTION_BY_METHOD = {
 }
 
 export default async function handler(req, res) {
-  const expenseService = new ExpenseService()
-
   const action = ACTION_BY_METHOD[req.method]
 
   const {body} = req
 
-  const promise = action && action({expenseService, ...body})
+  const promise = action && action({...body})
 
   const result = await promise
 
