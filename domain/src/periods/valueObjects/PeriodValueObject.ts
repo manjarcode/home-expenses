@@ -1,18 +1,20 @@
 import { CULTURE } from '../../config/index.js'
-import { countDays } from '../../utils/date.js'
+import { countDays, toDetachedDate } from '../../utils/date.js'
 
 class PeriodValueObject {
   from: Date
   to: Date
-  _days: number
+  private readonly _days: number
+  currently: boolean
 
-  constructor ({ from, to }) {
+  constructor ({ from, to, currently }) {
     this._validateDate(from)
     this._validateDate(to)
     this._validateFromTo(from, to)
     this.from = from
     this.to = to
     this._days = countDays(from, to)
+    this.currently = currently
   }
 
   _validateDate (value: Date): void {
@@ -75,9 +77,9 @@ class PeriodValueObject {
 
   flatten (): any {
     return {
-      from: this.from.getTime(),
-      to: this.to.getTime(),
-      currently: false
+      value: this.toString(),
+      from: toDetachedDate(this.from),
+      to: toDetachedDate(this.to)
     }
   }
 

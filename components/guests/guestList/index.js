@@ -9,9 +9,9 @@ import AddGuest from '../addGuest/index.js'
 
 function GuestList({guests = [], onGuestAdded, onGuestDeleted}) {
   const {isVisible, open, close} = useModal()
-  const onAccept = ({id, name, from, to}) => {
+  const onAccept = guest => {
     close()
-    onGuestAdded(id, name, from, to)
+    onGuestAdded(guest)
   }
 
   const hasGuests = Array.isArray(guests) && guests.length > 0
@@ -28,7 +28,7 @@ function GuestList({guests = [], onGuestAdded, onGuestDeleted}) {
             <ListCard.Item
               key={id}
               primary={name}
-              secondary={period.toString()}
+              secondary={period.value}
               secondaryAction={
                 <IconButton
                   aria-label="delete-guest"

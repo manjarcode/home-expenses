@@ -1,10 +1,10 @@
-import GuestService from 'home-expenses-services/guests/guestService.js'
-
+import {useCases} from 'home-expenses-domain'
 export default function handler(req, res) {
   const {id} = req.query
-  const guestService = new GuestService()
 
-  guestService.delete({id})
+  const {removeGuestUseCase} = useCases
+
+  removeGuestUseCase.execute(id)
 
   res.status(204).json({})
 }

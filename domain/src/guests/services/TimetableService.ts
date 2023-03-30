@@ -12,12 +12,13 @@ export default class TimetableService {
     if (!isValid) throw new Error('Must provide an array of guests')
   }
 
-  _guests (first: Date, sorted: GuestEntity[]): GuestDto[] {
+  _guests (first: Date, sorted: GuestEntity[]): TimetableGuestDto[] {
     const mapped = sorted.map(({ name, period }) => {
       const offset = countDays(first, period.from)
       const count = period.days()
 
-      return { name, from: offset, to: offset + count }
+      const guest: TimetableGuestDto = { name, from: offset, to: offset + count }
+      return guest
     })
 
     return mapped

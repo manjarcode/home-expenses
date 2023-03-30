@@ -32,11 +32,40 @@ export const countDays = (from: Date, to: Date): number => {
   return days + 1
 }
 
-export const nextMonth = date => {
+export const nextMonth = (date: Date): Date => {
   const MONTH_INCREMENT = 1
   return new Date(
     date.getFullYear(),
     date.getMonth() + MONTH_INCREMENT,
     date.getDate()
   )
+}
+
+export function toDetachedDate (date: Date): DetachedDate {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+
+  return {
+    year,
+    month,
+    day
+  }
+}
+
+export function fromDetachedDate (date: DetachedDate): Date {
+  const { year, month, day } = date
+  return new Date(year, month - 1, day)
+}
+
+export function today (): Date {
+  const todayLocale = new Date()
+
+  const todayUtc = Date.UTC(
+    todayLocale.getFullYear(),
+    todayLocale.getMonth(),
+    todayLocale.getDate()
+  )
+
+  return new Date(todayUtc)
 }

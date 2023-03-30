@@ -1,27 +1,34 @@
 import {useEffect, useState} from 'react'
 
-import {useCases} from 'home-expenses-domain'
+import GuestService from '../pages/services/guestService.js'
 
-const {addGuestUseCase, removeGuestUseCase, listGuestUseCase} = useCases
+const guestService = new GuestService()
 
 export default function useGuests() {
   const [guests, setGuests] = useState([])
 
-  const add = (id, name, from, to) => {
-    const guest = addGuestUseCase.execute(id, name, from, to)
-    setGuests(value => [...guests, guest])
+  const listExpenses = () => {
+    guestService
+      .list()
+      .then(entities => {
+        setGuests(entities)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+
+  const add = guest => {
+    guestService.add(guest).then(listExpenses)
   }
 
   const remove = id => {
-    setGuests(value => guests.filter(item => item.id !== id))
-    removeGuestUseCase.execute(id)
+    guestService.remove(id).then(listExpenses)
   }
 
   useEffect(() => {
-    listGuestUseCase.execute().then(entities => {
-      setGuests(entities)
-    })
-  }, [setGuests])
+    listExpenses()
+  }, [])
 
   return {guests, add, remove}
 }

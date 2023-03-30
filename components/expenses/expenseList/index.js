@@ -53,25 +53,28 @@ function Expenses({
       </ListCard.Header>
       {hasExpenses && (
         <ListCard.List>
-          {expenses.map(({id, name, ammount, period, paid}) => (
-            <ListCard.Item
-              onClick={() => {
-                updateExpenseClick({id, name, ammount, period, paid})
-              }}
-              primary={
-                <TextAmmount name={name} ammount={ammount} paid={paid} />
-              }
-              secondary={period.toString()}
-              secondaryAction={
-                <IconButton
-                  aria-label="delete-guest"
-                  onClick={() => onExpenseDeleted(id)}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              }
-            ></ListCard.Item>
-          ))}
+          {expenses.map(expense => {
+            const {id, name, ammount, period, paid} = expense
+            return (
+              <ListCard.Item
+                onClick={() => {
+                  updateExpenseClick(expense)
+                }}
+                primary={
+                  <TextAmmount name={name} ammount={ammount} paid={paid} />
+                }
+                secondary={period.value}
+                secondaryAction={
+                  <IconButton
+                    aria-label="delete-guest"
+                    onClick={() => onExpenseDeleted(id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                }
+              ></ListCard.Item>
+            )
+          })}
         </ListCard.List>
       )}
       <ExpenseForm

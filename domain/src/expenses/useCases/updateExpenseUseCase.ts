@@ -1,4 +1,4 @@
-import ExpenseEntity from '../entities/ExpensesEntity.js'
+import { buildExpense } from '../entities/factory.js'
 import ExpenseRepository from '../repositories/ExpenseRepository.js'
 
 export default class UpdateExpenseUseCase {
@@ -7,7 +7,9 @@ export default class UpdateExpenseUseCase {
     this.expenseRepository = new ExpenseRepository()
   }
 
-  async execute (expense: ExpenseEntity): Promise<void> {
-    await this.expenseRepository.update(expense)
+  async execute (expense: ExpenseDto): Promise<void> {
+    const { id, name, ammount, paid, period } = expense
+    const expenseEntity = buildExpense(id, name, ammount, paid, period)
+    await this.expenseRepository.update(expenseEntity)
   }
 }

@@ -1,4 +1,4 @@
-interface GuestDto {
+interface TimetableGuestDto {
   name: string
   from: number
   to: number
@@ -10,6 +10,6 @@ interface YearSpan {
 }
 
 interface TimetableDto {
-  guests: GuestDto[]
+  guests: TimetableGuestDto[]
   yearSpan: YearSpan
 }

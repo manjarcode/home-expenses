@@ -8,6 +8,7 @@
     "test": "test"
   },
   "devDependencies": {
+    "@types/node": "^18.15.11",
     "ts-loader": "^9.4.1",
     "typescript": "^4.8.4",
     "watch": "^1.0.2"
@@ -26,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/slaverise/home-expenses/issues"
   },
-  "homepage": "https://github.com/slaverise/home-expenses#readme"
+  "homepage": "https://github.com/slaverise/home-expenses#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1345.0"
+  }
 }

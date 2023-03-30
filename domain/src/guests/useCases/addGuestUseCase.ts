@@ -1,5 +1,4 @@
-import PeriodValueObject from '../../periods/valueObjects/PeriodValueObject.js'
-import GuestEntity from '../entities/GuestEntity.js'
+import { buildGuest } from '../entities/factory.js'
 import GuestRepository from '../repositories/GuestRepository.js'
 
 export default class AddGuestUseCase {
@@ -8,11 +7,9 @@ export default class AddGuestUseCase {
     this.repository = new GuestRepository()
   }
 
-  execute (id: string, name: string, from: Date, to: Date): GuestEntity {
-    const period = new PeriodValueObject({ from, to })
-    const guest = new GuestEntity({ id, name, period })
-
-    void this.repository.add(guest)
+  execute (guest: GuestDto): GuestDto {
+    const guestEntity = buildGuest(guest)
+    void this.repository.add(guestEntity)
 
     return guest
   }

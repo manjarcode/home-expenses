@@ -11,8 +11,7 @@ class GuestEntity {
   }
 
   flatten (): any {
-    const { from, to, currently } = this.period.flatten()
-    return { id: this.id, name: this.name, from, to, currently }
+    return { id: this.id, name: this.name, period: this.period.flatten() }
   }
 
   static sort (guestList: GuestEntity[]): GuestEntity[] {

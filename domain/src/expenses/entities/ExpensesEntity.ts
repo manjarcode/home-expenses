@@ -15,14 +15,13 @@ class ExpenseEntity {
     this.paid = paid
   }
 
-  toJSON (): object {
+  toJSON (): ExpenseDto {
     return {
       id: this.id,
       name: this.name,
-      from: this.period.from.getTime(),
-      to: this.period.to.getTime(),
       ammount: this.ammount,
-      paid: this.paid
+      paid: this.paid,
+      period: this.period.flatten()
     }
   }
 }

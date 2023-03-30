@@ -1,36 +1,68 @@
-import { HTTP_STATUS } from '../../config/index.js'
-import { buildGuest } from '../entities/factory.js'
+import dynamoDbClient from '../../db/dynamoDbClient.js'
+import { buildGuestDeprecated } from '../entities/factory.js'
+import GuestEntity from '../entities/GuestEntity.js'
 
-const RESOURCE = '/api/guests'
+const TABLE_NAME = 'guests'
+
 export default class GuestRepository {
-  async add (guest): Promise<Response> {
-    return await fetch(RESOURCE, {
-      method: HTTP_STATUS.POST,
-      headers: {
-        'Content-Type': 'application/json'
+  async add (guest: GuestEntity): Promise<void> {
+    const { id, name, period } = guest
+
+    const params = {
+      Item: {
+        id,
+        name,
+        from: period.from.getTime(),
+        to: period.to.getTime(),
+        currently: period.currently
       },
-      body: JSON.stringify(guest.flatten())
-    })
-  }
+      TableName: TABLE_NAME
+    }
 
-  async list (): Promise<Response> {
-    return await fetch(RESOURCE)
-      .then(async response => await response.json())
-      .then(response => {
-        const entities = response.map(data => buildGuest(
-          data.id,
-          data.name,
-          data.from,
-          data.to,
-          data.currently))
-
-        return entities
+    const promise = new Promise<void>((resolve: Function, reject: Function) => {
+      dynamoDbClient.put(params, function (error, data) {
+        error === null ? resolve() : reject(error)
       })
+    })
+
+    return await promise
   }
 
-  async delete (id: string): Promise<Response> {
-    return await fetch(`${RESOURCE}/${id}`, {
-      method: HTTP_STATUS.DELETE
+  async list (): Promise<GuestEntity[]> {
+    const params = {
+      TableName: TABLE_NAME
+    }
+
+    const promise = new Promise<GuestEntity[]>((resolve: Function, reject: Function) => {
+      dynamoDbClient.scan(params, function (error, data: any) {
+        if (error !== null) {
+          reject(error)
+        }
+
+        const guestsEntities = data.Items.map(item => {
+          const { id, name, from, to, currently } = item
+          return buildGuestDeprecated(id, name, from, to, currently)
+        })
+
+        resolve(guestsEntities)
+      })
     })
+
+    return await promise
+  }
+
+  async delete (id: string): Promise<void> {
+    const params = {
+      TableName: TABLE_NAME,
+      Key: { id }
+    }
+
+    const promise = new Promise<void>((resolve: Function, reject: Function) => {
+      dynamoDbClient.delete(params, function (error) {
+        error === null ? resolve() : reject(error)
+      })
+    })
+
+    return await promise
   }
 }

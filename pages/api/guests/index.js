@@ -1,5 +1,5 @@
+import {useCases} from 'home-expenses-domain'
 import {HTTP_STATUS} from 'home-expenses-domain/lib/config/index.js'
-import GuestService from 'home-expenses-services/guests/guestService.js'
 
 const ACTION_BY_METHOD = {
   [HTTP_STATUS.GET]: list,
@@ -7,23 +7,23 @@ const ACTION_BY_METHOD = {
 }
 
 export default async function handler(req, res) {
-  const guestService = new GuestService()
-
   const action = ACTION_BY_METHOD[req.method]
 
   const {body} = req
 
-  const promise = action && action({guestService, ...body})
+  const promise = action && action({...body})
 
   const result = await promise
 
   res.status(200).json(result)
 }
 
-async function list({guestService}) {
-  return guestService.list()
+async function list() {
+  const {listGuestUseCase} = useCases
+  return listGuestUseCase.execute()
 }
 
-async function add({guestService, id, name, from, to, currently}) {
-  return guestService.add({id, name, from, to, currently})
+async function add({id, name, period}) {
+  const {addGuestUseCase} = useCases
+  addGuestUseCase.execute({id, name, period})
 }

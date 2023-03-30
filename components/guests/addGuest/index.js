@@ -21,8 +21,9 @@ function AddGuest({onAccept, onCancel, isVisible}) {
 
   const acceptHandler = () => {
     const id = uuid()
-    onAccept({id, name, from, to})
+    onAccept({id, name, period: {from, to}})
   }
+
   return (
     <Dialog open={isVisible}>
       <DialogTitle>Añadir huésped</DialogTitle>

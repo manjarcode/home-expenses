@@ -2,15 +2,15 @@ import ExpenseEntity from '../lib/expenses/entities/ExpensesEntity.js'
 import GuestEntity from '../lib/guests/entities/GuestEntity.js'
 import PeriodValueObject from '../lib/periods/valueObjects/PeriodValueObject.js'
 
-export const guest = (id, name, from, to) => {
-  const period = new PeriodValueObject({from, to})
+export const guest = (id, name, from, to, currently) => {
+  const period = new PeriodValueObject({from, to, currently})
   return new GuestEntity({id, name, period})
 }
 
-export const expense = (name, from, to, ammount) => {
+export const expense = (name, from, to, ammount, currently) => {
   return new ExpenseEntity({
     name,
-    period: new PeriodValueObject({from, to}),
+    period: new PeriodValueObject({from, to, currently}),
     ammount
   })
 }

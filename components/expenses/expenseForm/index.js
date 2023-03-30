@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react'
 
-import {buildExpense} from 'home-expenses-domain/lib/expenses/entities/factory.js'
 import PropTypes from 'prop-types'
 import {v4 as uuid} from 'uuid'
 
@@ -38,7 +37,14 @@ function ExpenseForm({onAccept, onCancel, isVisible, expense}) {
 
   const onClick = () => {
     // TODO: Validar datos
-    const expense = buildExpense(id, name, ammount, paid, from, to)
+    const expense = {
+      id,
+      name,
+      ammount,
+      paid,
+      period: {from, to}
+    }
+
     onAccept(expense)
   }
 

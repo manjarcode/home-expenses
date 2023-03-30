@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 
 import PropTypes from 'prop-types'
 
@@ -11,54 +11,27 @@ function DateInput({label, onChange, value}) {
 
   useEffect(() => {
     if (value) {
-      setDay(value.getDate())
-      setMonth(value.getMonth() + 1)
-      setYear(value.getFullYear())
+      setDay(value.day)
+      setMonth(value.month)
+      setYear(value.year)
     }
   }, [value])
 
-  const isNumeric = useCallback((str, length) => {
-    if (typeof str !== 'string') return false
-    return !isNaN(str) && !isNaN(parseFloat(str)) && str.length === length
-  }, [])
-
   useEffect(() => {
-    const isValid =
-      isNumeric(day, 2) && isNumeric(month, 2) && isNumeric(year, 4)
-
-    if (isValid) {
-      const date = new Date(parseInt(year), parseInt(month - 1), parseInt(day))
-      onChange(date)
-    }
-  }, [day, month, year, isNumeric, onChange])
-
-  const onChangeHandler = ({day, month, year}) => {
-    day && setDay(day)
-    month && setMonth(month)
-    year && setYear(year)
-  }
+    onChange({year, month, day})
+  }, [day, month, year, onChange])
 
   return (
     <div className="AddPeriod">
       <Input
         label={label}
         value={day}
-        onChange={value => onChangeHandler({day: value})}
+        onChange={setDay}
         size="2"
         maxLength="2"
       />
-      <Input
-        onChange={value => onChangeHandler({month: value})}
-        value={month}
-        size="2"
-        maxLength="2"
-      />
-      <Input
-        onChange={value => onChangeHandler({year: value})}
-        value={year}
-        size="4"
-        maxLength="4"
-      />
+      <Input onChange={setMonth} value={month} size="2" maxLength="2" />
+      <Input onChange={setYear} value={year} size="4" maxLength="4" />
     </div>
   )
 }

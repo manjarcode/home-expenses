@@ -2,25 +2,31 @@ import {useEffect, useState} from 'react'
 
 import {useCases} from 'home-expenses-domain'
 
-const {
-  listExpensesUseCase,
-  addExpenseUseCase,
-  removeExpenseUseCase,
-  updateExpenseUseCase
-} = useCases
+import ExpenseService from '../pages/services/expenseService.js'
+
+const {listExpensesUseCase} = useCases
+
+// TODO: arreglar esto:
+
+const expenseService = new ExpenseService()
 
 export default function useExpenses() {
   const [expenses, setExpenses] = useState([])
 
   const listExpenses = () => {
-    listExpensesUseCase.execute().then(entities => {
-      setExpenses(entities)
-    })
+    expenseService
+      .list()
+      .then(entities => {
+        setExpenses(entities)
+      })
+      .catch(error => {
+        console.error(error)
+      })
   }
 
   const add = expense => {
-    addExpenseUseCase
-      .execute(expense)
+    expenseService
+      .add(expense)
       .then(listExpenses)
       .catch(error => {
         console.error(error)
@@ -28,8 +34,8 @@ export default function useExpenses() {
   }
 
   const remove = id => {
-    removeExpenseUseCase
-      .execute(id)
+    expenseService
+      .remove(id)
       .then(listExpenses)
       .catch(error => {
         console.error(error)
@@ -37,8 +43,8 @@ export default function useExpenses() {
   }
 
   const update = expense => {
-    updateExpenseUseCase
-      .execute(expense)
+    expenseService
+      .update(expense)
       .then(listExpenses)
       .catch(error => {
         console.error(error)

@@ -8,7 +8,10 @@ export default class ListExpensesUseCase {
     this.repository = new ExpenseRepository()
   }
 
-  async execute (): Promise<ExpenseEntity> {
-    return await this.repository.list()
+  async execute (): Promise<ExpenseDto[]> {
+    const entities = await this.repository.list()
+    const dtos = entities.map((entity: ExpenseEntity) =>
+      entity.toJSON())
+    return dtos
   }
 }
