@@ -1,8 +1,8 @@
 import buildPeriod from '../../periods/valueObjects/factory.js'
 import PeriodValueObject from '../../periods/valueObjects/PeriodValueObject.js'
-import GuestEntity from './GuestEntity.js'
+import Guest from '../Guest.js'
 
-export function buildGuestDeprecated (id: string, name: string, from: Date, to: Date, currently: boolean): GuestEntity {
+export function buildGuestDeprecated (id: string, name: string, from: Date, to: Date, currently: boolean): Guest {
   const todayLocale = new Date()
 
   const todayUtc = Date.UTC(
@@ -15,7 +15,7 @@ export function buildGuestDeprecated (id: string, name: string, from: Date, to: 
 
   to = currently ? today : to
 
-  const entity = new GuestEntity({
+  const entity = new Guest({
     id,
     name,
     period: new PeriodValueObject({
@@ -28,14 +28,14 @@ export function buildGuestDeprecated (id: string, name: string, from: Date, to: 
   return entity
 }
 
-export function buildGuest (guestDto: GuestDto): GuestEntity {
+export function buildGuest (guestDto: GuestDto): Guest {
   const { id, name, period } = guestDto
   console.log('building guest', guestDto)
 
   const periodVo = buildPeriod(period)
 
   console.log('periodVo', periodVo)
-  const entity = new GuestEntity({
+  const entity = new Guest({
     id,
     name,
     period: periodVo

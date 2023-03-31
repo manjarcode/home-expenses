@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid'
 
 import Expense from '../../models/Expense.js'
-import GuestEntity from '../../guests/entities/GuestEntity.js'
+import Guest from '../../models/Guest.js'
 import { roundMoney } from '../../utils/number.js'
 import InvoiceEntity from '../entities/InvoiceEntity.js'
 
@@ -25,7 +25,7 @@ class InvoiceService {
     return roundMoney((days / totalDays) * ammount)
   }
 
-  private _calculateExpense (expense: Expense, guests: GuestEntity[], invoice: InvoiceEntity): InvoiceEntity {
+  private _calculateExpense (expense: Expense, guests: Guest[], invoice: InvoiceEntity): InvoiceEntity {
     let totalDays = 0
 
     const guestExpenseJoin = guests.map(({ name, period }) => {

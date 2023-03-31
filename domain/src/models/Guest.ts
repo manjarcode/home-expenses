@@ -1,6 +1,6 @@
-import PeriodValueObject from '../../periods/valueObjects/PeriodValueObject.js'
+import PeriodValueObject from '../periods/valueObjects/PeriodValueObject.js'
 
-class GuestEntity {
+class Guest {
   id: string
   name: string
   period: PeriodValueObject
@@ -14,7 +14,7 @@ class GuestEntity {
     return { id: this.id, name: this.name, period: this.period.flatten() }
   }
 
-  static sort (guestList: GuestEntity[]): GuestEntity[] {
+  static sort (guestList: Guest[]): Guest[] {
     if (!Array.isArray(guestList)) { throw new Error(`Must provide a guest list instead of ${String(guestList)}`) }
 
     const sorted = guestList.sort(
@@ -24,4 +24,4 @@ class GuestEntity {
   }
 }
 
-export default GuestEntity
+export default Guest
