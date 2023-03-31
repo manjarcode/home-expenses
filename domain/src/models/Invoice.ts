@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/extensions
-import { guard } from '../../utils/guard'
-import { roundMoney } from '../../utils/number'
+import { guard } from '../utils/guard'
+import { roundMoney } from '../utils/number.js'
 
-class InvoiceEntity {
+class Invoice {
   _id: string
   _dictionary: InvoiceGuestDto[]
 
@@ -52,4 +52,4 @@ class InvoiceEntity {
   }
 }
 
-export default InvoiceEntity
+export default Invoice

@@ -12,3 +12,15 @@ interface GuestDto {
   period: DetachedPeriod
   currently: boolean
 }
+
+interface InvoiceExpenseDto {
+  expense: string
+  days: number
+  value: number
+}
+
+interface InvoiceGuestDto {
+  name: string
+  total: number
+  expenses: InvoiceExpenseDto[]
+}
