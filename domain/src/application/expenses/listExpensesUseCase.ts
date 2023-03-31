@@ -1,5 +1,5 @@
-import ExpenseRepository from '../../expenses/repositories/ExpenseRepository.js'
 import Expense from '../../models/Expense.js'
+import ExpenseRepository from '../../repositories/ExpenseRepository.js'
 
 export default class ListExpensesUseCase {
   repository: ExpenseRepository

@@ -1,4 +1,4 @@
-import ExpenseRepository from '../../expenses/repositories/ExpenseRepository.js'
+import ExpenseRepository from '../../repositories/ExpenseRepository.js'
 
 export default class RemoveExpenseUseCase {
   private readonly expenseRepository: ExpenseRepository

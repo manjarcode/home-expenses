@@ -1,6 +1,6 @@
-import dynamoDbClient from '../../db/dynamoDbClient.js'
-import { buildGuestDeprecated } from '../../models/factory/guest.js'
-import Guest from '../../models/Guest.js'
+import { buildGuestDeprecated } from '../models/factory/guest.js'
+import Guest from '../models/Guest.js'
+import dynamoDbClient from './db/dynamoDbClient.js'
 
 const TABLE_NAME = 'guests'
 
