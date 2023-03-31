@@ -47,7 +47,7 @@ class Invoice {
     return guard(found)
   }
 
-  toJSON (): InvoiceGuestDto[] {
+  flatten (): InvoiceGuestDto[] {
     return this._dictionary
   }
 }

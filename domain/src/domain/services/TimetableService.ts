@@ -1,6 +1,6 @@
+import Guest from '../../models/Guest.js'
 import { countDays, floorDate, nextMonth } from '../../utils/date.js'
 import { guard } from '../../utils/guard.js'
-import Guest from '../../models/Guest.js'
 
 export default class TimetableService {
   _validate (guests): void {
@@ -17,7 +17,10 @@ export default class TimetableService {
       const offset = countDays(first, period.from)
       const count = period.days()
 
-      const guest: TimetableGuestDto = { name, from: offset, to: offset + count }
+      const from = offset
+      const to = offset + count
+
+      const guest: TimetableGuestDto = { name, from, to }
       return guest
     })
 
