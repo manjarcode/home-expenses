@@ -1,10 +1,10 @@
 import buildPeriod from '../../periods/valueObjects/factory.js'
 import PeriodValueObject from '../../periods/valueObjects/PeriodValueObject.js'
-import ExpenseEntity from './ExpensesEntity.js'
+import Expense from '../Expense.js'
 
 // TODO: Deprecated
-export function buildExpenseDeprecated (id: string, name: string, ammount: Number, paid: Boolean, from: Date, to: Date): ExpenseEntity {
-  const entity = new ExpenseEntity({
+export function buildExpenseDeprecated (id: string, name: string, ammount: Number, paid: Boolean, from: Date, to: Date): Expense {
+  const entity = new Expense({
     id,
     name,
     ammount,
@@ -20,10 +20,10 @@ export function buildExpenseDeprecated (id: string, name: string, ammount: Numbe
 }
 
 // TODO: replace buildExpense with this
-export function buildExpense (id: string, name: string, ammount: Number, paid: Boolean, period: DetachedPeriod): ExpenseEntity {
+export function buildExpense (id: string, name: string, ammount: Number, paid: Boolean, period: DetachedPeriod): Expense {
   const periodVo = buildPeriod(period)
 
-  const entity = new ExpenseEntity({
+  const entity = new Expense({
     id,
     name,
     ammount,

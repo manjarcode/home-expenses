@@ -1,6 +1,6 @@
-import PeriodValueObject from '../../periods/valueObjects/PeriodValueObject.js'
+import PeriodValueObject from '../periods/valueObjects/PeriodValueObject.js'
 
-class ExpenseEntity {
+class Expense {
   id: string
   name: string
   period: PeriodValueObject
@@ -26,4 +26,4 @@ class ExpenseEntity {
   }
 }
 
-export default ExpenseEntity
+export default Expense

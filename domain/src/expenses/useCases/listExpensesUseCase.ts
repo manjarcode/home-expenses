@@ -1,4 +1,4 @@
-import ExpenseEntity from '../entities/ExpensesEntity.js'
+import Expense from '../../models/Expense.js'
 import ExpenseRepository from '../repositories/ExpenseRepository.js'
 
 export default class ListExpensesUseCase {
@@ -10,7 +10,7 @@ export default class ListExpensesUseCase {
 
   async execute (): Promise<ExpenseDto[]> {
     const entities = await this.repository.list()
-    const dtos = entities.map((entity: ExpenseEntity) =>
+    const dtos = entities.map((entity: Expense) =>
       entity.toJSON())
     return dtos
   }
