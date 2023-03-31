@@ -1,5 +1,5 @@
-import buildPeriod from '../../periods/valueObjects/factory.js'
-import PeriodValueObject from '../../periods/valueObjects/PeriodValueObject.js'
+import buildPeriod from './period.js'
+import Period from '../Period.js'
 import Expense from '../Expense.js'
 
 // TODO: Deprecated
@@ -9,7 +9,7 @@ export function buildExpenseDeprecated (id: string, name: string, ammount: Numbe
     name,
     ammount,
     paid,
-    period: new PeriodValueObject({
+    period: new Period({
       from: new Date(from),
       to: new Date(to),
       currently: false

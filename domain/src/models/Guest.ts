@@ -1,9 +1,9 @@
-import PeriodValueObject from '../periods/valueObjects/PeriodValueObject.js'
+import Period from './Period.js'
 
 class Guest {
   id: string
   name: string
-  period: PeriodValueObject
+  period: Period
   constructor ({ id, name, period }) {
     this.id = id
     this.name = name

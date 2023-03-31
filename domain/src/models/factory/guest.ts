@@ -1,5 +1,5 @@
-import buildPeriod from '../../periods/valueObjects/factory.js'
-import PeriodValueObject from '../../periods/valueObjects/PeriodValueObject.js'
+import buildPeriod from './period.js'
+import Period from '../Period.js'
 import Guest from '../Guest.js'
 
 export function buildGuestDeprecated (id: string, name: string, from: Date, to: Date, currently: boolean): Guest {
@@ -18,7 +18,7 @@ export function buildGuestDeprecated (id: string, name: string, from: Date, to: 
   const entity = new Guest({
     id,
     name,
-    period: new PeriodValueObject({
+    period: new Period({
       from: new Date(from),
       to: new Date(to),
       currently: false
@@ -30,11 +30,9 @@ export function buildGuestDeprecated (id: string, name: string, from: Date, to: 
 
 export function buildGuest (guestDto: GuestDto): Guest {
   const { id, name, period } = guestDto
-  console.log('building guest', guestDto)
 
   const periodVo = buildPeriod(period)
 
-  console.log('periodVo', periodVo)
   const entity = new Guest({
     id,
     name,

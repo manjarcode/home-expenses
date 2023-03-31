@@ -1,9 +1,9 @@
-import PeriodValueObject from '../periods/valueObjects/PeriodValueObject.js'
+import Period from './Period.js'
 
 class Expense {
   id: string
   name: string
-  period: PeriodValueObject
+  period: Period
   ammount: number
   paid: boolean
 

@@ -1,16 +1,16 @@
 import Expense from '../lib/models/Expense.js'
 import Guest from '../lib/models/Guest.js'
-import PeriodValueObject from '../lib/periods/valueObjects/PeriodValueObject.js'
+import Period from '../lib/models/Period.js'
 
 export const guest = (id, name, from, to, currently) => {
-  const period = new PeriodValueObject({from, to, currently})
+  const period = new Period({from, to, currently})
   return new Guest({id, name, period})
 }
 
 export const expense = (name, from, to, ammount, currently) => {
   return new Expense({
     name,
-    period: new PeriodValueObject({from, to, currently}),
+    period: new Period({from, to, currently}),
     ammount
   })
 }
