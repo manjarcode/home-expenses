@@ -1,5 +1,5 @@
+import GuestRepository from '../../guests/repositories/GuestRepository.js'
 import Guest from '../../models/Guest.js'
-import GuestRepository from '../repositories/GuestRepository.js'
 
 export default class ListGuestUseCase {
   repository: GuestRepository

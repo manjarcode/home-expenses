@@ -1,5 +1,5 @@
+import ExpenseRepository from '../../expenses/repositories/ExpenseRepository.js'
 import { buildExpense } from '../../models/factory/expense.js'
-import ExpenseRepository from '../repositories/ExpenseRepository.js'
 
 export default class AddExpenseUseCase {
   private readonly expenseRepository: ExpenseRepository;

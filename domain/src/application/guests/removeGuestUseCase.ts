@@ -1,4 +1,4 @@
-import GuestRepository from '../repositories/GuestRepository.js'
+import GuestRepository from '../../guests/repositories/GuestRepository.js'
 
 export default class RemoveGuestUseCase {
   repository: GuestRepository
