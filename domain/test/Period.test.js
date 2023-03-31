@@ -1,21 +1,21 @@
 import {jest} from '@jest/globals'
 
-import PeriodValueObject from '../lib/periods/valueObjects/PeriodValueObject.js'
+import Period from '../lib/models/Period.js'
 import Factory from './utils.js'
 
-describe('PeriodValueObject', () => {
+describe('Period', () => {
   test('should contains initial and final date', () => {
     const from = new Date(2020, 0, 1)
     const to = new Date(2020, 0, 2)
     const currently = false
-    const period = new PeriodValueObject({from, to, currently})
+    const period = new Period({from, to, currently})
     expect(period.contains(to)).toBe(true)
     expect(period.contains(from)).toBe(true)
     expect(period.currently).toBe(false)
   })
 
   test('should calculate days properly', () => {
-    const period = new PeriodValueObject({
+    const period = new Period({
       from: new Date(2020, 0, 1),
       to: new Date(2020, 0, 10),
       currently: false
@@ -30,7 +30,7 @@ describe('PeriodValueObject', () => {
     const to = Factory.date(2020, 1, 10)
     const currently = false
 
-    const period = new PeriodValueObject({from, to, currently})
+    const period = new Period({from, to, currently})
 
     period.iterate(iteratorMock)
 

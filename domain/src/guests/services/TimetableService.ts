@@ -1,18 +1,18 @@
 import { countDays, floorDate, nextMonth } from '../../utils/date.js'
 import { guard } from '../../utils/guard.js'
-import GuestEntity from '../entities/GuestEntity.js'
+import Guest from '../../models/Guest.js'
 
 export default class TimetableService {
   _validate (guests): void {
     const isArray = Array.isArray(guests)
-    const areAllGuests = guests.every(item => item instanceof GuestEntity) as boolean
+    const areAllGuests = guests.every(item => item instanceof Guest) as boolean
 
     const isValid = isArray && areAllGuests
 
     if (!isValid) throw new Error('Must provide an array of guests')
   }
 
-  _guests (first: Date, sorted: GuestEntity[]): TimetableGuestDto[] {
+  _guests (first: Date, sorted: Guest[]): TimetableGuestDto[] {
     const mapped = sorted.map(({ name, period }) => {
       const offset = countDays(first, period.from)
       const count = period.days()
@@ -60,7 +60,7 @@ export default class TimetableService {
 
   execute (guestList): TimetableDto {
     this._validate(guestList)
-    const sorted = GuestEntity.sort(guestList)
+    const sorted = Guest.sort(guestList)
 
     const first = floorDate(guard(sorted[0]).period.from)
     const last = guard(sorted[sorted.length - 1]).period.to

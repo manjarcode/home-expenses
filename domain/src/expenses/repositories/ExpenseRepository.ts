@@ -1,11 +1,11 @@
 import dynamoDbClient from '../../db/dynamoDbClient.js'
-import ExpenseEntity from '../entities/ExpensesEntity.js'
-import { buildExpenseDeprecated } from '../entities/factory.js'
+import Expense from '../../models/Expense.js'
+import { buildExpenseDeprecated } from '../../models/factory/expense.js'
 
 const TABLE_NAME = 'expenses'
 
 export default class ExpenseRepository {
-  async add (expense: ExpenseEntity): Promise<void> {
+  async add (expense: Expense): Promise<void> {
     const { id, name, ammount, paid, period } = expense
     const params = {
       Item: {
@@ -28,12 +28,12 @@ export default class ExpenseRepository {
     return await promise
   }
 
-  async list (): Promise<ExpenseEntity[]> {
+  async list (): Promise<Expense[]> {
     const params = {
       TableName: TABLE_NAME
     }
 
-    const promise = new Promise<ExpenseEntity[]>((resolve: Function, reject: Function) => {
+    const promise = new Promise<Expense[]>((resolve: Function, reject: Function) => {
       dynamoDbClient.scan(params, function (error, data: any) {
         if (error !== null) { reject(error) }
 
@@ -65,7 +65,7 @@ export default class ExpenseRepository {
     return await promise
   }
 
-  async update (expense: ExpenseEntity): Promise<void> {
+  async update (expense: Expense): Promise<void> {
     const { id, name, ammount, paid, period } = expense
 
     const params = {

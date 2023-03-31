@@ -1,16 +1,16 @@
-import ExpenseEntity from '../lib/expenses/entities/ExpensesEntity.js'
-import GuestEntity from '../lib/guests/entities/GuestEntity.js'
-import PeriodValueObject from '../lib/periods/valueObjects/PeriodValueObject.js'
+import Expense from '../lib/models/Expense.js'
+import Guest from '../lib/models/Guest.js'
+import Period from '../lib/models/Period.js'
 
 export const guest = (id, name, from, to, currently) => {
-  const period = new PeriodValueObject({from, to, currently})
-  return new GuestEntity({id, name, period})
+  const period = new Period({from, to, currently})
+  return new Guest({id, name, period})
 }
 
 export const expense = (name, from, to, ammount, currently) => {
-  return new ExpenseEntity({
+  return new Expense({
     name,
-    period: new PeriodValueObject({from, to, currently}),
+    period: new Period({from, to, currently}),
     ammount
   })
 }

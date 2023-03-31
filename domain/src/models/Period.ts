@@ -1,7 +1,7 @@
-import { CULTURE } from '../../config/index.js'
-import { countDays, toDetachedDate } from '../../utils/date.js'
+import { CULTURE } from '../config/index.js'
+import { countDays, toDetachedDate } from '../utils/date.js'
 
-class PeriodValueObject {
+class Period {
   from: Date
   to: Date
   private readonly _days: number
@@ -35,8 +35,8 @@ class PeriodValueObject {
   }
 
   intersectionDays (period): number {
-    let lower: PeriodValueObject
-    let higher: PeriodValueObject
+    let lower: Period
+    let higher: Period
     if (this < period) {
       lower = this
       higher = period
@@ -83,7 +83,7 @@ class PeriodValueObject {
     }
   }
 
-  static sort (periodList): PeriodValueObject[] {
+  static sort (periodList): Period[] {
     if (!Array.isArray(periodList)) { throw new Error(`Must provide a period list instead of ${String(periodList)}`) }
 
     return periodList.sort((a, b) => a.valueOf() - b.valueOf())
@@ -94,4 +94,4 @@ class PeriodValueObject {
   }
 }
 
-export default PeriodValueObject
+export default Period

@@ -1,11 +1,11 @@
 import dynamoDbClient from '../../db/dynamoDbClient.js'
-import { buildGuestDeprecated } from '../entities/factory.js'
-import GuestEntity from '../entities/GuestEntity.js'
+import { buildGuestDeprecated } from '../../models/factory/guest.js'
+import Guest from '../../models/Guest.js'
 
 const TABLE_NAME = 'guests'
 
 export default class GuestRepository {
-  async add (guest: GuestEntity): Promise<void> {
+  async add (guest: Guest): Promise<void> {
     const { id, name, period } = guest
 
     const params = {
@@ -28,12 +28,12 @@ export default class GuestRepository {
     return await promise
   }
 
-  async list (): Promise<GuestEntity[]> {
+  async list (): Promise<Guest[]> {
     const params = {
       TableName: TABLE_NAME
     }
 
-    const promise = new Promise<GuestEntity[]>((resolve: Function, reject: Function) => {
+    const promise = new Promise<Guest[]>((resolve: Function, reject: Function) => {
       dynamoDbClient.scan(params, function (error, data: any) {
         if (error !== null) {
           reject(error)
