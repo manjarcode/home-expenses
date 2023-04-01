@@ -7,7 +7,7 @@ import GetTimeTableUseCase from './application/guests/getTimetableUseCase.js'
 import ListGuestUseCase from './application/guests/listGuestUseCase.js'
 import RemoveGuestUseCase from './application/guests/removeGuestUseCase.js'
 import CalculateInvoiceUseCase from './application/invoices/calculateInvoicesUseCase.js'
-export * as config from './config/index.js'
+export * as config from './utils/config.js'
 
 export const useCases = {
   addExpenseUseCase: new AddExpenseUseCase(),

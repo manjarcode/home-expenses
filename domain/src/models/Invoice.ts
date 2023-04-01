@@ -2,7 +2,7 @@
 import { guard } from '../utils/guard'
 import { roundMoney } from '../utils/number.js'
 
-class Invoice {
+export default class Invoice {
   _id: string
   _dictionary: InvoiceGuestDto[]
 
@@ -51,5 +51,3 @@ class Invoice {
     return this._dictionary
   }
 }
-
-export default Invoice

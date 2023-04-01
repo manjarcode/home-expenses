@@ -1,4 +1,4 @@
-import { CULTURE } from '../config/index.js'
+import { CULTURE } from '../utils/config.js'
 import { countDays, toDetachedDate } from '../utils/date.js'
 
 class Period {

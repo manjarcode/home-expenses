@@ -1,5 +1,5 @@
-import {MONTH} from '../lib/config/index.js'
-import InvoiceService from '../lib/invoices/services/InvoiceService.js'
+import InvoiceService from '../lib/domain/services/InvoiceService.js'
+import {MONTH} from '../lib/utils/config.js'
 import Factory from './utils.js'
 
 describe('InvoiceService calculate invoice', () => {

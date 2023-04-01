@@ -1,5 +1,5 @@
 import {useCases} from 'home-expenses-domain'
-import {HTTP_STATUS} from 'home-expenses-domain/lib/config/index.js'
+import {HTTP_STATUS} from 'home-expenses-domain/lib/utils/config.js'
 
 const ACTION_BY_METHOD = {
   [HTTP_STATUS.GET]: list,
