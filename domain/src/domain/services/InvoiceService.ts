@@ -1,8 +1,8 @@
 import { v4 as uuid } from 'uuid'
 
-import Expense from '../../models/Expense.js'
-import Guest from '../../models/Guest.js'
-import Invoice from '../../models/Invoice.js'
+import Expense from '../models/Expense.js'
+import Guest from '../models/Guest.js'
+import Invoice from '../models/Invoice.js'
 import { roundMoney } from '../../utils/number.js'
 
 class InvoiceService {

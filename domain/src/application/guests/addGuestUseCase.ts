@@ -1,4 +1,4 @@
-import { buildGuest } from '../../models/factory/guest.js'
+import { buildGuest } from '../../domain/models/factory/guest.js'
 import GuestRepository from '../../repositories/GuestRepository.js'
 
 export default class AddGuestUseCase {

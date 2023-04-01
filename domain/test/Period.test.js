@@ -1,6 +1,6 @@
 import {jest} from '@jest/globals'
 
-import Period from '../lib/models/Period.js'
+import Period from '../lib/domain/models/Period.js'
 import Factory from './utils.js'
 
 describe('Period', () => {

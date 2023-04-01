@@ -1,6 +1,6 @@
-import buildPeriod from './period.js'
-import Period from '../Period.js'
 import Expense from '../Expense.js'
+import Period from '../Period.js'
+import buildPeriod from './period.js'
 
 // TODO: Deprecated
 export function buildExpenseDeprecated (id: string, name: string, ammount: Number, paid: Boolean, from: Date, to: Date): Expense {

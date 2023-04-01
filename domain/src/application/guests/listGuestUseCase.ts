@@ -1,4 +1,4 @@
-import Guest from '../../models/Guest.js'
+import Guest from '../../domain/models/Guest.js'
 import GuestRepository from '../../repositories/GuestRepository.js'
 
 export default class ListGuestUseCase {

@@ -1,5 +1,5 @@
-import Expense from '../models/Expense.js'
-import { buildExpenseDeprecated } from '../models/factory/expense.js'
+import Expense from '../domain/models/Expense.js'
+import { buildExpenseDeprecated } from '../domain/models/factory/expense.js'
 import dynamoDbClient from './db/dynamoDbClient.js'
 
 const TABLE_NAME = 'expenses'

@@ -1,8 +1,8 @@
-import Invoice from '../lib/models/Invoice.js'
+import Invoice from '../lib/domain/models/Invoice.js'
 import {invoiceExpected} from './fixtures/invoiceExpected.js'
 
 describe('InvoiceEntity', () => {
-  test('toJSON must return invoice information', () => {
+  test('flatten must return invoice information', () => {
     const invoice = new Invoice({
       id: 'f391b3e2-b9d8-4f46-9a38-e516682efa05'
     })

@@ -1,4 +1,4 @@
-import Guest from '../../models/Guest.js'
+import Guest from '../models/Guest.js'
 import { countDays, floorDate, nextMonth } from '../../utils/date.js'
 import { guard } from '../../utils/guard.js'
 

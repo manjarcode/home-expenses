@@ -1,6 +1,6 @@
-import buildPeriod from './period.js'
-import Period from '../Period.js'
 import Guest from '../Guest.js'
+import Period from '../Period.js'
+import buildPeriod from './period.js'
 
 export function buildGuestDeprecated (id: string, name: string, from: Date, to: Date, currently: boolean): Guest {
   const todayLocale = new Date()

@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/extensions
-import { guard } from '../utils/guard'
-import { roundMoney } from '../utils/number.js'
+import { guard } from '../../utils/guard'
+import { roundMoney } from '../../utils/number.js'
 
 export default class Invoice {
   _id: string

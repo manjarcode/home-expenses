@@ -1,5 +1,5 @@
+import { fromDetachedDate, today } from '../../../utils/date.js'
 import Period from '../Period.js'
-import { fromDetachedDate, today } from '../../utils/date.js'
 
 export default function buildPeriod (period: DetachedPeriod): Period {
   const { from, to, currently } = period

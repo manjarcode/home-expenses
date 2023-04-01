@@ -1,4 +1,4 @@
-import { buildExpense } from '../../models/factory/expense.js'
+import { buildExpense } from '../../domain/models/factory/expense.js'
 import ExpenseRepository from '../../repositories/ExpenseRepository.js'
 
 export default class AddExpenseUseCase {

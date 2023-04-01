@@ -1,6 +1,6 @@
-import Expense from '../lib/models/Expense.js'
-import Guest from '../lib/models/Guest.js'
-import Period from '../lib/models/Period.js'
+import Expense from '../lib/domain/models/Expense.js'
+import Guest from '../lib/domain/models/Guest.js'
+import Period from '../lib/domain/models/Period.js'
 
 export const guest = (id, name, from, to, currently) => {
   const period = new Period({from, to, currently})

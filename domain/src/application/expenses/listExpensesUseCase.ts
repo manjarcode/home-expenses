@@ -1,4 +1,4 @@
-import Expense from '../../models/Expense.js'
+import Expense from '../../domain/models/Expense.js'
 import ExpenseRepository from '../../repositories/ExpenseRepository.js'
 
 export default class ListExpensesUseCase {

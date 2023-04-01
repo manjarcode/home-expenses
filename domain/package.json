@@ -15,7 +15,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "clear": "rm -rf ./lib",
+    "tsc": "tsc",
+    "build": "npm run clear && npm run tsc",
     "watch": "watch 'npm run build' ./src"
   },
   "repository": {
