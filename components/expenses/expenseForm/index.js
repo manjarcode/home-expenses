@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useReducer} from 'react'
 
 import PropTypes from 'prop-types'
 import {v4 as uuid} from 'uuid'
@@ -16,51 +16,81 @@ import Input from '../../input/index.js'
 
 import styles from './index.module.scss'
 
+const emptyDate = () => ({
+  day: '',
+  month: '',
+  year: ''
+})
+
+const emptyExpense = () => ({
+  id: uuid(),
+  name: '',
+  ammount: 0,
+  paid: false,
+  period: {
+    from: emptyDate(),
+    to: emptyDate()
+  }
+})
+
 function ExpenseForm({onAccept, onCancel, isVisible, expense}) {
-  const [id, setId] = useState(uuid())
-  const [name, setName] = useState()
-  const [from, setFrom] = useState()
-  const [to, setTo] = useState()
-  const [ammount, setAmmount] = useState()
-  const [paid, setPaid] = useState()
+  const reducer = (state, action) => {
+    return {...state, ...action}
+  }
+
+  const [state, dispatch] = useReducer(reducer, expense ?? emptyExpense())
 
   useEffect(() => {
-    const hasExpense = Boolean(expense)
-
-    setId(hasExpense ? expense.id : uuid())
-    setName(hasExpense ? expense.name : null)
-    setFrom(hasExpense ? expense.period.from : null)
-    setTo(hasExpense ? expense.period.to : null)
-    setAmmount(hasExpense ? expense.ammount : null)
-    setPaid(hasExpense ? expense.paid : false)
+    dispatch(expense)
   }, [expense, isVisible])
 
   const onClick = () => {
     // TODO: Validar datos
+    const {from, to} = state
+
     const expense = {
-      id,
-      name,
-      ammount,
-      paid,
+      ...state,
       period: {from, to}
     }
 
     onAccept(expense)
   }
 
+  const curryDispatch = key => value => {
+    dispatch({[key]: value})
+  }
+
   return (
     <Dialog open={isVisible}>
       <DialogTitle>Añadir gasto</DialogTitle>
       <DialogContent className={styles.content}>
-        <Input label="Nombre:" onChange={setName} value={name} />
-        <Input label="Cantidad:" onChange={setAmmount} value={ammount} />
-        <DateInput label="Desde:" onChange={setFrom} value={from} />
-        <DateInput label="Hasta:" onChange={setTo} value={to} />
+        <Input
+          label="Nombre:"
+          onChange={curryDispatch('name')}
+          value={state.name}
+        />
+        <Input
+          label="Cantidad:"
+          onChange={curryDispatch('ammount')}
+          value={state.ammount}
+        />
+        <DateInput
+          label="Desde:"
+          onChange={curryDispatch('from')}
+          value={state.period.from}
+        />
+        <DateInput
+          label="Hasta:"
+          onChange={curryDispatch('to')}
+          value={state.period.to}
+        />
         <FormControlLabel
           control={
             <Checkbox
-              onChange={() => setPaid(value => !value)}
-              checked={paid}
+              onChange={value => {
+                curryDispatch('paid')(value.target.checked)
+              }}
+              checked={state.paid}
             />
           }
           label="Pagado"
