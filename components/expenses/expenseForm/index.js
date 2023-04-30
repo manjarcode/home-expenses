@@ -46,18 +46,20 @@ function ExpenseForm({onAccept, onCancel, isVisible, expense}) {
 
   const onClick = () => {
     // TODO: Validar datos
-    const {from, to} = state
 
     const expense = {
-      ...state,
-      period: {from, to}
+      ...state
     }
 
     onAccept(expense)
   }
-
   const curryDispatch = key => value => {
     dispatch({[key]: value})
+  }
+
+  const curryDispatchPeriod = key => value => {
+    const period = {...state.period, [key]: value}
+    dispatch({period})
   }
 
   return (
@@ -76,12 +78,12 @@ function ExpenseForm({onAccept, onCancel, isVisible, expense}) {
         />
         <DateInput
           label="Desde:"
-          onChange={curryDispatch('from')}
+          onChange={curryDispatchPeriod('from')}
           value={state.period.from}
         />
         <DateInput
           label="Hasta:"
-          onChange={curryDispatch('to')}
+          onChange={curryDispatchPeriod('to')}
           value={state.period.to}
         />
         <FormControlLabel

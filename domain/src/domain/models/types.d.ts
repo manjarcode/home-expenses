@@ -1,3 +1,7 @@
+interface Entity {
+  id: string
+}
+
 interface ExpenseDto {
   id: string
   name: string

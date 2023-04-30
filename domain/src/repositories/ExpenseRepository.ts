@@ -1,7 +1,6 @@
 import Expense from '../domain/models/Expense.js'
 import { buildExpenseDeprecated } from '../domain/models/factory/expense.js'
 import DbAdapter from './db/dbAdapter.js'
-import dynamoDbClient from './db/dynamoDbClient.js'
 
 const TABLE_NAME = 'expenses'
 
@@ -40,32 +39,13 @@ export default class ExpenseRepository {
 
   async update (expense: Expense): Promise<void> {
     const { id, name, ammount, paid, period } = expense
-
-    const params = {
-      TableName: TABLE_NAME,
-      Key: { id },
-      UpdateExpression:
-        'set #name = :name, ammount = :ammount, paid = :paid, #from = :from, #to = :to',
-      ExpressionAttributeNames: {
-        '#name': 'name',
-        '#from': 'from',
-        '#to': 'to'
-      },
-      ExpressionAttributeValues: {
-        ':name': name,
-        ':ammount': ammount,
-        ':paid': paid,
-        ':from': period.from.getTime(),
-        ':to': period.to.getTime()
-      }
-    }
-
-    const promise = new Promise<void>((resolve: Function, reject: Function) => {
-      dynamoDbClient.update(params, function (error) {
-        error === null ? resolve() : reject(error)
-      })
+    return await dbAdapter.update({
+      id,
+      name,
+      ammount,
+      paid,
+      from: period.from.getTime(),
+      to: period.to.getTime()
     })
-
-    return await promise
   }
 }

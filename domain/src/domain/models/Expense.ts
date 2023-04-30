@@ -1,6 +1,6 @@
 import Period from './Period.js'
 
-class Expense {
+class Expense implements Entity {
   id: string
   name: string
   period: Period
