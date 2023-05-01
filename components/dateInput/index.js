@@ -12,8 +12,8 @@ function emptyDate() {
   }
 }
 
-function DateInput({label, onChange, value}) {
-  function reducer(state, {item, mustChange}) {
+function DateInput({label, onChange, value: initialValue}) {
+  function mutator(state, {item, mustChange}) {
     const nextState = {...state, ...item}
 
     if (mustChange) {
@@ -22,38 +22,38 @@ function DateInput({label, onChange, value}) {
     return nextState
   }
 
-  const [state, dispatch] = useReducer(reducer, value ?? emptyDate())
+  const [value, mutate] = useReducer(mutator, initialValue ?? emptyDate())
 
   useEffect(() => {
     const mustChange = false
 
-    dispatch({item: value, mustChange})
-  }, [value])
+    mutate({item: initialValue, mustChange})
+  }, [initialValue])
 
   const curryDispatch = key => value => {
     const item = {[key]: value}
     const mustChange = true
-    dispatch({item, mustChange})
+    mutate({item, mustChange})
   }
 
   return (
     <div className="AddPeriod">
       <Input
         label={label}
-        value={state.day}
+        value={value.day}
         onChange={curryDispatch('day')}
         size="2"
         maxLength="2"
       />
       <Input
         onChange={curryDispatch('month')}
-        value={state.month}
+        value={value.month}
         size="2"
         maxLength="2"
       />
       <Input
         onChange={curryDispatch('year')}
-        value={state.year}
+        value={value.year}
         size="4"
         maxLength="4"
       />
