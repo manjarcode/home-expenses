@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-import styles from './index.module.scss'
+import TextField from '@mui/material/TextField'
 
 function Input({label, onChange, ...props}) {
   const onInputChange = ev => {
@@ -8,12 +8,11 @@ function Input({label, onChange, ...props}) {
   }
   return (
     <>
-      {label && <label className={styles.label}>{label}</label>}
-      <input
-        className={styles.input}
+      <TextField
         onChange={onInputChange}
-        {...props}
-      ></input>
+        label={label}
+        inputProps={props}
+      ></TextField>
     </>
   )
 }

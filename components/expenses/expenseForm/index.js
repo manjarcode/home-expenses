@@ -3,6 +3,7 @@ import {useEffect, useReducer} from 'react'
 import PropTypes from 'prop-types'
 import {v4 as uuid} from 'uuid'
 
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import Dialog from '@mui/material/Dialog'
@@ -66,26 +67,34 @@ function ExpenseForm({onAccept, onCancel, isVisible, expense}) {
     <Dialog open={isVisible}>
       <DialogTitle>Añadir gasto</DialogTitle>
       <DialogContent className={styles.content}>
-        <Input
-          label="Nombre:"
-          onChange={curryDispatch('name')}
-          value={state.name}
-        />
-        <Input
-          label="Cantidad:"
-          onChange={curryDispatch('ammount')}
-          value={state.ammount}
-        />
-        <DateInput
-          label="Desde:"
-          onChange={curryDispatchPeriod('from')}
-          value={state.period.from}
-        />
-        <DateInput
-          label="Hasta:"
-          onChange={curryDispatchPeriod('to')}
-          value={state.period.to}
-        />
+        <Box className={styles.box}>
+          <Input
+            label="Nombre:"
+            onChange={curryDispatch('name')}
+            value={state.name}
+          />
+        </Box>
+        <Box className={styles.box}>
+          <Input
+            label="Cantidad:"
+            onChange={curryDispatch('ammount')}
+            value={state.ammount}
+          />
+        </Box>
+        <Box className={styles.box}>
+          <DateInput
+            label="Desde:"
+            onChange={curryDispatchPeriod('from')}
+            value={state.period.from}
+          />
+        </Box>
+        <Box className={styles.box}>
+          <DateInput
+            label="Hasta:"
+            onChange={curryDispatchPeriod('to')}
+            value={state.period.to}
+          />
+        </Box>
         <FormControlLabel
           control={
             <Checkbox

@@ -1,3 +1,11 @@
+@import "../../../styles/margin.module.scss";
+
 .content {
-    min-width: 300px;
+  min-width: 300px;
 }
+
+.box {
+  margin-top: $m-s;
+  margin-bottom: $m-l;
+}
+
