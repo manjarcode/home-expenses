@@ -1,59 +1,33 @@
-import {useEffect, useReducer} from 'react'
-
 import PropTypes from 'prop-types'
 
 import Input from '../input/index.js'
 
-function emptyDate() {
-  return {
-    day: '',
-    month: '',
-    year: ''
-  }
-}
-
-function DateInput({label, onChange, value: initialValue}) {
-  function mutator(state, {item, mustChange}) {
-    const nextState = {...state, ...item}
-
-    if (mustChange) {
-      onChange(nextState)
-    }
-    return nextState
-  }
-
-  const [value, mutate] = useReducer(mutator, initialValue ?? emptyDate())
-
-  useEffect(() => {
-    const mustChange = false
-
-    mutate({item: initialValue, mustChange})
-  }, [initialValue])
-
+function DateInput({label, onChange, value: dateInputValue}) {
   const curryDispatch = key => value => {
-    const item = {[key]: value}
-    const mustChange = true
-    mutate({item, mustChange})
+    const delta = {[key]: value}
+
+    const nextState = {...dateInputValue, ...delta}
+    onChange(nextState)
   }
 
   return (
     <div className="AddPeriod">
       <Input
         label={label}
-        value={value.day}
+        value={dateInputValue.day}
         onChange={curryDispatch('day')}
         size="2"
         maxLength="2"
       />
       <Input
         onChange={curryDispatch('month')}
-        value={value.month}
+        value={dateInputValue.month}
         size="2"
         maxLength="2"
       />
       <Input
         onChange={curryDispatch('year')}
-        value={value.year}
+        value={dateInputValue.year}
         size="4"
         maxLength="4"
       />
