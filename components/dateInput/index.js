@@ -26,7 +26,8 @@ function DateInput({label, onChange, value}) {
 
   useEffect(() => {
     const mustChange = false
-    dispatch({value, mustChange})
+
+    dispatch({item: value, mustChange})
   }, [value])
 
   const curryDispatch = key => value => {
