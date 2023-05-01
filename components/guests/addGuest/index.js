@@ -16,8 +16,8 @@ import styles from './index.module.scss'
 
 function AddGuest({onAccept, onCancel, isVisible}) {
   const [name, setName] = useState()
-  const [from, setFrom] = useState()
-  const [to, setTo] = useState()
+  const [from, setFrom] = useState({day: '', month: '', year: ''})
+  const [to, setTo] = useState({day: '', month: '', year: ''})
 
   const acceptHandler = () => {
     const id = uuid()
@@ -29,8 +29,8 @@ function AddGuest({onAccept, onCancel, isVisible}) {
       <DialogTitle>Añadir huésped</DialogTitle>
       <DialogContent className={styles.content}>
         <Input label="Nombre" onChange={setName} />
-        <DateInput label="Desde:" onChange={setFrom} />
-        <DateInput label="Hasta:" onChange={setTo} />
+        <DateInput label="Desde:" onChange={setFrom} value={from} />
+        <DateInput label="Hasta:" onChange={setTo} value={to} />
       </DialogContent>
       <DialogActions>
         <Button onClick={onCancel}>Cancelar</Button>
