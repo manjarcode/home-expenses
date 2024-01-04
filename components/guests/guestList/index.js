@@ -30,10 +30,7 @@ function GuestList({guests = [], onGuestAdded, onGuestDeleted}) {
               primary={name}
               secondary={period.value}
               secondaryAction={
-                <IconButton
-                  aria-label="delete-guest"
-                  onClick={() => onGuestDeleted(id)}
-                >
+                <IconButton aria-label="delete-guest" onClick={() => onGuestDeleted(id)}>
                   <DeleteIcon />
                 </IconButton>
               }

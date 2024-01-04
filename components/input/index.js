@@ -8,11 +8,7 @@ function Input({label, onChange, ...props}) {
   }
   return (
     <>
-      <TextField
-        onChange={onInputChange}
-        label={label}
-        inputProps={props}
-      ></TextField>
+      <TextField onChange={onInputChange} label={label} inputProps={props}></TextField>
     </>
   )
 }

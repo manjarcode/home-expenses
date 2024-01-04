@@ -10,12 +10,7 @@ import ListCard from '../../ListCard/index.js'
 import TextAmmount from '../../textAmmount/index.js'
 import ExpenseForm from '../expenseForm/index.js'
 
-function Expenses({
-  expenses,
-  onExpenseAdded,
-  onExpenseDeleted,
-  onExpenseUpdated
-}) {
+function Expenses({expenses, onExpenseAdded, onExpenseDeleted, onExpenseUpdated}) {
   const {isVisible, open, close} = useModal()
   const [updatingExpense, setUpdatingExpense] = useState()
 
@@ -60,15 +55,10 @@ function Expenses({
                 onClick={() => {
                   updateExpenseClick(expense)
                 }}
-                primary={
-                  <TextAmmount name={name} ammount={ammount} paid={paid} />
-                }
+                primary={<TextAmmount name={name} ammount={ammount} paid={paid} />}
                 secondary={period.value}
                 secondaryAction={
-                  <IconButton
-                    aria-label="delete-guest"
-                    onClick={() => onExpenseDeleted(id)}
-                  >
+                  <IconButton aria-label="delete-guest" onClick={() => onExpenseDeleted(id)}>
                     <DeleteIcon />
                   </IconButton>
                 }
@@ -77,12 +67,7 @@ function Expenses({
           })}
         </ListCard.List>
       )}
-      <ExpenseForm
-        onAccept={onSaveExpense}
-        onCancel={onCloseForm}
-        isVisible={isVisible}
-        expense={updatingExpense}
-      />
+      <ExpenseForm onAccept={onSaveExpense} onCancel={onCloseForm} isVisible={isVisible} expense={updatingExpense} />
     </ListCard>
   )
 }

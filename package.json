@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",
-    "@s-ui/lint": "4",
+    "@s-ui/lint": "^4.35.0",
     "sass": "^1.55.0"
   },
   "scripts": {

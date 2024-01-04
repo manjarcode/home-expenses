@@ -9,21 +9,12 @@ import useGuests from '../../hooks/useGuests.js'
 import styles from './index.module.scss'
 
 function HomePage() {
-  const {
-    expenses,
-    add: addExpense,
-    remove: removeExpense,
-    update: updateExpense
-  } = useExpenses([])
+  const {expenses, add: addExpense, remove: removeExpense, update: updateExpense} = useExpenses([])
   const {guests, add: addGuest, remove: removeGuest} = useGuests([])
 
   return (
     <Box className={styles.container}>
-      <GuestList
-        guests={guests}
-        onGuestAdded={addGuest}
-        onGuestDeleted={removeGuest}
-      />
+      <GuestList guests={guests} onGuestAdded={addGuest} onGuestDeleted={removeGuest} />
       <ExpenseList
         expenses={expenses}
         onExpenseAdded={addExpense}

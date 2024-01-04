@@ -18,11 +18,7 @@ export default function InvoiceList({expenses}) {
       <span className={styles.actionLink} onClick={onActionLinkClick}>
         Desglose
       </span>
-      <InvoiceDetail
-        expenses={expenses}
-        isOpen={show}
-        onClose={() => setShow(false)}
-      />
+      <InvoiceDetail expenses={expenses} isOpen={show} onClose={() => setShow(false)} />
     </ListCard>
   )
 }

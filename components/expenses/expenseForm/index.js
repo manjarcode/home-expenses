@@ -68,32 +68,16 @@ function ExpenseForm({onAccept, onCancel, isVisible, expense}) {
       <DialogTitle>Añadir gasto</DialogTitle>
       <DialogContent className={styles.content}>
         <Box className={styles.box}>
-          <Input
-            label="Nombre:"
-            onChange={curryDispatch('name')}
-            value={state.name}
-          />
+          <Input label="Nombre:" onChange={curryDispatch('name')} value={state.name} />
         </Box>
         <Box className={styles.box}>
-          <Input
-            label="Cantidad:"
-            onChange={curryDispatch('ammount')}
-            value={state.ammount}
-          />
+          <Input label="Cantidad:" onChange={curryDispatch('ammount')} value={state.ammount} />
         </Box>
         <Box className={styles.box}>
-          <DateInput
-            label="Desde:"
-            onChange={curryDispatchPeriod('from')}
-            value={state.period.from}
-          />
+          <DateInput label="Desde:" onChange={curryDispatchPeriod('from')} value={state.period.from} />
         </Box>
         <Box className={styles.box}>
-          <DateInput
-            label="Hasta:"
-            onChange={curryDispatchPeriod('to')}
-            value={state.period.to}
-          />
+          <DateInput label="Hasta:" onChange={curryDispatchPeriod('to')} value={state.period.to} />
         </Box>
         <FormControlLabel
           control={
