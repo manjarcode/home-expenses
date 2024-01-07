@@ -13,6 +13,14 @@ export const formatDate = (date: Date): string => {
   })
 }
 
+export const parseDate = (date: string): Date => {
+  const [day, month, year] = date.split('/')
+
+  const parsedDate = new Date(Number(year), Number(month) - 1, Number(day))
+
+  return parsedDate
+}
+
 export const floorDate = (date: Date): Date => {
   const FIRST_DAY_OF_MONTH = 1
 

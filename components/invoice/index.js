@@ -21,7 +21,7 @@ export default function Invoice() {
   return (
     <ListCard>
       <ListCard.Header>
-        <ListCard.Title> </ListCard.Title>
+        <Button variant="contained">Subir Recibo</Button>
         <Button onClick={onClick} variant="contained">
           Calcular
         </Button>

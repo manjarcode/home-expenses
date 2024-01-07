@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/slaverise/home-expenses#readme",
   "dependencies": {
-    "aws-sdk": "^2.1345.0"
+    "aws-sdk": "^2.1345.0",
+    "pdf-parse": "^1.1.1"
   }
 }

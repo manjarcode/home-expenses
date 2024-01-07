@@ -1,8 +1,10 @@
 import {useCases} from 'home-expenses-domain'
-export default async function handler(req, res) {
+import {NextResponse} from 'next/server'
+
+export async function GET(request) {
   const {calculateInvoiceUseCase} = useCases
 
   const invoices = await calculateInvoiceUseCase.execute()
 
-  res.status(200).json(invoices)
+  return NextResponse.json(invoices)
 }
