@@ -1,3 +1,4 @@
+'use server'
 import {useCases} from 'home-expenses-domain'
 import {NextResponse} from 'next/server'
 

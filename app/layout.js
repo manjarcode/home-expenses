@@ -1,4 +1,6 @@
 'use client'
+import PropTypes from 'prop-types'
+
 import CssBaseline from '@mui/material/CssBaseline'
 
 export default function RootLayout({children}) {
@@ -14,4 +16,8 @@ export default function RootLayout({children}) {
       <body>{children}</body>
     </html>
   )
+}
+
+RootLayout.propTypes = {
+  children: PropTypes.node
 }

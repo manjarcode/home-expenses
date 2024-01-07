@@ -36,9 +36,7 @@ export default function FileUploader({onFileUpload}) {
         {isDragActive ? (
           <Typography variant="body1">Suelta el archivo aquí</Typography>
         ) : (
-          <Typography variant="body1">
-            Arrastra y suelta un archivo aquí, o haz clic para seleccionar uno
-          </Typography>
+          <Typography variant="body1">Arrastra y suelta un archivo aquí, o haz clic para seleccionar uno</Typography>
         )}
       </Box>
     </div>
