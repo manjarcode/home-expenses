@@ -1,6 +1,7 @@
 import Expense from '../domain/models/Expense.js'
 import { buildExpenseDeprecated } from '../domain/models/factory/expense.js'
 import DbAdapter from './db/dbAdapter.js'
+import PdfReader from './PdfReader.js'
 
 const TABLE_NAME = 'expenses'
 
