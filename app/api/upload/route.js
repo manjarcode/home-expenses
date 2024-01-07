@@ -13,8 +13,7 @@ export async function POST(request) {
   const buffer = Buffer.from(bytes)
 
   const {parseExpenseDocumentUseCase} = useCases
+  const expense = await parseExpenseDocumentUseCase.execute(buffer)
 
-  await parseExpenseDocumentUseCase.execute(buffer)
-
-  return NextResponse.json({success: true})
+  return NextResponse.json({expense})
 }
