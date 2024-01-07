@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "domain/lib",
+    "outDir": "lib",
     "target": "ESNext",
     "allowJs": true,
     "lib": [
@@ -22,9 +22,10 @@
     "jsx": "preserve"
   },
   "include": [
-    "domain/src/**/*"
+    "src/**/*",
+    //".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ]
 }
