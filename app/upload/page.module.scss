@@ -1,0 +1,11 @@
+@import '../../styles/margin.module.scss';
+
+.centered {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.expenseContainer {
+  margin-top: $m-xl;
+}
