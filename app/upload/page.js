@@ -1,7 +1,7 @@
 'use client'
 import {useState} from 'react'
 
-import {Box, Button} from '@mui/material'
+import {Box} from '@mui/material'
 
 import ExpenseCard from '../../components/expenses/expenseCard/index.js'
 import FileUploader from '../../components/fileUploader/index.js'
