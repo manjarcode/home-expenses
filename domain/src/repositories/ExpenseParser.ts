@@ -39,20 +39,23 @@ export default class ExpenseParser {
   }
 
   private getFirstKeyLine (lines: string[]): string {
-    const EXPENSE_KEY_TEXT = 'IMPORTE DE'
+    const EXPENSE_KEY_TEXT = 'IMPORTE DE'    
     return lines.find(line => line.includes(EXPENSE_KEY_TEXT)) ?? EMPTY
   }
 
   private parseExpenseName (firstKeyLine): string {
     const EXPENSE_NAME_REGEX = /IMPORTE DE ([a-zA-Z\s]+) \d/
     const EXPENSE_NAME_MATCH_POSITION = 1
+    const WRONG_EXPENSE_NAME = 'CALEFACCION'
+    const CORRECT_EXPENSE_NAME = 'CALEFACCIÓN'
 
     const result = EXPENSE_NAME_REGEX.exec(firstKeyLine)
 
     const hasExpenseResult = Array.isArray(result) && result.length > EXPENSE_NAME_MATCH_POSITION
     const expenseName = hasExpenseResult ? result[EXPENSE_NAME_MATCH_POSITION] : EMPTY
 
-    return expenseName
+    const applyFixName = expenseName.replace(WRONG_EXPENSE_NAME, CORRECT_EXPENSE_NAME)
+    return applyFixName
   }
 
   private parseExpenseAmount (firstKeyLine): string {

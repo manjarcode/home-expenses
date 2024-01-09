@@ -16,5 +16,5 @@ export async function POST(request) {
   const {parseExpenseDocumentUseCase} = useCases
   const expense = await parseExpenseDocumentUseCase.execute(buffer)
 
-  return NextResponse.json({expense})
+  return NextResponse.json({...expense})
 }

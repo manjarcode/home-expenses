@@ -1,7 +1,10 @@
 'use client'
 import PropTypes from 'prop-types'
 
+import {Box} from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
+
+import styles from './layout.module.scss'
 
 export default function RootLayout({children}) {
   return (
@@ -13,7 +16,9 @@ export default function RootLayout({children}) {
         <meta name="theme-color" content="#000000" />
         <CssBaseline />
       </head>
-      <body>{children}</body>
+      <body>
+        <Box className={styles.container}>{children}</Box>
+      </body>
     </html>
   )
 }
