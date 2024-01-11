@@ -13,7 +13,7 @@ export const formatDate = (date: Date): string => {
   })
 }
 
-export const parseDate = (date: string): Date => {
+export const dateFromString = (date: string): Date => {
   const [day, month, year] = date.split('/')
 
   const parsedDate = new Date(Number(year), Number(month) - 1, Number(day))

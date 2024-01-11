@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid'
 import Expense from '../domain/models/Expense.js'
 import Period from '../domain/models/Period.js'
 import PdfReader from './PdfReader.js'
-import { parseDate } from '../utils/date.js'
+import { dateFromString } from '../utils/date.js'
 
 const EMPTY = ''
 
@@ -76,8 +76,8 @@ export default class ExpenseParser {
     const matches = keyLine.matchAll(DATE_REGEX)
     const [fromString, toString] = Array.from(matches, match => match[MATCH_POSITION])
 
-    const from = parseDate(fromString)
-    const to = parseDate(toString)
+    const from = dateFromString(fromString)
+    const to = dateFromString(toString)
     return new Period({ from, to, currently: false })
   }
 }

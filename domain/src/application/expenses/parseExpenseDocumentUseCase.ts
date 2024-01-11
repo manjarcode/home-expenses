@@ -1,4 +1,3 @@
-import Expense from '../../domain/models/Expense.js'
 import ExpenseParser from '../../repositories/ExpenseParser.js'
 
 export default class ParseExpenseDocumentUseCase {
@@ -8,9 +7,9 @@ export default class ParseExpenseDocumentUseCase {
     this.expenseParser = new ExpenseParser()
   }
 
-  async execute (buffer): Promise<Expense> {
+  async execute (buffer): Promise<ExpenseDto> {
     const expense = await this.expenseParser.parse(buffer)
 
-    return expense
+    return expense.toJSON()
   }
 }

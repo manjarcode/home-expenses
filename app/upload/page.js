@@ -1,10 +1,13 @@
 'use client'
 import {useState} from 'react'
 
-import {Box} from '@mui/material'
+import {useRouter} from 'next/navigation'
+
+import {Box, Button} from '@mui/material'
 
 import ExpenseCard from '../../components/expenses/expenseCard/index.js'
 import FileUploader from '../../components/fileUploader/index.js'
+import useExpenses from '../../hooks/useExpenses.js'
 
 import styles from './page.module.scss'
 
@@ -21,8 +24,15 @@ async function send(file) {
 export default function UploadInvoice() {
   const [expense, setExpense] = useState(null)
 
+  const {add} = useExpenses()
+  const router = useRouter()
   const onFileUpload = file => {
     send(file).then(setExpense)
+  }
+
+  const onConfirm = async () => {
+    await add(expense)
+    router.push('/')
   }
 
   return (
@@ -34,6 +44,9 @@ export default function UploadInvoice() {
         <>
           <Box className={styles.expenseContainer}>
             <ExpenseCard {...expense} />
+            <Button variant="contained" onClick={onConfirm}>
+              Confirmar
+            </Button>
           </Box>
         </>
       )}

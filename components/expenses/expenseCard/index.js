@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
 
+import Date from '../../date/index.js'
+
 import styles from './index.module.scss'
 
 export default function ExpenseCard({name, ammount, period}) {
@@ -17,11 +19,15 @@ export default function ExpenseCard({name, ammount, period}) {
         </tr>
         <tr>
           <td>Fecha inicio</td>
-          <td>{period.from}</td>
+          <td>
+            <Date {...period.from} />
+          </td>
         </tr>
         <tr>
           <td>Fecha fin</td>
-          <td>{period.to}</td>
+          <td>
+            <Date {...period.to} />
+          </td>
         </tr>
       </table>
     </>
