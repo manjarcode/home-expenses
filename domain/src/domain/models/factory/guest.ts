@@ -1,6 +1,5 @@
 import Guest from '../Guest.js'
 import Period from '../Period.js'
-import buildPeriod from './period.js'
 
 export function buildGuestDeprecated (id: string, name: string, from: Date, to: Date, currently: boolean): Guest {
   const entity = new Guest({
@@ -19,7 +18,7 @@ export function buildGuestDeprecated (id: string, name: string, from: Date, to: 
 export function buildGuest (guestDto: GuestDto): Guest {
   const { id, name, period } = guestDto
 
-  const periodVo = buildPeriod(period)
+  const periodVo = Period.fromPrimitives(period)
 
   const entity = new Guest({
     id,

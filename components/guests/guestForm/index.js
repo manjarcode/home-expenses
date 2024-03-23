@@ -1,10 +1,12 @@
 import {useState} from 'react'
 
+import dayjs from 'dayjs'
 import PropTypes from 'prop-types'
 import {v4 as uuid} from 'uuid'
 
 import {Box} from '@mui/material'
 import Button from '@mui/material/Button'
+import {DateField} from '@mui/x-date-pickers'
 
 import DateInput from '../../dateInput/index.js'
 import Input from '../../input/index.js'
@@ -26,8 +28,12 @@ export default function GuestForm({guest = emptyGuest, onAccept, onCancel}) {
   return (
     <Box>
       <Input label="Nombre" onChange={setName} value={name} />
-      <DateInput label="Desde:" onChange={setFrom} initialValue={guest.period.from} />
-      <DateInput label="Hasta:" onChange={setTo} initialValue={guest.period.to} />
+      <Box>
+        <DateField label="Desde" format="DD/MM/YYYY" value={dayjs(from)} onChange={setFrom} />
+      </Box>
+      <Box>
+        <DateField label="Hasta" format="DD/MM/YYYY" value={dayjs(to)} onChange={setTo} />
+      </Box>
       <Box>
         <Button onClick={onCancel}>Cancelar</Button>
         <Button variant="contained" onClick={acceptHandler}>

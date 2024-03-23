@@ -7,7 +7,7 @@ export default class UpdateGuestUseCase {
     this.guestRepository = new GuestRepository()
   }
 
-  async execute (guest: GuestDto): Promise<void> {  
+  async execute (guest: GuestDto): Promise<void> {      
     const guestEntity = buildGuest(guest)
     await this.guestRepository.update(guestEntity)
   }

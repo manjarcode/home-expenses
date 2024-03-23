@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import {Box} from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
+import {LocalizationProvider} from '@mui/x-date-pickers'
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs'
 
 import styles from './layout.module.scss'
 
@@ -17,7 +19,9 @@ export default function RootLayout({children}) {
         <CssBaseline />
       </head>
       <body>
-        <Box className={styles.container}>{children}</Box>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <Box className={styles.container}>{children}</Box>
+        </LocalizationProvider>
       </body>
     </html>
   )

@@ -39,7 +39,6 @@ export default class GuestRepository {
   async list (): Promise<Guest[]> {
     const promise = dbAdapter.list<Guest>(
       item => {
-        console.log('item got', item)
         const { id, name, from, to, currently } = item
         return buildGuestDeprecated(id, name, from, to, currently)
       }

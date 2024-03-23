@@ -13,7 +13,7 @@ interface ExpenseDto {
 interface GuestDto {
   id: string
   name: string
-  period: DetachedPeriod
+  period: Period
   currently: boolean
 }
 

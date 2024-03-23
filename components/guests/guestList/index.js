@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import {useRouter} from 'next/navigation'
 import PropTypes from 'prop-types'
 
@@ -7,7 +8,7 @@ import {IconButton} from '@mui/material'
 import routes from '../../../app/routes.js'
 import ListCard from '../../ListCard/index.js'
 
-function GuestList({guests = [], onGuestAdded, onGuestDeleted}) {
+function GuestList({guests = [], onGuestDeleted}) {
   const router = useRouter()
   const handleAddGuest = () => {
     router.push(routes.guest.add())
@@ -39,13 +40,16 @@ function GuestList({guests = [], onGuestAdded, onGuestDeleted}) {
   )
 }
 
-function GuestListItem({id, name, period, onClick, onDelete, ...props}) {
+function GuestListItem({id, name, period, onClick, onDelete}) {
+  const from = dayjs(period.from).format('DD/MM/YYYY')
+  const to = dayjs(period.to).format('DD/MM/YYYY')
+  const periodValue = `${from} - ${to}`
   return (
     <ListCard.Item
       onClick={onClick}
       key={id}
       primary={name}
-      secondary={period.value}
+      secondary={periodValue}
       secondaryAction={
         <IconButton aria-label="delete-guest" onClick={onDelete}>
           <DeleteIcon />
