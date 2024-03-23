@@ -8,7 +8,6 @@ import {Box} from '@mui/material'
 import Button from '@mui/material/Button'
 import {DateField} from '@mui/x-date-pickers'
 
-import DateInput from '../../dateInput/index.js'
 import Input from '../../input/index.js'
 
 const emptyDate = {day: null, month: null, year: null}
