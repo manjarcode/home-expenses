@@ -3,18 +3,6 @@ import Period from '../Period.js'
 import buildPeriod from './period.js'
 
 export function buildGuestDeprecated (id: string, name: string, from: Date, to: Date, currently: boolean): Guest {
-  const todayLocale = new Date()
-
-  const todayUtc = Date.UTC(
-    todayLocale.getFullYear(),
-    todayLocale.getMonth(),
-    todayLocale.getDate()
-  )
-
-  const today = new Date(todayUtc)
-
-  to = currently ? today : to
-
   const entity = new Guest({
     id,
     name,

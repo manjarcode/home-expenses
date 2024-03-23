@@ -11,8 +11,22 @@ export default class GuestService {
     })
   }
 
+  async get(id) {
+    return fetch(`${RESOURCE}/${id}`).then(async response => response.json())
+  }
+
   async list() {
     return fetch(RESOURCE).then(async response => response.json())
+  }
+
+  async update(guest) {
+    await fetch(RESOURCE, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(guest)
+    })
   }
 
   async remove(id) {

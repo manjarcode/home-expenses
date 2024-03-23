@@ -10,6 +10,10 @@ class Guest {
     this.period = period
   }
 
+  getId (): string {
+    return this.id
+  }
+
   flatten (): any {
     return { id: this.id, name: this.name, period: this.period.flatten() }
   }
