@@ -75,11 +75,19 @@ class Period {
     )} - ${this.to.toLocaleDateString(CULTURE)}`
   }
 
-  flatten (): any {
+  flattenDeprecated (): any {
     return {
       value: this.toString(),
       from: toDetachedDate(this.from),
       to: toDetachedDate(this.to)
+    }
+  }
+
+  flatten(): any {
+    return {
+      from: this.from,
+      to: this.to,
+      currently: this.currently
     }
   }
 
@@ -91,6 +99,10 @@ class Period {
 
   valueOf (): number {
     return this.from.valueOf()
+  }
+
+  static fromPrimitives({ from, to, currently }): Period {
+    return new Period({ from: new Date(from), to: new Date(to), currently })
   }
 }
 

@@ -9,3 +9,9 @@ interface DetachedPeriod {
   to: DetachedDate
   currently: boolean
 }
+
+interface PeriodDto {
+  from: string
+  to: string
+  currently: boolean
+}

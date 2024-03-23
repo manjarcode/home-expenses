@@ -4,9 +4,11 @@ import ParseExpenseDocumentUseCase from './application/expenses/parseExpenseDocu
 import RemoveExpenseUseCase from './application/expenses/removeExpenseUseCase.js'
 import UpdateExpenseUseCase from './application/expenses/updateExpenseUseCase.js'
 import AddGuestUseCase from './application/guests/addGuestUseCase.js'
+import GetGuestUseCase from './application/guests/getGuestUseCase.js'
 import GetTimeTableUseCase from './application/guests/getTimetableUseCase.js'
 import ListGuestUseCase from './application/guests/listGuestUseCase.js'
 import RemoveGuestUseCase from './application/guests/removeGuestUseCase.js'
+import UpdateGuestUseCase from './application/guests/updateGuestUseCase.js'
 import CalculateInvoiceUseCase from './application/invoices/calculateInvoicesUseCase.js'
 export * as config from './utils/config.js'
 
@@ -16,7 +18,9 @@ export const useCases = {
   listExpensesUseCase: new ListExpensesUseCase(),
   updateExpenseUseCase: new UpdateExpenseUseCase(),
   addGuestUseCase: new AddGuestUseCase(),
+  getGuestUseCase: new GetGuestUseCase(),
   getTimeTableUseCase: new GetTimeTableUseCase(),
+  updateGuestUseCase: new UpdateGuestUseCase(),
   listGuestUseCase: new ListGuestUseCase(),
   removeGuestUseCase: new RemoveGuestUseCase(),
   calculateInvoiceUseCase: new CalculateInvoiceUseCase(),

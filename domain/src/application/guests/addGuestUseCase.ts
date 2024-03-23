@@ -1,4 +1,4 @@
-import { buildGuest } from '../../domain/models/factory/guest.js'
+import Guest from '../../domain/models/Guest.js'
 import GuestRepository from '../../repositories/GuestRepository.js'
 
 export default class AddGuestUseCase {
@@ -7,8 +7,8 @@ export default class AddGuestUseCase {
     this.repository = new GuestRepository()
   }
 
-  execute (guest: GuestDto): GuestDto {
-    const guestEntity = buildGuest(guest)
+  execute (guest: GuestDto): GuestDto {    
+    const guestEntity = Guest.fromPrimitives(guest)
     void this.repository.add(guestEntity)
 
     return guest

@@ -10,6 +10,10 @@ class Guest {
     this.period = period
   }
 
+  getId (): string {
+    return this.id
+  }
+
   flatten (): any {
     return { id: this.id, name: this.name, period: this.period.flatten() }
   }
@@ -21,6 +25,14 @@ class Guest {
       (a, b): number => a.period.valueOf() - b.period.valueOf()
     )
     return sorted
+  }
+
+  static fromPrimitives ({ id, name, period }): Guest {
+    return new Guest({
+      id,
+      name,
+      period: Period.fromPrimitives(period)
+    })
   }
 }
 

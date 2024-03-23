@@ -21,7 +21,7 @@ class Expense implements Entity {
       name: this.name,
       ammount: this.ammount,
       paid: this.paid,
-      period: this.period.flatten()
+      period: this.period.flattenDeprecated()
     }
   }
 

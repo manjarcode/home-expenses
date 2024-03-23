@@ -63,7 +63,9 @@ export function toDetachedDate (date: Date): DetachedDate {
 
 export function fromDetachedDate (date: DetachedDate): Date {
   const { year, month, day } = date
-  return new Date(year, month - 1, day)
+  const dateB =  new Date(year, month - 1, day)
+  
+  return dateB
 }
 
 export function today (): Date {
