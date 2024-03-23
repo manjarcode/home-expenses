@@ -27,11 +27,19 @@ class Guest {
     return sorted
   }
 
-  static fromPrimitives ({ id, name, period }): Guest {
+  static fromDto ({ id, name, period }): Guest {
     return new Guest({
       id,
       name,
       period: Period.fromPrimitives(period)
+    })
+  }
+
+  static fromPrimitives ({ id, name, from, to, currently }): Guest {
+    return new Guest({
+      id,
+      name,
+      period: Period.fromPrimitives({ from, to, currently})
     })
   }
 }

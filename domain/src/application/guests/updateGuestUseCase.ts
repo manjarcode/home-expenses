@@ -9,7 +9,7 @@ export default class UpdateGuestUseCase {
 
   async execute (guest: GuestDto): Promise<void> {  
     
-    const guestEntity = Guest.fromPrimitives(guest)    
+    const guestEntity = Guest.fromDto(guest)    
     await this.guestRepository.update(guestEntity)
   }
 }

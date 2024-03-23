@@ -1,15 +1,18 @@
 import Guest from '../domain/models/Guest.js'
-import DbAdapter from './db/dbAdapter.js'
+import DynamoDbAdapterFactory from './DbAdapterFactory.js'
 
 const TABLE_NAME = 'guests'
 
-const dbAdapter = new DbAdapter(TABLE_NAME)
-
 export default class GuestRepository {
+  #dynamoDbAdapter: any
+  constructor() {
+    this.#dynamoDbAdapter = DynamoDbAdapterFactory.instance(TABLE_NAME, 'id', null)
+  }
+
   async add (guest: Guest): Promise<void> {
     const { id, name, period } = guest
 
-    return await dbAdapter.add({
+    return await this.#dynamoDbAdapter.add({
       id,
       name,
       from: period.from.getTime(),
@@ -19,37 +22,21 @@ export default class GuestRepository {
   }
 
   async get (id: string): Promise<Guest> {
-    //TODO: implement dbAdapter.get()<Guest>
-    const promise = dbAdapter.list<Guest>(
-      item => {
-        const { id, name, from, to, currently } = item
-        return Guest.fromPrimitives({ id, name, period: { from, to, currently } })
-      }
-    )
-
-    const list = await promise
-    const found = list.find(guest => guest.getId() === id)
-    if (!found) {
-      throw new Error(`Guest with id ${id} not found`)
-    }
-    return found 
+    const [item] = await this.#dynamoDbAdapter.query(id)
+    return Guest.fromPrimitives(item)
   }
   
   async list (): Promise<Guest[]> {
-    const promise = dbAdapter.list<Guest>(
-      item => {
-        const { id, name, from, to, currently } = item
-        return Guest.fromPrimitives({ id, name, period: { from, to, currently } })
-      }
-    )
-
-    return await promise
+    const fromDb = await this.#dynamoDbAdapter.scan()
+    const list = fromDb.map(item => {
+      return Guest.fromPrimitives(item)
+    })
+    return list
   }
 
   async update(guest: Guest): Promise<void> {
     const { id, name, period } = guest
-
-    return await dbAdapter.update({
+    return await this.#dynamoDbAdapter.update({
       id,
       name,
       from: period.from.getTime(),
@@ -57,7 +44,8 @@ export default class GuestRepository {
       currently: period.currently
     })
   }
+
   async delete (id: string): Promise<void> {
-    return await dbAdapter.delete(id)
+    return await this.#dynamoDbAdapter.delete(id)  
   }
 }

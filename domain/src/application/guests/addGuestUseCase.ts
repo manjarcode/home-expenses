@@ -8,7 +8,7 @@ export default class AddGuestUseCase {
   }
 
   execute (guest: GuestDto): GuestDto {    
-    const guestEntity = Guest.fromPrimitives(guest)
+    const guestEntity = Guest.fromDto(guest)
     void this.repository.add(guestEntity)
 
     return guest
