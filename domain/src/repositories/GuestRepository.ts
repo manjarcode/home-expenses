@@ -1,4 +1,3 @@
-import { buildGuest, buildGuestDeprecated } from '../domain/models/factory/guest.js'
 import Guest from '../domain/models/Guest.js'
 import DbAdapter from './db/dbAdapter.js'
 
@@ -24,7 +23,7 @@ export default class GuestRepository {
     const promise = dbAdapter.list<Guest>(
       item => {
         const { id, name, from, to, currently } = item
-        return buildGuestDeprecated(id, name, from, to, currently)
+        return Guest.fromPrimitives({ id, name, period: { from, to, currently } })
       }
     )
 
@@ -40,7 +39,7 @@ export default class GuestRepository {
     const promise = dbAdapter.list<Guest>(
       item => {
         const { id, name, from, to, currently } = item
-        return buildGuestDeprecated(id, name, from, to, currently)
+        return Guest.fromPrimitives({ id, name, period: { from, to, currently } })
       }
     )
 

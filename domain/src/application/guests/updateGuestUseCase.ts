@@ -1,4 +1,4 @@
-import { buildGuest } from '../../domain/models/factory/guest.js'
+import Guest from '../../domain/models/Guest.js'
 import GuestRepository from '../../repositories/GuestRepository.js'
 
 export default class UpdateGuestUseCase {
@@ -7,8 +7,9 @@ export default class UpdateGuestUseCase {
     this.guestRepository = new GuestRepository()
   }
 
-  async execute (guest: GuestDto): Promise<void> {      
-    const guestEntity = buildGuest(guest)
+  async execute (guest: GuestDto): Promise<void> {  
+    
+    const guestEntity = Guest.fromPrimitives(guest)    
     await this.guestRepository.update(guestEntity)
   }
 }
