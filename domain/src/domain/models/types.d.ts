@@ -2,6 +2,12 @@ interface Entity {
   id: string
 }
 
+interface PeriodDto {
+  from: string
+  to: string
+  currently: boolean
+}
+
 interface ExpenseDto {
   id: string
   name: string

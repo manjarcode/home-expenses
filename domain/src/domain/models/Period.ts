@@ -1,5 +1,5 @@
 import { CULTURE } from '../../utils/config.js'
-import { countDays, toDetachedDate } from '../../utils/date.js'
+import { countDays } from '../../utils/date.js'
 
 class Period {
   from: Date
@@ -73,14 +73,6 @@ class Period {
     return `${this.from.toLocaleDateString(
       CULTURE
     )} - ${this.to.toLocaleDateString(CULTURE)}`
-  }
-
-  flattenDeprecated (): any {
-    return {
-      value: this.toString(),
-      from: toDetachedDate(this.from),
-      to: toDetachedDate(this.to)
-    }
   }
 
   flatten(): any {
