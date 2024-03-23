@@ -15,7 +15,7 @@ class Expense implements Entity {
     this.paid = paid
   }
 
-  toJSON (): ExpenseDto {
+  flatten (): ExpenseDto {
     return {
       id: this.id,
       name: this.name,
@@ -23,6 +23,11 @@ class Expense implements Entity {
       paid: this.paid,
       period: this.period.flatten()
     }
+  }
+
+  static fromPrimitives({id, name, period, ammount, paid}) {
+    const periodVo = Period.fromPrimitives(period)
+    return new Expense({id, name, period: periodVo, ammount, paid})
   }
 }
 

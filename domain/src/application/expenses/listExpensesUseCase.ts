@@ -11,7 +11,8 @@ export default class ListExpensesUseCase {
   async execute (): Promise<ExpenseDto[]> {
     const entities = await this.repository.list()
     const dtos = entities.map((entity: Expense) =>
-      entity.toJSON())
+      entity.flatten())
+
     return dtos
   }
 }

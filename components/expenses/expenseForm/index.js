@@ -1,5 +1,6 @@
-import {useEffect, useReducer} from 'react'
+import {useEffect, useReducer, useState} from 'react'
 
+import dayjs from 'dayjs'
 import PropTypes from 'prop-types'
 import {v4 as uuid} from 'uuid'
 
@@ -11,8 +12,8 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import {DateField} from '@mui/x-date-pickers'
 
-import DateInput from '../../dateInput/index.js'
 import Input from '../../input/index.js'
 
 import styles from './index.module.scss'
@@ -41,28 +42,27 @@ function ExpenseForm({onAccept, onCancel, isVisible, expense}) {
 
   const [state, dispatch] = useReducer(reducer, expense ?? emptyExpense())
 
+  const [from, setFrom] = useState(expense?.period?.from)
+  const [to, setTo] = useState(expense?.period?.to)
+
   useEffect(() => {
     dispatch(expense)
+    setFrom(expense?.period?.from)
+    setTo(expense?.period?.to)
   }, [expense, isVisible])
 
-  const onClick = () => {
+  const handleAccept = () => {
     // TODO: Validar datos
 
     const expense = {
-      ...state
+      ...state,
+      period: {from, to}
     }
-
     onAccept(expense)
   }
   const curryDispatch = key => value => {
     dispatch({[key]: value})
   }
-
-  const curryDispatchPeriod = key => value => {
-    const period = {...state.period, [key]: value}
-    dispatch({period})
-  }
-
   return (
     <Dialog open={isVisible}>
       <DialogTitle>Añadir gasto</DialogTitle>
@@ -74,10 +74,10 @@ function ExpenseForm({onAccept, onCancel, isVisible, expense}) {
           <Input label="Cantidad:" onChange={curryDispatch('ammount')} value={state.ammount} />
         </Box>
         <Box className={styles.box}>
-          <DateInput label="Desde:" onChange={curryDispatchPeriod('from')} value={state.period.from} />
+          <DateField label="Desde:" format="DD/MM/YYYY" value={dayjs(from)} onChange={setFrom} />
         </Box>
         <Box className={styles.box}>
-          <DateInput label="Hasta:" onChange={curryDispatchPeriod('to')} value={state.period.to} />
+          <DateField label="Hasta:" format="DD/MM/YYYY" value={dayjs(to)} onChange={setTo} />
         </Box>
         <FormControlLabel
           control={
@@ -93,7 +93,7 @@ function ExpenseForm({onAccept, onCancel, isVisible, expense}) {
       </DialogContent>
       <DialogActions>
         <Button onClick={onCancel}>Cancelar</Button>
-        <Button variant="contained" onClick={onClick}>
+        <Button variant="contained" onClick={handleAccept}>
           Aceptar
         </Button>
       </DialogActions>

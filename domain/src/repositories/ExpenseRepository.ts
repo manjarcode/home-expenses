@@ -1,5 +1,4 @@
 import Expense from '../domain/models/Expense.js'
-import { buildExpenseDeprecated } from '../domain/models/factory/expense.js'
 import DbAdapter from './db/dbAdapter.js'
 
 const TABLE_NAME = 'expenses'
@@ -23,8 +22,10 @@ export default class ExpenseRepository {
 
   async list (): Promise<Expense[]> {
     const mapper: Function = item => {
+      
       const { id, name, ammount, paid, from, to } = item
-      return buildExpenseDeprecated(id, name, ammount, paid, from, to)
+      const period = { from, to }
+      return Expense.fromPrimitives({id, name, ammount, paid, period})
     }
     const promise = dbAdapter.list<Expense>(mapper)
 

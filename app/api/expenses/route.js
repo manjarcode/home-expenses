@@ -21,7 +21,7 @@ export async function PUT(request) {
   const {id, name, ammount, paid, period} = await request.json()
 
   const {updateExpenseUseCase} = useCases
-  const expense = await updateExpenseUseCase.execute({id, name, ammount, paid, period})
+  await updateExpenseUseCase.execute({id, name, ammount, paid, period})
 
-  return NextResponse.json(expense)
+  return NextResponse.json({})
 }

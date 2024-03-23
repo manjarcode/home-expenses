@@ -1,4 +1,4 @@
-import { buildExpense } from '../../domain/models/factory/expense.js'
+import Expense from '../../domain/models/Expense.js';
 import ExpenseRepository from '../../repositories/ExpenseRepository.js'
 
 export default class AddExpenseUseCase {
@@ -8,9 +8,8 @@ export default class AddExpenseUseCase {
     this.expenseRepository = new ExpenseRepository()
   }
 
-  async execute (expense: ExpenseDto): Promise<void> {
-    const { id, name, ammount, paid, period } = expense
-    const expenseEntity = buildExpense(id, name, ammount, paid, period)
+  async execute (expense: ExpenseDto): Promise<void> {    
+    const expenseEntity = Expense.fromPrimitives(expense)
     return await this.expenseRepository.add(expenseEntity)
   }
 }

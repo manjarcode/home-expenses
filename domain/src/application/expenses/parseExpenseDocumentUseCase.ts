@@ -10,6 +10,6 @@ export default class ParseExpenseDocumentUseCase {
   async execute (buffer): Promise<ExpenseDto> {
     const expense = await this.expenseParser.parse(buffer)
 
-    return expense.toJSON()
+    return expense.flatten()
   }
 }

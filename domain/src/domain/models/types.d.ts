@@ -7,7 +7,7 @@ interface ExpenseDto {
   name: string
   ammount: number
   paid: boolean
-  period: DetachedPeriod
+  period: PeriodDto
 }
 
 interface GuestDto {
