@@ -1,6 +1,5 @@
 import {useState} from 'react'
 
-import dayjs from 'dayjs'
 import {useRouter} from 'next/navigation.js'
 import PropTypes from 'prop-types'
 
@@ -9,50 +8,23 @@ import {Checkbox, FormControlLabel} from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 
 import routes from '../../../app/routes.js'
-import useModal from '../../../hooks/useModal.js'
 import ListCard from '../../ListCard/index.js'
 import TextAmmount from '../../textAmmount/index.js'
-import ExpenseForm from '../expenseForm/index.js'
-
-function formatPeriod(period) {
-  const from = dayjs(period.from).format('DD/MM/YYYY')
-  const to = dayjs(period.to).format('DD/MM/YYYY')
-  const periodValue = `${from} - ${to}`
-
-  return periodValue
-}
+import {formatPeriod} from '../../utils.js'
 
 function Expenses({expenses, onExpenseAdded, onExpenseDeleted, onExpenseUpdated}) {
-  const {isVisible, open, close} = useModal()
-  const [updatingExpense, setUpdatingExpense] = useState()
   const [display, setDisplay] = useState(false)
   const router = useRouter()
+
+  const hasExpenses = Array.isArray(expenses) && expenses.length > 0
   const expensesDisplayed = display ? expenses : expenses.filter(expense => !expense.paid)
 
-  const onSaveExpense = expense => {
-    const isUpdating = Boolean(updatingExpense)
-    const action = isUpdating ? onExpenseUpdated : onExpenseAdded
-
-    action(expense)
-
-    close()
-    setUpdatingExpense(null)
-  }
-
-  const onCloseForm = () => {
-    setUpdatingExpense(null)
-    close()
-  }
-
-  const onShowFormClick = () => {
+  const handleAdd = () => {
     router.push(routes.expense.add())
   }
 
-  const hasExpenses = Array.isArray(expenses) && expenses.length > 0
-
-  const updateExpenseClick = expense => {
-    setUpdatingExpense(expense)
-    open()
+  const handleUpdate = expense => {
+    router.push(routes.expense.edit(expense.id))
   }
 
   const handleToogleHidden = () => {
@@ -63,7 +35,7 @@ function Expenses({expenses, onExpenseAdded, onExpenseDeleted, onExpenseUpdated}
     <ListCard>
       <ListCard.Header>
         <ListCard.Title>Gastos</ListCard.Title>
-        <ListCard.Action onClick={onShowFormClick}>Añadir</ListCard.Action>
+        <ListCard.Action onClick={handleAdd}>Añadir</ListCard.Action>
       </ListCard.Header>
       <ListCard.Toolbar>
         <FormControlLabel
@@ -78,7 +50,7 @@ function Expenses({expenses, onExpenseAdded, onExpenseDeleted, onExpenseUpdated}
             return (
               <ListCard.Item
                 onClick={() => {
-                  updateExpenseClick(expense)
+                  handleUpdate(expense)
                 }}
                 primary={<TextAmmount name={name} ammount={ammount} paid={paid} />}
                 secondary={formatPeriod(period)}
@@ -92,7 +64,6 @@ function Expenses({expenses, onExpenseAdded, onExpenseDeleted, onExpenseUpdated}
           })}
         </ListCard.List>
       )}
-      <ExpenseForm onAccept={onSaveExpense} onCancel={onCloseForm} isVisible={isVisible} expense={updatingExpense} />
     </ListCard>
   )
 }

@@ -31,18 +31,18 @@ export default function useExpenses() {
       })
   }
 
-  const remove = id => {
+  const update = expense => {
     expenseService
-      .remove(id)
+      .update(expense)
       .then(listExpenses)
       .catch(error => {
         console.error(error)
       })
   }
 
-  const update = expense => {
+  const remove = id => {
     expenseService
-      .update(expense)
+      .remove(id)
       .then(listExpenses)
       .catch(error => {
         console.error(error)

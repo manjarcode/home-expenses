@@ -30,7 +30,9 @@ export default function ExpenseForm({expense = emptyExpense, onAccept, onCancel}
   const acceptHandler = () => {
     const ammountFloat = parseFloat(ammount)
 
-    onAccept({name, ammount: ammountFloat, paid, period: {from, to, currently: false}})
+    const id = expense.id
+
+    onAccept({id, name, ammount: ammountFloat, paid, period: {from, to, currently: false}})
   }
 
   return (

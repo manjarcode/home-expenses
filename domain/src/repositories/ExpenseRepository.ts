@@ -25,7 +25,6 @@ export default class ExpenseRepository {
 
   async get (id: string): Promise<Expense> {
     const [fromDb] = await this.#dynamoDbAdapter.query(id)
-    console.log('fromDb', fromDb)
     return Expense.fromPrimitives(fromDb)
   }
 
@@ -36,11 +35,7 @@ export default class ExpenseRepository {
     })
     return list
   }
-
-  async delete (id: string): Promise<void> {
-    return await this.#dynamoDbAdapter.delete(id)  
-  }
-
+  
   async update (expense: Expense): Promise<void> {
     const { id, name, ammount, paid, period } = expense
     return await this.#dynamoDbAdapter.update({
@@ -51,5 +46,9 @@ export default class ExpenseRepository {
       from: period.from.getTime(),
       to: period.to.getTime()
     })
+  }
+
+  async delete (id: string): Promise<void> {
+    return await this.#dynamoDbAdapter.delete(id)  
   }
 }
