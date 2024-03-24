@@ -8,18 +8,22 @@ import useGuests from '../../../hooks/useGuests.js'
 import routes from '../../routes.js'
 
 export default function GuestFormPage() {
-  const {add} = useGuests()
   const router = useRouter()
+  const {add} = useGuests()
 
   const handleAccept = guest => {
     add(guest)
     router.push(routes.home())
   }
 
+  const onCancelHandler = () => {
+    router.push(routes.home())
+  }
+
   return (
     <Box>
       <Typography variant="h2">Añadir Inquilino</Typography>
-      <GuestForm onAccept={handleAccept} />
+      <GuestForm onAccept={handleAccept} onCancel={onCancelHandler} />
     </Box>
   )
 }

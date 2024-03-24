@@ -1,12 +1,14 @@
 import {useState} from 'react'
 
 import dayjs from 'dayjs'
+import {useRouter} from 'next/navigation.js'
 import PropTypes from 'prop-types'
 
 import DeleteIcon from '@mui/icons-material/Delete'
 import {Checkbox, FormControlLabel} from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 
+import routes from '../../../app/routes.js'
 import useModal from '../../../hooks/useModal.js'
 import ListCard from '../../ListCard/index.js'
 import TextAmmount from '../../textAmmount/index.js'
@@ -24,7 +26,7 @@ function Expenses({expenses, onExpenseAdded, onExpenseDeleted, onExpenseUpdated}
   const {isVisible, open, close} = useModal()
   const [updatingExpense, setUpdatingExpense] = useState()
   const [display, setDisplay] = useState(false)
-
+  const router = useRouter()
   const expensesDisplayed = display ? expenses : expenses.filter(expense => !expense.paid)
 
   const onSaveExpense = expense => {
@@ -43,7 +45,7 @@ function Expenses({expenses, onExpenseAdded, onExpenseDeleted, onExpenseUpdated}
   }
 
   const onShowFormClick = () => {
-    open()
+    router.push(routes.expense.add())
   }
 
   const hasExpenses = Array.isArray(expenses) && expenses.length > 0
