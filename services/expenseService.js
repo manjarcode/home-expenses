@@ -11,6 +11,11 @@ export default class ExpenseService {
     })
   }
 
+  async get() {
+    const url = `${RESOURCE}/id`
+    return fetch(url).then(response => response.json())
+  }
+
   async list() {
     return fetch(RESOURCE).then(response => response.json())
   }

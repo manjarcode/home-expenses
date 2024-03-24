@@ -23,6 +23,12 @@ export default class ExpenseRepository {
     return await promise
   }
 
+  async get (id: string): Promise<Expense> {
+    const [fromDb] = await this.#dynamoDbAdapter.query(id)
+    console.log('fromDb', fromDb)
+    return Expense.fromPrimitives(fromDb)
+  }
+
   async list (): Promise<Expense[]> {
     const fromDb = await this.#dynamoDbAdapter.scan()
     const list = fromDb.map(item => {

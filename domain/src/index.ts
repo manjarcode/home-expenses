@@ -1,4 +1,5 @@
 import AddExpenseUseCase from './application/expenses/addExpenseUseCase.js'
+import GetExpensesUseCase from './application/expenses/getExpenseUseCase.js'
 import ListExpensesUseCase from './application/expenses/listExpensesUseCase.js'
 import ParseExpenseDocumentUseCase from './application/expenses/parseExpenseDocumentUseCase.js'
 import RemoveExpenseUseCase from './application/expenses/removeExpenseUseCase.js'
@@ -14,9 +15,10 @@ export * as config from './utils/config.js'
 
 export const useCases = {
   addExpenseUseCase: new AddExpenseUseCase(),
-  removeExpenseUseCase: new RemoveExpenseUseCase(),
+  getExpenseUseCase: new GetExpensesUseCase(),
   listExpensesUseCase: new ListExpensesUseCase(),
   updateExpenseUseCase: new UpdateExpenseUseCase(),
+  removeExpenseUseCase: new RemoveExpenseUseCase(),
   addGuestUseCase: new AddGuestUseCase(),
   getGuestUseCase: new GetGuestUseCase(),
   getTimeTableUseCase: new GetTimeTableUseCase(),

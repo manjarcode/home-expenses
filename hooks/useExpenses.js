@@ -1,15 +1,24 @@
 'use client'
 
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 
 import ExpenseService from '../services/expenseService.js'
-
-// TODO: arreglar esto:
 
 const expenseService = new ExpenseService()
 
 export default function useExpenses() {
   const [expenses, setExpenses] = useState([])
+
+  const add = expense => {
+    expenseService
+      .add(expense)
+      .then(listExpenses)
+      .catch(error => {
+        console.error(error)
+      })
+  }
+
+  const get = useCallback(id => expenseService.get(id), [])
 
   const listExpenses = () => {
     expenseService
@@ -17,15 +26,6 @@ export default function useExpenses() {
       .then(entities => {
         setExpenses(entities)
       })
-      .catch(error => {
-        console.error(error)
-      })
-  }
-
-  const add = expense => {
-    expenseService
-      .add(expense)
-      .then(listExpenses)
       .catch(error => {
         console.error(error)
       })
@@ -53,5 +53,5 @@ export default function useExpenses() {
     listExpenses()
   }, [])
 
-  return {expenses, add, remove, update}
+  return {expenses, add, get, remove, update}
 }
