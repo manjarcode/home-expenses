@@ -5,9 +5,9 @@ import {useParams, useRouter} from 'next/navigation'
 
 import {Box, Typography} from '@mui/material'
 
+import GuestForm from '../../../../components/guests/guestForm/index.js'
 import useGuests from '../../../../hooks/useGuests.js'
 import routes from '../../../routes.js'
-import GuestForm from '../../../../components/guests/guestForm/index.js'
 
 export default function GuestUpdatePage() {
   const {id} = useParams()
@@ -18,24 +18,22 @@ export default function GuestUpdatePage() {
   useEffect(() => {
     if (!id) return
 
-    get(id).then(givenGuest => {
-      setGuest(givenGuest)
-    })
+    get(id).then(setGuest)
   }, [get, id])
 
-  const onAcceptHandler = guest => {
-    update(guest)
+  const handleAccept = async item => {
+    await update(item)
     router.push(routes.home())
   }
 
-  const onCancelHandler = () => {
+  const handleCancel = () => {
     router.push(routes.home())
   }
   return (
     <Box>
       <Typography variant="h2">Editar Inquilino</Typography>
 
-      {guest && <GuestForm onAccept={onAcceptHandler} onCancel={onCancelHandler} guest={guest} />}
+      {guest && <GuestForm onAccept={handleAccept} onCancel={handleCancel} guest={guest} />}
     </Box>
   )
 }
