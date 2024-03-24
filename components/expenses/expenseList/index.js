@@ -8,11 +8,11 @@ import {Checkbox, FormControlLabel} from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 
 import routes from '../../../app/routes.js'
-import ListCard from '../../ListCard/index.js'
+import ListCard from '../../listCard/index.js'
 import TextAmmount from '../../textAmmount/index.js'
 import {formatPeriod} from '../../utils.js'
 
-function Expenses({expenses, onExpenseAdded, onExpenseDeleted, onExpenseUpdated}) {
+function Expenses({expenses, onExpenseDeleted}) {
   const [display, setDisplay] = useState(false)
   const router = useRouter()
 
