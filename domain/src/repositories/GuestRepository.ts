@@ -46,6 +46,6 @@ export default class GuestRepository {
   }
 
   async delete (id: string): Promise<void> {
-    return await this.#dynamoDbAdapter.delete(id)  
+    return await this.#dynamoDbAdapter.delete(id)
   }
 }

@@ -8,7 +8,7 @@ export default class UpdateExpenseUseCase {
   }
 
   async execute (expense: ExpenseDto): Promise<void> {
-    const expenseEntity = Expense.fromPrimitives(expense)
+    const expenseEntity = Expense.fromDto(expense)
     await this.expenseRepository.update(expenseEntity)
   }
 }

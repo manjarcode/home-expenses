@@ -1,15 +1,18 @@
 import Expense from '../domain/models/Expense.js'
-import DbAdapter from './db/dbAdapter.js'
+import DynamoDbAdapterFactory from './DbAdapterFactory.js'
 
 const TABLE_NAME = 'expenses'
 
-const dbAdapter = new DbAdapter(TABLE_NAME)
-
 export default class ExpenseRepository {
+  #dynamoDbAdapter: any
+  constructor() {
+    this.#dynamoDbAdapter = DynamoDbAdapterFactory.instance(TABLE_NAME, 'id', null)
+  }
+
   async add (expense: Expense): Promise<void> {
     const { id, name, ammount, paid, period } = expense
 
-    const promise = dbAdapter.add({
+    const promise = this.#dynamoDbAdapter.add({
       id,
       name,
       ammount,
@@ -21,26 +24,20 @@ export default class ExpenseRepository {
   }
 
   async list (): Promise<Expense[]> {
-    const mapper: Function = item => {
-      
-      const { id, name, ammount, paid, from, to } = item
-      const period = { from, to }
-      return Expense.fromPrimitives({id, name, ammount, paid, period})
-    }
-    const promise = dbAdapter.list<Expense>(mapper)
-
-    return await promise
+    const fromDb = await this.#dynamoDbAdapter.scan()
+    const list = fromDb.map(item => {
+      return Expense.fromPrimitives(item)
+    })
+    return list
   }
 
   async delete (id: string): Promise<void> {
-    const promise = dbAdapter.delete(id)
-
-    return await promise
+    return await this.#dynamoDbAdapter.delete(id)  
   }
 
   async update (expense: Expense): Promise<void> {
     const { id, name, ammount, paid, period } = expense
-    return await dbAdapter.update({
+    return await this.#dynamoDbAdapter.update({
       id,
       name,
       ammount,

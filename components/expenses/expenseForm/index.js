@@ -53,9 +53,10 @@ function ExpenseForm({onAccept, onCancel, isVisible, expense}) {
 
   const handleAccept = () => {
     // TODO: Validar datos
-
+    const ammount = parseFloat(state.ammount)
     const expense = {
       ...state,
+      ammount,
       period: {from, to}
     }
     onAccept(expense)
