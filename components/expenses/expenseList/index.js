@@ -1,5 +1,6 @@
 import {useState} from 'react'
 
+import dayjs from 'dayjs'
 import PropTypes from 'prop-types'
 
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -10,6 +11,14 @@ import useModal from '../../../hooks/useModal.js'
 import ListCard from '../../ListCard/index.js'
 import TextAmmount from '../../textAmmount/index.js'
 import ExpenseForm from '../expenseForm/index.js'
+
+function formatPeriod(period) {
+  const from = dayjs(period.from).format('DD/MM/YYYY')
+  const to = dayjs(period.to).format('DD/MM/YYYY')
+  const periodValue = `${from} - ${to}`
+
+  return periodValue
+}
 
 function Expenses({expenses, onExpenseAdded, onExpenseDeleted, onExpenseUpdated}) {
   const {isVisible, open, close} = useModal()
@@ -70,7 +79,7 @@ function Expenses({expenses, onExpenseAdded, onExpenseDeleted, onExpenseUpdated}
                   updateExpenseClick(expense)
                 }}
                 primary={<TextAmmount name={name} ammount={ammount} paid={paid} />}
-                secondary={period.value}
+                secondary={formatPeriod(period)}
                 secondaryAction={
                   <IconButton aria-label="delete-guest" onClick={() => onExpenseDeleted(id)}>
                     <DeleteIcon />
