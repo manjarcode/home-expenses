@@ -11,7 +11,7 @@ interface PeriodDto {
 interface ExpenseDto {
   id: string
   name: string
-  ammount: number
+  amount: number
   paid: boolean
   period: PeriodDto
 }

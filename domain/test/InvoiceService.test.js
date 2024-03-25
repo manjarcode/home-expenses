@@ -16,7 +16,7 @@ describe('InvoiceService calculate invoice', () => {
   }
 
   describe('one guest one expense', () => {
-    test('guest stays half period must pay full ammount', () => {
+    test('guest stays half period must pay full amount', () => {
       const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may5)
       const electricity = Factory.expense('Electricity', may1, may10, 100)
 
@@ -36,7 +36,7 @@ describe('InvoiceService calculate invoice', () => {
   })
 
   describe('one guest two expenses', () => {
-    test('guest stays full period must pay full ammount', () => {
+    test('guest stays full period must pay full amount', () => {
       const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may10)
       const electricity = Factory.expense('Electricity', may1, may10, 100)
       const gas = Factory.expense('Gas', may1, may10, 100)
@@ -46,7 +46,7 @@ describe('InvoiceService calculate invoice', () => {
       expect(invoice.byGuest('Tyrion').total).toBe(200)
     })
 
-    test('guest stays half period must pay full ammount', () => {
+    test('guest stays half period must pay full amount', () => {
       const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may5)
       const electricity = Factory.expense('Electricity', may1, may10, 100)
       const gas = Factory.expense('Gas', may1, may10, 100)
@@ -96,7 +96,7 @@ describe('InvoiceService calculate invoice', () => {
       expect(invoice.byGuest('Cersei').total).toBe(100)
     })
 
-    test('guest meeting different periods pay different ammount', () => {
+    test('guest meeting different periods pay different amount', () => {
       const tyrion = Factory.guest('tyrionId', 'Tyrion', may1, may10)
       const cersei = Factory.guest('cerseiId', 'Cersei', may6, may15)
 

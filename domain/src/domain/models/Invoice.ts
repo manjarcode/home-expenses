@@ -11,10 +11,10 @@ export default class Invoice {
     this._dictionary = []
   }
 
-  addAmmount (guest: string, expense: string, ammount: number, days: number): void {
+  addAmount (guest: string, expense: string, amount: number, days: number): void {
     const guestPointer = this._guest(guest)
 
-    this._addExpense(guestPointer, expense, ammount, days)
+    this._addExpense(guestPointer, expense, amount, days)
   }
 
   _guest (guest: string): InvoiceGuestDto {
@@ -32,11 +32,11 @@ export default class Invoice {
     return guard(found)
   }
 
-  _addExpense (guest: InvoiceGuestDto, expense: string, ammount: number, days: number): void {
-    guest.total = roundMoney(guest.total + ammount)
+  _addExpense (guest: InvoiceGuestDto, expense: string, amount: number, days: number): void {
+    guest.total = roundMoney(guest.total + amount)
     const expenseDto: InvoiceExpenseDto = {
       expense,
-      value: roundMoney(ammount),
+      value: roundMoney(amount),
       days: Math.round(days)
     }
     guest.expenses.push(expenseDto)

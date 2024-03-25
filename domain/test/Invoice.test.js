@@ -7,9 +7,9 @@ describe('InvoiceEntity', () => {
       id: 'f391b3e2-b9d8-4f46-9a38-e516682efa05'
     })
 
-    invoice.addAmmount('Tyrion', 'Electricity', 50, 5)
+    invoice.addAmount('Tyrion', 'Electricity', 50, 5)
 
-    invoice.addAmmount('Cersei', 'Electricity', 50, 5)
+    invoice.addAmount('Cersei', 'Electricity', 50, 5)
 
     const invoiceData = invoice.flatten()
 

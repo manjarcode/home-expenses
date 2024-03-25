@@ -7,11 +7,11 @@ export const guest = (id, name, from, to, currently) => {
   return new Guest({id, name, period})
 }
 
-export const expense = (name, from, to, ammount, currently) => {
+export const expense = (name, from, to, amount, currently) => {
   return new Expense({
     name,
     period: new Period({from, to, currently}),
-    ammount
+    amount
   })
 }
 

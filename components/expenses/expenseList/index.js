@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton'
 
 import routes from '../../../app/routes.js'
 import ListCard from '../../listCard/index.js'
-import TextAmmount from '../../textAmmount/index.js'
+import TextAmount from '../../textAmount/index.js'
 import {formatPeriod} from '../../utils.js'
 
 function Expenses({expenses, onExpenseDeleted}) {
@@ -46,13 +46,13 @@ function Expenses({expenses, onExpenseDeleted}) {
       {hasExpenses && (
         <ListCard.List>
           {expensesDisplayed.map(expense => {
-            const {id, name, ammount, period, paid} = expense
+            const {id, name, amount, period, paid} = expense
             return (
               <ListCard.Item
                 onClick={() => {
                   handleUpdate(expense)
                 }}
-                primary={<TextAmmount name={name} ammount={ammount} paid={paid} />}
+                primary={<TextAmount name={name} amount={amount} paid={paid} />}
                 secondary={formatPeriod(period)}
                 secondaryAction={
                   <IconButton aria-label="delete-guest" onClick={() => onExpenseDeleted(id)}>
@@ -70,9 +70,7 @@ function Expenses({expenses, onExpenseDeleted}) {
 
 Expenses.propTypes = {
   expenses: PropTypes.array,
-  onExpenseAdded: PropTypes.func,
-  onExpenseDeleted: PropTypes.func,
-  onExpenseUpdated: PropTypes.func
+  onExpenseDeleted: PropTypes.func
 }
 
 export default Expenses

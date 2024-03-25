@@ -10,12 +10,12 @@ export default class ExpenseRepository {
   }
 
   async add (expense: Expense): Promise<void> {
-    const { id, name, ammount, paid, period } = expense
+    const { id, name, amount: amount, paid, period } = expense
 
     const promise = this.#dynamoDbAdapter.add({
       id,
       name,
-      ammount,
+      amount,
       paid,
       from: period.from.getTime(),
       to: period.to.getTime()
@@ -37,11 +37,11 @@ export default class ExpenseRepository {
   }
   
   async update (expense: Expense): Promise<void> {
-    const { id, name, ammount, paid, period } = expense
+    const { id, name, amount, paid, period } = expense
     return await this.#dynamoDbAdapter.update({
       id,
       name,
-      ammount,
+      amount,
       paid,
       from: period.from.getTime(),
       to: period.to.getTime()

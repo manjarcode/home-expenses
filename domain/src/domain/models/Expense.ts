@@ -4,14 +4,14 @@ class Expense implements Entity {
   id: string
   name: string
   period: Period
-  ammount: number
+  amount: number
   paid: boolean
 
-  constructor ({ id, name, period, ammount, paid }) {
+  constructor ({ id, name, period, amount, paid }) {
     this.id = id
     this.name = name
     this.period = period
-    this.ammount = ammount
+    this.amount = amount
     this.paid = paid
   }
 
@@ -19,20 +19,20 @@ class Expense implements Entity {
     return {
       id: this.id,
       name: this.name,
-      ammount: this.ammount,
+      amount: this.amount,
       paid: this.paid,
       period: this.period.flatten()
     }
   }
 
-  static fromDto({id, name, period, ammount, paid}) {
+  static fromDto({id, name, period, amount, paid}) {
     const periodVo = Period.fromPrimitives(period)
-    return new Expense({id, name, period: periodVo, ammount, paid})
+    return new Expense({id, name, period: periodVo, amount, paid})
   }
 
-  static fromPrimitives({id, name, from, to, ammount, paid}) {
+  static fromPrimitives({id, name, from, to, amount, paid}) {
     const periodVo = Period.fromPrimitives({from, to, currently: false})
-    return new Expense({id, name, period: periodVo, ammount, paid})
+    return new Expense({id, name, period: periodVo, amount, paid})
   }
 }
 

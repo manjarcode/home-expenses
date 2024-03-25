@@ -9,19 +9,19 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const {id, name, ammount, paid, period} = await request.json()
+  const {id, name, amount, paid, period} = await request.json()
 
   const {addExpenseUseCase} = useCases
-  await addExpenseUseCase.execute({id, name, ammount, paid, period})
+  await addExpenseUseCase.execute({id, name, amount, paid, period})
 
   return NextResponse.json({})
 }
 
 export async function PUT(request) {
-  const {id, name, ammount, paid, period} = await request.json()
+  const {id, name, amount, paid, period} = await request.json()
 
   const {updateExpenseUseCase} = useCases
-  await updateExpenseUseCase.execute({id, name, ammount, paid, period})
+  await updateExpenseUseCase.execute({id, name, amount, paid, period})
 
   return NextResponse.json({})
 }

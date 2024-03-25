@@ -6,8 +6,8 @@ import {Button} from '@mui/material'
 
 import InvoiceService from '../../services/invoiceService.js'
 import InvoiceList from '../invoiceList/index.js'
-import ListCard from '../ListCard/index.js'
-import TextAmmount from '../textAmmount/index.js'
+import ListCard from '../listCard/index.js'
+import TextAmount from '../textAmount/index.js'
 
 const invoiceService = new InvoiceService()
 
@@ -39,7 +39,7 @@ export default function Invoice() {
         {invoice.map(({name, total, expenses}) => {
           return (
             <ListCard.Item
-              primary={<TextAmmount name={name} ammount={total} />}
+              primary={<TextAmount name={name} amount={total} />}
               secondary={<InvoiceList expenses={expenses} />}
             ></ListCard.Item>
           )

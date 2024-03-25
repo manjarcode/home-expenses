@@ -19,10 +19,10 @@ class InvoiceService {
     return invoice
   }
 
-  private _ammount (days, totalDays, ammount): number {
+  private _amount (days, totalDays, amount): number {
     const hasDaysOfIntersection = days > 0
     if (!hasDaysOfIntersection) return 0
-    return roundMoney((days / totalDays) * ammount)
+    return roundMoney((days / totalDays) * amount)
   }
 
   private _calculateExpense (expense: Expense, guests: Guest[], invoice: Invoice): Invoice {
@@ -38,8 +38,8 @@ class InvoiceService {
     })
 
     guestExpenseJoin.forEach(({ guest, days }) => {
-      const ammount = this._ammount(days, totalDays, expense.ammount)
-      invoice.addAmmount(guest, expense.name, ammount, days)
+      const amount = this._amount(days, totalDays, expense.amount)
+      invoice.addAmount(guest, expense.name, amount, days)
     })
 
     return invoice

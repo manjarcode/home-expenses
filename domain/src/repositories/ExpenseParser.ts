@@ -21,7 +21,7 @@ export default class ExpenseParser {
 
     const firstKeyLine = this.getFirstKeyLine(lines)
     const name = this.parseExpenseName(firstKeyLine)
-    const ammount = this.parseExpenseAmount(firstKeyLine)
+    const amount = this.parseExpenseAmount(firstKeyLine)
 
     const period = this.parsePeriod(name, lines)
 
@@ -31,7 +31,7 @@ export default class ExpenseParser {
       id,
       name,
       period,
-      ammount,
+      amount,
       paid
     })
 

@@ -12,7 +12,7 @@ import Input from '../../input/index.js'
 const emptyDate = {day: null, month: null, year: null}
 const emptyExpense = {
   name: '',
-  ammount: 0,
+  amount: 0,
   paid: false,
   period: {
     from: emptyDate,
@@ -25,14 +25,14 @@ export default function ExpenseForm({expense = emptyExpense, onAccept, onCancel}
   const [from, setFrom] = useState(expense.period.from)
   const [to, setTo] = useState(expense.period.to)
   const [paid, setPaid] = useState(expense.paid)
-  const [ammount, setAmmount] = useState(expense.ammount)
+  const [amount, setAmount] = useState(expense.amount)
 
   const acceptHandler = () => {
-    const ammountFloat = parseFloat(ammount)
+    const amountFloat = parseFloat(amount)
 
     const id = expense.id
 
-    onAccept({id, name, ammount: ammountFloat, paid, period: {from, to, currently: false}})
+    onAccept({id, name, amount: amountFloat, paid, period: {from, to, currently: false}})
   }
 
   return (
@@ -41,7 +41,7 @@ export default function ExpenseForm({expense = emptyExpense, onAccept, onCancel}
         <Input label="Nombre" onChange={setName} value={name} />
       </Box>
       <Box>
-        <Input label="Cantidad" onChange={setAmmount} value={ammount} />
+        <Input label="Cantidad" onChange={setAmount} value={amount} />
       </Box>
       <Box>
         <DateField label="Desde" format="DD/MM/YYYY" value={dayjs(from)} onChange={setFrom} />
