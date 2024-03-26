@@ -7,6 +7,7 @@ import {Box, Button} from '@mui/material'
 
 import ExpenseCard from '../../components/expenses/expenseCard/index.js'
 import FileUploader from '../../components/fileUploader/index.js'
+import {parseAmount} from '../../components/utils.js'
 import useExpenses from '../../hooks/useExpenses.js'
 
 import styles from './page.module.scss'
@@ -31,7 +32,12 @@ export default function UploadInvoice() {
   }
 
   const onConfirm = async () => {
-    await add(expense)
+    const {amount, ...rest} = expense
+    const parsedExpense = {
+      ...rest,
+      amount: parseAmount(amount)
+    }
+    await add(parsedExpense)
     router.push('/')
   }
 

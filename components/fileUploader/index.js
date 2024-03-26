@@ -21,7 +21,7 @@ export default function FileUploader({onFileUpload}) {
     [onFileUpload]
   )
 
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  const {getRootProps, getInputProps} = useDropzone({onDrop})
 
   return (
     <div {...getRootProps()}>
@@ -33,11 +33,7 @@ export default function FileUploader({onFileUpload}) {
         className={style.dropzone}
       >
         <CloudUploadIcon className={style.icon} />
-        {isDragActive ? (
-          <Typography variant="body1">Suelta el archivo aquí</Typography>
-        ) : (
-          <Typography variant="body1">Arrastra y suelta un archivo aquí, o haz clic para seleccionar uno</Typography>
-        )}
+        <Typography variant="body1">Arrastra y suelta un archivo aquí, o haz clic para seleccionar uno</Typography>
       </Box>
     </div>
   )

@@ -7,3 +7,9 @@ export function formatPeriod(period) {
 
   return periodValue
 }
+
+export function parseAmount(amount) {
+  const parseDivider = amount.replace(',', '.')
+  const parsedAmount = parseFloat(parseDivider)
+  return parsedAmount
+}

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
 
-import Date from '../../date/index.js'
+import DateCard from '../../date/index.js'
 
 import styles from './index.module.scss'
 
 export default function ExpenseCard({name, amount, period}) {
+  const {from, to} = period
   return (
     <>
       <h2>Resumen del gasto</h2>
@@ -20,13 +21,13 @@ export default function ExpenseCard({name, amount, period}) {
         <tr>
           <td>Fecha inicio</td>
           <td>
-            <Date {...period.from} />
+            <DateCard value={from} />
           </td>
         </tr>
         <tr>
           <td>Fecha fin</td>
           <td>
-            <Date {...period.to} />
+            <DateCard value={to} />
           </td>
         </tr>
       </table>

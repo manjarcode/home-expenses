@@ -8,6 +8,7 @@ import {Box, Button, Checkbox, FormControlLabel} from '@mui/material'
 import {DateField} from '@mui/x-date-pickers'
 
 import Input from '../../input/index.js'
+import {parseAmount} from '../../utils.js'
 
 const emptyDate = {day: null, month: null, year: null}
 const emptyExpense = {
@@ -28,8 +29,7 @@ export default function ExpenseForm({expense = emptyExpense, onAccept, onCancel}
   const [amount, setAmount] = useState(expense.amount)
 
   const acceptHandler = () => {
-    const amountFloat = parseFloat(amount)
-
+    const amountFloat = parseAmount(amount)
     const id = expense.id
 
     onAccept({id, name, amount: amountFloat, paid, period: {from, to, currently: false}})
