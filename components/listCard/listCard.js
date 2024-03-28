@@ -7,10 +7,10 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import Typography from '@mui/material/Typography'
 
-import styles from './index.module.scss'
+import styles from './listCard.module.scss'
 
 export default function ListCard(props) {
-  return <div className={styles.container} {...props} />
+  return <Box className={styles.container} {...props} />
 }
 
 const Header = props => <div className={styles.header} {...props} />

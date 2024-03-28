@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import {IconButton} from '@mui/material'
 
 import routes from '../../../app/routes.js'
-import ListCard from '../../listCard/index.js'
+import ListCard from '../../listCard/listCard.js'
 import {formatPeriod} from '../../utils.js'
 
 function GuestList({guests = [], onGuestDeleted}) {
