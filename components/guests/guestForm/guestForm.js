@@ -20,11 +20,11 @@ export default function GuestForm({guest = emptyGuest, onAccept, onCancel}) {
   const [name, setName] = useState(guest.name)
   const [from, setFrom] = useState(guest.period.from)
   const [to, setTo] = useState(guest.period.to)
-  const [currently, setCurrently] = useState(guest.currently)
+  const [active, setActive] = useState(guest.active)
 
   const acceptHandler = () => {
     const id = guest.id || uuid()
-    const guestToSave = {id, name, period: {from, to, currently: true}}
+    const guestToSave = {id, name, period: {from, to}, active}
     onAccept(guestToSave)
   }
 
@@ -44,7 +44,7 @@ export default function GuestForm({guest = emptyGuest, onAccept, onCancel}) {
         </MarginBox>
       </FormRow>
       <MarginBox>
-        <Checkbox label="Activo" value={currently} onChange={setCurrently} />
+        <Checkbox label="Activo" value={active} onChange={setActive} />
       </MarginBox>
       <MarginBox>
         <FormRow isCentered gapSize={gapSizes.l}>

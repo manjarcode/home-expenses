@@ -20,7 +20,7 @@ interface GuestDto {
   id: string
   name: string
   period: Period
-  currently: boolean
+  active: boolean
 }
 
 interface InvoiceExpenseDto {

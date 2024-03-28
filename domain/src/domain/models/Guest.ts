@@ -4,10 +4,13 @@ class Guest {
   id: string
   name: string
   period: Period
-  constructor ({ id, name, period }) {
+  active : boolean
+  
+  constructor ({ id, name, period, active }) {
     this.id = id
     this.name = name
     this.period = period
+    this.active = active
   }
 
   getId (): string {
@@ -15,7 +18,7 @@ class Guest {
   }
 
   flatten (): any {
-    return { id: this.id, name: this.name, period: this.period.flatten() }
+    return { id: this.id, name: this.name, period: this.period.flatten(), active: this.active }
   }
 
   static sort (guestList: Guest[]): Guest[] {
@@ -27,19 +30,21 @@ class Guest {
     return sorted
   }
 
-  static fromDto ({ id, name, period }): Guest {
+  static fromDto ({ id, name, period, active }): Guest {
     return new Guest({
       id,
       name,
-      period: Period.fromPrimitives(period)
+      period: Period.fromPrimitives(period),
+      active
     })
   }
 
-  static fromPrimitives ({ id, name, from, to, currently }): Guest {
+  static fromPrimitives ({ id, name, from, to, currently, active }): Guest {
     return new Guest({
       id,
       name,
-      period: Period.fromPrimitives({ from, to, currently})
+      period: Period.fromPrimitives({ from, to, currently}),
+      active
     })
   }
 }

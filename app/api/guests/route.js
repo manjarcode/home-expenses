@@ -9,15 +9,15 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const {id, name, period} = await request.json()
+  const body = await request.json()
   const {addGuestUseCase} = useCases
-  await addGuestUseCase.execute({id, name, period})
+  await addGuestUseCase.execute(body)
   return new Response(null, {status: 204})
 }
 
 export async function PUT(request) {
-  const {id, name, period} = await request.json()
+  const body = await request.json()
   const {updateGuestUseCase} = useCases
-  await updateGuestUseCase.execute({id, name, period})
+  await updateGuestUseCase.execute(body)
   return new Response(null, {status: 204})
 }

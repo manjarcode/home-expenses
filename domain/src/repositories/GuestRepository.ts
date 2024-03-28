@@ -10,14 +10,14 @@ export default class GuestRepository {
   }
 
   async add (guest: Guest): Promise<void> {
-    const { id, name, period } = guest
+    const { id, name, period, active } = guest
 
     return await this.#dynamoDbAdapter.add({
       id,
       name,
       from: period.from.getTime(),
       to: period.to.getTime(),
-      currently: period.currently
+      active
     })
   }
 
@@ -35,13 +35,13 @@ export default class GuestRepository {
   }
 
   async update(guest: Guest): Promise<void> {
-    const { id, name, period } = guest
+    const { id, name, period, active } = guest
     return await this.#dynamoDbAdapter.update({
       id,
       name,
       from: period.from.getTime(),
       to: period.to.getTime(),
-      currently: period.currently
+      active
     })
   }
 
