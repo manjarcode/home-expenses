@@ -1,9 +1,9 @@
 'use client'
 import {useRouter} from 'next/navigation'
 
-import {Box, Typography} from '@mui/material'
+import {Box} from '@mui/material'
 
-import GuestForm from '../../../components/guests/guestForm/index.js'
+import GuestForm from '../../../components/guests/guestForm/guestForm.js'
 import PageTitle from '../../../components/layout/pageTitle/pageTitle.js'
 import useGuests from '../../../hooks/useGuests.js'
 import routes from '../../routes.js'

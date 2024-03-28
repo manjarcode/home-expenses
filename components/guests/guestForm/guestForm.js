@@ -8,6 +8,7 @@ import {Box} from '@mui/material'
 import Button from '@mui/material/Button'
 import {DateField} from '@mui/x-date-pickers'
 
+import Checkbox from '../../form/checkbox/checkbox.js'
 import Input from '../../input/index.js'
 import FormRow, {gapSizes} from '../../layout/formRow/formRow.js'
 import MarginBox from '../../layout/marginBox/marginBox.js'
@@ -19,6 +20,7 @@ export default function GuestForm({guest = emptyGuest, onAccept, onCancel}) {
   const [name, setName] = useState(guest.name)
   const [from, setFrom] = useState(guest.period.from)
   const [to, setTo] = useState(guest.period.to)
+  const [currently, setCurrently] = useState(guest.currently)
 
   const acceptHandler = () => {
     const id = guest.id || uuid()
@@ -41,6 +43,9 @@ export default function GuestForm({guest = emptyGuest, onAccept, onCancel}) {
           <DateField label="Hasta" format="DD/MM/YYYY" value={dayjs(to)} onChange={setTo} />
         </MarginBox>
       </FormRow>
+      <MarginBox>
+        <Checkbox label="Activo" value={currently} onChange={setCurrently} />
+      </MarginBox>
       <MarginBox>
         <FormRow isCentered gapSize={gapSizes.l}>
           <Button variant="contained" onClick={acceptHandler}>

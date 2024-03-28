@@ -4,9 +4,10 @@ import {useState} from 'react'
 import dayjs from 'dayjs'
 import PropTypes from 'prop-types'
 
-import {Box, Button, Checkbox, FormControlLabel} from '@mui/material'
+import {Box, Button} from '@mui/material'
 import {DateField} from '@mui/x-date-pickers'
 
+import Checkbox from '../../form/checkbox/checkbox.js'
 import Input from '../../input/index.js'
 import FormRow, {gapSizes} from '../../layout/formRow/formRow.js'
 import MarginBox from '../../layout/marginBox/marginBox.js'
@@ -56,10 +57,7 @@ export default function ExpenseForm({expense = emptyExpense, onAccept, onCancel}
         </MarginBox>
       </FormRow>
       <MarginBox>
-        <FormControlLabel
-          control={<Checkbox checked={paid} onChange={e => setPaid(e.target.checked)} />}
-          label="Pagado"
-        />
+        <Checkbox label="Pagado" value={paid} onChange={setPaid} />
       </MarginBox>
       <FormRow isCentered={true} gapSize={gapSizes.l}>
         <Button variant="contained" onClick={acceptHandler}>
