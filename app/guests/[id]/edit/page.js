@@ -3,9 +3,10 @@ import {useEffect, useState} from 'react'
 
 import {useParams, useRouter} from 'next/navigation'
 
-import {Box, Typography} from '@mui/material'
+import {Box} from '@mui/material'
 
 import GuestForm from '../../../../components/guests/guestForm/index.js'
+import PageTitle from '../../../../components/layout/pageTitle/pageTitle.js'
 import useGuests from '../../../../hooks/useGuests.js'
 import routes from '../../../routes.js'
 
@@ -31,8 +32,7 @@ export default function GuestUpdatePage() {
   }
   return (
     <Box>
-      <Typography variant="h2">Editar Inquilino</Typography>
-
+      <PageTitle>Editar inquilino</PageTitle>
       {guest && <GuestForm onAccept={handleAccept} onCancel={handleCancel} guest={guest} />}
     </Box>
   )

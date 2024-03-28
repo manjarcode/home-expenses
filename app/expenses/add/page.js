@@ -2,9 +2,10 @@
 import {useRouter} from 'next/navigation'
 import {v4 as uuid} from 'uuid'
 
-import {Box, Typography} from '@mui/material'
+import {Box} from '@mui/material'
 
 import ExpenseForm from '../../../components/expenses/expenseForm/expenseForm.js'
+import PageTitle from '../../../components/layout/pageTitle/pageTitle.js'
 import useExpenses from '../../../hooks/useExpenses.js'
 import routes from '../../routes.js'
 
@@ -24,7 +25,7 @@ export default function ExpenseAddPage() {
 
   return (
     <Box>
-      <Typography variant="h2">Agregar Gasto</Typography>
+      <PageTitle>Nuevo gasto</PageTitle>
       <ExpenseForm onAccept={onAcceptHandler} onCancel={onCancelHandler} />
     </Box>
   )

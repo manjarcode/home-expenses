@@ -3,7 +3,10 @@ import React, {useEffect, useState} from 'react'
 
 import {useParams, useRouter} from 'next/navigation'
 
+import {Box} from '@mui/material'
+
 import ExpenseForm from '../../../../components/expenses/expenseForm/expenseForm.js'
+import PageTitle from '../../../../components/layout/pageTitle/pageTitle.js'
 import useExpenses from '../../../../hooks/useExpenses.js'
 import routes from '../../../routes.js'
 
@@ -29,9 +32,9 @@ export default function ExpenseUpdatePage() {
   }
 
   return (
-    <div>
-      <h1>Editar gasto</h1>
+    <Box>
+      <PageTitle>Editar gasto</PageTitle>
       {expense && <ExpenseForm expense={expense} onAccept={handleAccept} onCancel={handleCancel} />}
-    </div>
+    </Box>
   )
 }

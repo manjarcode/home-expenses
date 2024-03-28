@@ -1,0 +1,37 @@
+@import '../../../styles/margin.module.scss';
+
+.container {
+  display: block;
+
+  @media screen and (min-width: 480px) {
+    display: flex;
+  }
+}
+
+.centered {
+  justify-content: center;
+}
+
+.s {
+  @media screen and (min-width: 480px) {
+    gap: $m-s;
+  }
+}
+
+.m {
+  @media screen and (min-width: 480px) {
+    gap: $m-m;
+  }
+}
+
+.l {
+  @media screen and (min-width: 480px) {
+    gap: $m-l;
+  }
+}
+
+.xl {
+  @media screen and (min-width: 480px) {
+    gap: $m-xl;
+  }
+}

@@ -9,6 +9,8 @@ export function formatPeriod(period) {
 }
 
 export function parseAmount(amount) {
+  if (typeof amount === 'number') return amount
+
   const parseDivider = amount.replace(',', '.')
   const parsedAmount = parseFloat(parseDivider)
   return parsedAmount

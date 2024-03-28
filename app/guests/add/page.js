@@ -4,6 +4,7 @@ import {useRouter} from 'next/navigation'
 import {Box, Typography} from '@mui/material'
 
 import GuestForm from '../../../components/guests/guestForm/index.js'
+import PageTitle from '../../../components/layout/pageTitle/pageTitle.js'
 import useGuests from '../../../hooks/useGuests.js'
 import routes from '../../routes.js'
 
@@ -22,7 +23,7 @@ export default function GuestFormPage() {
 
   return (
     <Box>
-      <Typography variant="h2">Añadir Inquilino</Typography>
+      <PageTitle>Nuevo inquilino</PageTitle>
       <GuestForm onAccept={handleAccept} onCancel={onCancelHandler} />
     </Box>
   )

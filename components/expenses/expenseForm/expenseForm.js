@@ -8,6 +8,8 @@ import {Box, Button, Checkbox, FormControlLabel} from '@mui/material'
 import {DateField} from '@mui/x-date-pickers'
 
 import Input from '../../input/index.js'
+import FormRow, {gapSizes} from '../../layout/formRow/formRow.js'
+import MarginBox from '../../layout/marginBox/marginBox.js'
 import {parseAmount} from '../../utils.js'
 
 const emptyDate = {day: null, month: null, year: null}
@@ -37,30 +39,34 @@ export default function ExpenseForm({expense = emptyExpense, onAccept, onCancel}
 
   return (
     <Box>
-      <Box>
-        <Input label="Nombre" onChange={setName} value={name} />
-      </Box>
-      <Box>
-        <Input label="Cantidad" onChange={setAmount} value={amount} />
-      </Box>
-      <Box>
-        <DateField label="Desde" format="DD/MM/YYYY" value={dayjs(from)} onChange={setFrom} />
-      </Box>
-      <Box>
-        <DateField label="Hasta" format="DD/MM/YYYY" value={dayjs(to)} onChange={setTo} />
-      </Box>
-      <Box>
+      <FormRow>
+        <MarginBox>
+          <Input label="Nombre" onChange={setName} value={name} />
+        </MarginBox>
+        <MarginBox>
+          <Input label="Cantidad" onChange={setAmount} value={amount} />
+        </MarginBox>
+      </FormRow>
+      <FormRow>
+        <MarginBox>
+          <DateField label="Desde" format="DD/MM/YYYY" value={dayjs(from)} onChange={setFrom} />
+        </MarginBox>
+        <MarginBox>
+          <DateField label="Hasta" format="DD/MM/YYYY" value={dayjs(to)} onChange={setTo} />
+        </MarginBox>
+      </FormRow>
+      <MarginBox>
         <FormControlLabel
           control={<Checkbox checked={paid} onChange={e => setPaid(e.target.checked)} />}
           label="Pagado"
         />
-      </Box>
-      <Box>
-        <Button onClick={onCancel}>Cancelar</Button>
+      </MarginBox>
+      <FormRow isCentered={true} gapSize={gapSizes.l}>
         <Button variant="contained" onClick={acceptHandler}>
           Aceptar
         </Button>
-      </Box>
+        <Button onClick={onCancel}>Cancelar</Button>
+      </FormRow>
     </Box>
   )
 }
