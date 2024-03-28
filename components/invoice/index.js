@@ -6,7 +6,7 @@ import {Button} from '@mui/material'
 
 import InvoiceService from '../../services/invoiceService.js'
 import InvoiceList from '../invoiceList/index.js'
-import ListCard from '../listCard/index.js'
+import ListCard from '../layout/listCard/listCard.js'
 import TextAmount from '../textAmount/index.js'
 
 const invoiceService = new InvoiceService()

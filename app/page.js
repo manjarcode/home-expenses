@@ -1,6 +1,6 @@
 'use client'
 
-import ExpenseList from '../components/expenses/expenseList/index.js'
+import ExpenseList from '../components/expenses/expenseList/expenseList.js'
 import GuestList from '../components/guests/guestList/guestList.js'
 import Invoice from '../components/invoice/index.js'
 import useExpenses from '../hooks/useExpenses.js'

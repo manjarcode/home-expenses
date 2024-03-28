@@ -7,9 +7,9 @@ export const devices = {
 }
 
 export default function useDevice() {
-  const mobile = useMediaQuery('only screen and (max-width: 480px)')
-  const tablet = useMediaQuery('(min-width:481px) and (max-width:768px)')
-  const desktop = useMediaQuery('(min-width:769px)')
+  const isMobile = useMediaQuery('only screen and (max-width: 480px)')
+  const isTablet = useMediaQuery('(min-width:481px) and (max-width:768px)')
+  const isDesktop = useMediaQuery('(min-width:769px)')
 
-  return {mobile, tablet, desktop}
+  return {isMobile, isTablet, isDesktop}
 }

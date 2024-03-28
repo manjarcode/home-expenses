@@ -4,15 +4,15 @@ import {useRouter} from 'next/navigation.js'
 import PropTypes from 'prop-types'
 
 import DeleteIcon from '@mui/icons-material/Delete'
-import {Checkbox, FormControlLabel} from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 
 import routes from '../../../app/routes.js'
-import ListCard from '../../listCard/index.js'
+import Checkbox from '../../form/checkbox/checkbox.js'
+import ListCardResponsive from '../../layout/listCardResponsive/listCardResponsive.js'
 import TextAmount from '../../textAmount/index.js'
 import {formatPeriod} from '../../utils.js'
 
-function Expenses({expenses, onExpenseDeleted}) {
+function ExpenseList({expenses, onExpenseDeleted}) {
   const [display, setDisplay] = useState(false)
   const router = useRouter()
 
@@ -32,23 +32,14 @@ function Expenses({expenses, onExpenseDeleted}) {
   }
 
   return (
-    <ListCard>
-      <ListCard.Header>
-        <ListCard.Title>Gastos</ListCard.Title>
-        <ListCard.Action onClick={handleAdd}>Añadir</ListCard.Action>
-      </ListCard.Header>
-      <ListCard.Toolbar>
-        <FormControlLabel
-          control={<Checkbox checked={display} onChange={handleToogleHidden} />}
-          label="Mostrar ocultos"
-        />
-      </ListCard.Toolbar>
+    <ListCardResponsive title="Gastos" action="Añadir" onAction={handleAdd}>
+      <Checkbox label="Mostrar ocultos" checked={display} onChange={handleToogleHidden} />
       {hasExpenses && (
-        <ListCard.List>
+        <ListCardResponsive.List>
           {expensesDisplayed.map(expense => {
             const {id, name, amount, period, paid} = expense
             return (
-              <ListCard.Item
+              <ListCardResponsive.Item
                 onClick={() => {
                   handleUpdate(expense)
                 }}
@@ -59,18 +50,18 @@ function Expenses({expenses, onExpenseDeleted}) {
                     <DeleteIcon />
                   </IconButton>
                 }
-              ></ListCard.Item>
+              ></ListCardResponsive.Item>
             )
           })}
-        </ListCard.List>
+        </ListCardResponsive.List>
       )}
-    </ListCard>
+    </ListCardResponsive>
   )
 }
 
-Expenses.propTypes = {
+ExpenseList.propTypes = {
   expenses: PropTypes.array,
   onExpenseDeleted: PropTypes.func
 }
 
-export default Expenses
+export default ExpenseList

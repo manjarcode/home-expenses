@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 import PropTypes from 'prop-types'
 
-import ListCard from '../listCard/index.js'
+import ListCard from '../layout/listCard/listCard.js'
 import InvoiceDetail from './InvoiceDetail/extendedDetail.js'
 
 import styles from './index.module.scss'
