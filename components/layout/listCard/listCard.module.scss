@@ -1,4 +1,8 @@
 @import '../../../styles/margin.module.scss';
+@import '../../../styles/mediaQueries.module.scss';
+@import '../../../styles/border.module.scss';
+@import '../../../styles/color.module.scss';
+@import '../../../styles/padding.module.scss';
 
 .container {
     width: max-content;
@@ -6,9 +10,16 @@
 
 .header {
     display: flex;
-    gap: $m-m;
     align-items: center;
     margin: $m-m 0;
+    justify-content: space-between;
+    border: $bd-w solid $c-primary;
+    padding: $p-m;
+
+    @include tabletOrBigger {
+        border: 0;
+    }
+    
 }
 
 .list {

@@ -1,5 +1,6 @@
 .container {
   display: block;
+  height: min-content;
 }
 
 .spread {
@@ -7,5 +8,6 @@
 }
 
 .hidden {
-  display: none;
+  visibility: hidden;
+  height: 0;
 }

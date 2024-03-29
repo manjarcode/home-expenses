@@ -3,6 +3,8 @@ import {useState} from 'react'
 
 import PropTypes from 'prop-types'
 
+import ExpandLessIcon from '@mui/icons-material/ExpandLess'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {Box} from '@mui/material'
 
 import useDevice from '../../../hooks/useDevice.js'
@@ -11,9 +13,11 @@ import ListCard from '../listCard/listCard.js'
 import styles from './listCardResponsive.module.scss'
 
 export default function ListCardResponsive({title, action, onAction, children}) {
-  const {isMobile} = useDevice()
+  const [isSpread, setIsSpread] = useState(true)
 
-  const [isSpread, setIsSpread] = useState(!isMobile)
+  const {isMobile} = useDevice(() => {
+    setIsSpread(!isMobile)
+  })
 
   const handleTitleClick = () => {
     if (!isMobile) return
@@ -24,9 +28,23 @@ export default function ListCardResponsive({title, action, onAction, children}) 
     <Box className={styles.container}>
       <ListCard.Header>
         <ListCard.Title onClick={handleTitleClick}>{title}</ListCard.Title>
-        {action && <ListCard.Action onClick={onAction}>{action}</ListCard.Action>}
+        {!isMobile && action && <ListCard.Action onClick={onAction}>{action}</ListCard.Action>}
+        {isMobile && (
+          <ListCard.Action
+            onClick={handleTitleClick}
+            startIcon={undefined}
+            endIcon={isSpread ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+          />
+        )}
       </ListCard.Header>
-      {isSpread && children}
+      <Box className={!isSpread ? styles.hidden : undefined}>
+        {children}
+        {isMobile && (
+          <ListCard.Toolbar>
+            {action && <ListCard.Action onClick={onAction}>{action}</ListCard.Action>}
+          </ListCard.Toolbar>
+        )}
+      </Box>
     </Box>
   )
 }

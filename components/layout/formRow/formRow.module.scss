@@ -1,9 +1,10 @@
 @import '../../../styles/margin.module.scss';
+@import '../../../styles/mediaQueries.module.scss';
 
 .container {
   display: block;
 
-  @media screen and (min-width: 480px) {
+  @include tabletOrBigger {
     display: flex;
   }
 }
@@ -13,25 +14,25 @@
 }
 
 .s {
-  @media screen and (min-width: 480px) {
+  @include tabletOrBigger {
     gap: $m-s;
   }
 }
 
 .m {
-  @media screen and (min-width: 480px) {
+  @include tabletOrBigger {
     gap: $m-m;
   }
 }
 
 .l {
-  @media screen and (min-width: 480px) {
+  @include tabletOrBigger {
     gap: $m-l;
   }
 }
 
 .xl {
-  @media screen and (min-width: 480px) {
+  @include tabletOrBigger {
     gap: $m-xl;
   }
 }
