@@ -6,6 +6,7 @@ import {IconButton} from '@mui/material'
 
 import routes from '../../../app/routes.js'
 import ListCard from '../../layout/listCard/listCard.js'
+import ListCardResponsive from '../../layout/listCardResponsive/listCardResponsive.js'
 import {formatPeriod} from '../../utils.js'
 
 function GuestList({guests = [], onGuestDeleted}) {
@@ -22,13 +23,9 @@ function GuestList({guests = [], onGuestDeleted}) {
   }
 
   return (
-    <ListCard>
-      <ListCard.Header>
-        <ListCard.Title>Huéspedes</ListCard.Title>
-        <ListCard.Action onClick={handleAddGuest}>Añadir</ListCard.Action>
-      </ListCard.Header>
+    <ListCardResponsive title="Huéspedes" action="Añadir" onAction={handleAddGuest}>
       {hasGuests && (
-        <ListCard.List>
+        <ListCardResponsive.List>
           {guests.map(guest => (
             <GuestListItem
               {...guest}
@@ -36,9 +33,9 @@ function GuestList({guests = [], onGuestDeleted}) {
               onClick={() => handleGuestSelected(guest)}
             ></GuestListItem>
           ))}
-        </ListCard.List>
+        </ListCardResponsive.List>
       )}
-    </ListCard>
+    </ListCardResponsive>
   )
 }
 

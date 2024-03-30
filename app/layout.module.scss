@@ -1,7 +1,13 @@
 @import '../styles/margin.module.scss';
+@import '../styles/mediaQueries.module.scss';
+@import '../styles/padding.module.scss';
 
 .container {
-  display: flex;
-  justify-content: center;
-  gap: $m-l;
+  
+  padding: 0 $p-m;
+  @include tabletOrBigger {
+    display: flex;
+    justify-content: center;
+    gap: $m-l;
+  }
 }
