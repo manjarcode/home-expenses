@@ -7,7 +7,8 @@ const routes = {
   expense: {
     add: () => '/expenses/add',
     edit: id => `/expenses/${id}/edit`
-  }
+  },
+  upload: () => '/upload'
 }
 
 export default routes

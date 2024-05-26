@@ -1,13 +1,22 @@
 @import '../styles/margin.module.scss';
 @import '../styles/mediaQueries.module.scss';
 @import '../styles/padding.module.scss';
+@import '../styles/layout.module.scss';
 
 .container {
-  
   padding: 0 $p-m;
   @include tabletOrBigger {
     display: flex;
     justify-content: center;
     gap: $m-l;
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  @include tabletOrBigger {
+    width: 100%;
+    max-width: $max-width;
   }
 }

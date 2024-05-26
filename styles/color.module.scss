@@ -1,6 +1,12 @@
-$c-primary: #607196;
-$c-secondary: #EAE8ED;
-$c-third: #BABFD1;
+$c-primary: #3f51b5;
+$c-secondary: #fafafa;
+$c-third: #ffffff;
 $c-accent: #FF7B9C;
 $c-contrast: #FFC759;
 $c-dark: hsla(60, 1%, 23%, 1);
+$c-light: hsla(60, 1%, 98%, 1);
+
+:export {
+  primaryColor: $c-primary;
+  backgroundColor: $c-secondary;  
+}

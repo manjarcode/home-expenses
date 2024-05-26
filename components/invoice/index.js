@@ -1,7 +1,5 @@
 import {useState} from 'react'
 
-import {useRouter} from 'next/navigation'
-
 import {Button} from '@mui/material'
 
 import InvoiceService from '../../services/invoiceService.js'
@@ -14,23 +12,15 @@ const invoiceService = new InvoiceService()
 export default function Invoice() {
   const [invoice, setInvoice] = useState([])
 
-  const router = useRouter()
-
   const handleCalculate = () => {
     invoiceService.calculate().then(response => {
       setInvoice(response)
     })
   }
 
-  const handleUpload = () => {
-    router.push('/upload')
-  }
   return (
     <ListCard>
       <ListCard.Header>
-        <Button onClick={handleUpload} variant="contained">
-          Subir Recibo
-        </Button>
         <Button onClick={handleCalculate} variant="contained">
           Calcular
         </Button>

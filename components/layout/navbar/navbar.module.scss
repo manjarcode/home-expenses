@@ -1,0 +1,27 @@
+@import '../../../styles/margin.module.scss';
+@import '../../../styles/mediaQueries.module.scss';
+@import '../../../styles/padding.module.scss';
+@import '../../../styles/color.module.scss';
+@import '../../../styles/layout.module.scss';
+
+.container {
+  width: 100%;
+  background-color: $c-primary;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 100%;
+  max-width: $max-width;
+  padding: $p-m ;
+  color: $c-secondary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $c-light;
+
+  @include tabletOrBigger {
+    padding: $p-s $p-m;
+  }
+}

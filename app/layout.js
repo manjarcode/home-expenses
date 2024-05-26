@@ -1,10 +1,13 @@
 'use client'
 import PropTypes from 'prop-types'
 
-import {Box} from '@mui/material'
+import {Box, ThemeProvider} from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
 import {LocalizationProvider} from '@mui/x-date-pickers'
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs'
+
+import Navbar from '../components/layout/navbar/navbar.js'
+import theme from './theme.js'
 
 import styles from './layout.module.scss'
 
@@ -20,7 +23,12 @@ export default function RootLayout({children}) {
       </head>
       <body>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Box className={styles.container}>{children}</Box>
+          <ThemeProvider theme={theme}>
+            <Navbar />
+            <Box className={styles.container}>
+              <Box className={styles.content}>{children}</Box>
+            </Box>
+          </ThemeProvider>
         </LocalizationProvider>
       </body>
     </html>
