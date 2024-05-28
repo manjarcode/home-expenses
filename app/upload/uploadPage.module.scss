@@ -4,8 +4,15 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 }
 
 .expenseContainer {
   margin-top: $m-xl;
+}
+
+.buttonContainer {
+  display: flex;
+  margin-top: $m-l;
+  gap: $m-m;
 }

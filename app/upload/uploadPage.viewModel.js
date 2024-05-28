@@ -23,9 +23,19 @@ export default function ViewModel() {
     router.push('/')
   }
 
+  const handleBack = () => {
+    router.push('/')
+  }
+
+  const handleCancel = () => {
+    setExpense(null)
+  }
+
   return {
     expense,
     handleFileUpload,
-    handleConfirm
+    handleConfirm,
+    handleBack,
+    handleCancel
   }
 }
