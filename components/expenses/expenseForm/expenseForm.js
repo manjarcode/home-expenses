@@ -8,7 +8,7 @@ import {Box, Button} from '@mui/material'
 import {DateField} from '@mui/x-date-pickers'
 
 import Checkbox from '../../form/checkbox/checkbox.js'
-import Input from '../../input/index.js'
+import Input from '../../form/input/input.js'
 import FormRow, {gapSizes} from '../../layout/formRow/formRow.js'
 import MarginBox from '../../layout/marginBox/marginBox.js'
 import {parseAmount} from '../../utils.js'
