@@ -1,5 +1,5 @@
 'use server'
-import {useCases} from 'home-expenses-domain'
+import {DI, Types} from 'home-expenses-domain'
 import {NextResponse} from 'next/server'
 
 export async function POST(request) {
@@ -13,8 +13,9 @@ export async function POST(request) {
   const bytes = await file.arrayBuffer()
   const buffer = Buffer.from(bytes)
 
-  const {parseExpenseDocumentUseCase} = useCases
-  const expense = await parseExpenseDocumentUseCase.execute(buffer)
+  const useCase = DI.get(Types.UseCase.ParseExpense)
+
+  const expense = await useCase.execute(buffer)
 
   return NextResponse.json({...expense})
 }

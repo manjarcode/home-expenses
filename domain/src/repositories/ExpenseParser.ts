@@ -1,3 +1,5 @@
+import 'reflect-metadata'
+import { injectable } from 'inversify'
 import { v4 as uuid } from 'uuid'
 
 import Expense from '../domain/models/Expense.js'
@@ -6,7 +8,7 @@ import PdfReader from './PdfReader.js'
 import { dateFromString } from '../utils/date.js'
 
 const EMPTY = ''
-
+@injectable()
 export default class ExpenseParser {
   private readonly pdfReader: PdfReader
 

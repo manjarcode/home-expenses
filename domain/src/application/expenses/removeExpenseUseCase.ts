@@ -1,12 +1,19 @@
+import 'reflect-metadata'
+import { injectable, inject } from 'inversify'
+import Types from '../../types.js'
 import ExpenseRepository from '../../repositories/ExpenseRepository.js'
 
+@injectable()
 export default class RemoveExpenseUseCase {
-  private readonly expenseRepository: ExpenseRepository
-  constructor () {
-    this.expenseRepository = new ExpenseRepository()
+  private readonly repository: ExpenseRepository
+  
+  constructor (
+    @inject(Types.Repository.Expense) repository: ExpenseRepository
+  ) {
+    this.repository = repository
   }
 
   async execute (id: string): Promise<void> {
-    await this.expenseRepository.delete(id)
+    await this.repository.delete(id)
   }
 }

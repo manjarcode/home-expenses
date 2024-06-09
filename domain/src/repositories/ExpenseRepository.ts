@@ -1,8 +1,12 @@
+import 'reflect-metadata'
+import { injectable} from "inversify"
 import Expense from '../domain/models/Expense.js'
+
 import DynamoDbAdapterFactory from './DbAdapterFactory.js'
 
 const TABLE_NAME = 'expenses'
 
+@injectable()
 export default class ExpenseRepository {
   #dynamoDbAdapter: any
   constructor() {
