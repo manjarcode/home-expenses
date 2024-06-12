@@ -4,8 +4,8 @@ class Guest {
   id: string
   name: string
   period: Period
-  active : boolean
-  
+  active: boolean
+
   constructor ({ id, name, period, active }) {
     this.id = id
     this.name = name
@@ -43,7 +43,7 @@ class Guest {
     return new Guest({
       id,
       name,
-      period: Period.fromPrimitives({ from, to, currently}),
+      period: Period.fromPrimitives({ from, to, currently }),
       active
     })
   }
