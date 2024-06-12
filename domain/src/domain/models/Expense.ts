@@ -25,14 +25,14 @@ class Expense implements Entity {
     }
   }
 
-  static fromDto({id, name, period, amount, paid}) {
+  static fromDto ({ id, name, period, amount, paid }): Expense {
     const periodVo = Period.fromPrimitives(period)
-    return new Expense({id, name, period: periodVo, amount, paid})
+    return new Expense({ id, name, period: periodVo, amount, paid })
   }
 
-  static fromPrimitives({id, name, from, to, amount, paid}) {
-    const periodVo = Period.fromPrimitives({from, to, currently: false})
-    return new Expense({id, name, period: periodVo, amount, paid})
+  static fromPrimitives ({ id, name, from, to, amount, paid }): Expense {
+    const periodVo = Period.fromPrimitives({ from, to, currently: false })
+    return new Expense({ id, name, period: periodVo, amount, paid })
   }
 }
 

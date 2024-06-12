@@ -1,7 +1,8 @@
 import 'reflect-metadata'
-import { injectable} from "inversify"
-import Expense from '../domain/models/Expense.js'
 
+import { injectable } from 'inversify'
+
+import Expense from '../domain/models/Expense.js'
 import DynamoDbAdapterFactory from './DbAdapterFactory.js'
 
 const TABLE_NAME = 'expenses'
@@ -9,12 +10,12 @@ const TABLE_NAME = 'expenses'
 @injectable()
 export default class ExpenseRepository {
   #dynamoDbAdapter: any
-  constructor() {
-    this.#dynamoDbAdapter = DynamoDbAdapterFactory.instance(TABLE_NAME, 'id', null)
+  constructor () {
+    this.#dynamoDbAdapter = DynamoDbAdapterFactory.instance(TABLE_NAME, 'id', '')
   }
 
   async add (expense: Expense): Promise<void> {
-    const { id, name, amount: amount, paid, period } = expense
+    const { id, name, amount, paid, period } = expense
 
     const promise = this.#dynamoDbAdapter.add({
       id,
@@ -24,7 +25,7 @@ export default class ExpenseRepository {
       from: period.from.getTime(),
       to: period.to.getTime()
     })
-    return await promise
+    return promise
   }
 
   async get (id: string): Promise<Expense> {
@@ -39,10 +40,10 @@ export default class ExpenseRepository {
     })
     return list
   }
-  
+
   async update (expense: Expense): Promise<void> {
     const { id, name, amount, paid, period } = expense
-    return await this.#dynamoDbAdapter.update({
+    return this.#dynamoDbAdapter.update({
       id,
       name,
       amount,
@@ -53,6 +54,6 @@ export default class ExpenseRepository {
   }
 
   async delete (id: string): Promise<void> {
-    return await this.#dynamoDbAdapter.delete(id)  
+    return this.#dynamoDbAdapter.delete(id)
   }
 }

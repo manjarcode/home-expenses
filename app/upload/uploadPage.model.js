@@ -1,4 +1,4 @@
-import {parseAmount} from '../../components/utils'
+import {parseAmount} from '../../components/utils.js'
 
 export default class UploadPageModel {
   async save(file) {

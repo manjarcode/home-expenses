@@ -1,14 +1,16 @@
-import "reflect-metadata"
+import 'reflect-metadata'
+
 import { inject, injectable } from 'inversify'
-import Types from '../../types.js'
+
 import Expense from '../../domain/models/Expense.js'
 import ExpenseRepository from '../../repositories/ExpenseRepository.js'
+import Types from '../../types.js'
 
 @injectable()
 export default class UpdateExpenseUseCase {
   private readonly repository: ExpenseRepository
   constructor (
-    @inject(Types.Repository.Expense) repository: ExpenseRepository
+  @inject(Types.Repository.Expense) repository: ExpenseRepository
   ) {
     this.repository = repository
   }
