@@ -5,14 +5,14 @@ const TABLE_NAME = 'guests'
 
 export default class GuestRepository {
   #dynamoDbAdapter: any
-  constructor() {
-    this.#dynamoDbAdapter = DynamoDbAdapterFactory.instance(TABLE_NAME, 'id', null)
+  constructor () {
+    this.#dynamoDbAdapter = DynamoDbAdapterFactory.instance(TABLE_NAME, 'id', '')
   }
 
   async add (guest: Guest): Promise<void> {
     const { id, name, period, active } = guest
 
-    return await this.#dynamoDbAdapter.add({
+    return this.#dynamoDbAdapter.add({
       id,
       name,
       from: period.from.getTime(),
@@ -25,7 +25,7 @@ export default class GuestRepository {
     const [item] = await this.#dynamoDbAdapter.query(id)
     return Guest.fromPrimitives(item)
   }
-  
+
   async list (): Promise<Guest[]> {
     const fromDb = await this.#dynamoDbAdapter.scan()
     const list = fromDb.map(item => {
@@ -34,9 +34,9 @@ export default class GuestRepository {
     return list
   }
 
-  async update(guest: Guest): Promise<void> {
+  async update (guest: Guest): Promise<void> {
     const { id, name, period, active } = guest
-    return await this.#dynamoDbAdapter.update({
+    return this.#dynamoDbAdapter.update({
       id,
       name,
       from: period.from.getTime(),
@@ -46,6 +46,6 @@ export default class GuestRepository {
   }
 
   async delete (id: string): Promise<void> {
-    return await this.#dynamoDbAdapter.delete(id)
+    return this.#dynamoDbAdapter.delete(id)
   }
 }

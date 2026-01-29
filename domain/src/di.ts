@@ -1,14 +1,14 @@
-import {Container} from 'inversify'
-import Types from './types.js'
+import { Container } from 'inversify'
 
-import ExpenseRepository from './repositories/ExpenseRepository.js'
 import AddExpenseUseCase from './application/expenses/addExpenseUseCase.js'
 import GetExpensesUseCase from './application/expenses/getExpenseUseCase.js'
 import ListExpensesUseCase from './application/expenses/listExpensesUseCase'
+import ParseExpenseDocumentUseCase from './application/expenses/parseExpenseDocumentUseCase.js'
 import RemoveExpenseUseCase from './application/expenses/removeExpenseUseCase.js'
 import UpdateExpenseUseCase from './application/expenses/updateExpenseUseCase.js'
-import ParseExpenseDocumentUseCase from './application/expenses/parseExpenseDocumentUseCase.js'
 import ExpenseParser from './repositories/ExpenseParser.js'
+import ExpenseRepository from './repositories/ExpenseRepository.js'
+import Types from './types.js'
 
 const DI = new Container()
 
@@ -22,6 +22,4 @@ DI.bind(Types.UseCase.ParseExpense).to(ParseExpenseDocumentUseCase)
 DI.bind(Types.UseCase.RemoveExpense).to(RemoveExpenseUseCase)
 DI.bind(Types.UseCase.UpdateExpense).to(UpdateExpenseUseCase)
 
-
 export default DI
-

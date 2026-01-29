@@ -6,8 +6,8 @@ import RemoveGuestUseCase from './application/guests/removeGuestUseCase.js'
 import UpdateGuestUseCase from './application/guests/updateGuestUseCase.js'
 import CalculateInvoiceUseCase from './application/invoices/calculateInvoicesUseCase.js'
 export * as config from './utils/config.js'
-export {default as Types} from './types.js'
-export {default as DI} from './di.js'
+export { default as Types } from './types.js'
+export { default as DI } from './di.js'
 
 export const useCases = {
   addGuestUseCase: new AddGuestUseCase(),
@@ -16,4 +16,5 @@ export const useCases = {
   updateGuestUseCase: new UpdateGuestUseCase(),
   listGuestUseCase: new ListGuestUseCase(),
   removeGuestUseCase: new RemoveGuestUseCase(),
-  calculateInvoiceUseCase: new CalculateInvoiceUseCase()}
+  calculateInvoiceUseCase: new CalculateInvoiceUseCase()
+}

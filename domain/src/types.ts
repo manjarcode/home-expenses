@@ -3,7 +3,7 @@ const Types = {
     Expense: Symbol('ExpenseRepository'),
     ExpenseParser: Symbol('ExpenseParser')
   },
-  UseCase:{
+  UseCase: {
     AddExpense: Symbol('AddExpenseUseCase'),
     GetExpenses: Symbol('GetExpensesUseCase'),
     ListExpenses: Symbol('ListExpenseUseCase'),

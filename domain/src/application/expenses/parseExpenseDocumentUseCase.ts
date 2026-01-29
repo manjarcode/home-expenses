@@ -1,5 +1,7 @@
 import 'reflect-metadata'
+
 import { inject, injectable } from 'inversify'
+
 import ExpenseParser from '../../repositories/ExpenseParser.js'
 import Types from '../../types.js'
 
@@ -8,7 +10,7 @@ export default class ParseExpenseDocumentUseCase {
   private readonly parser: ExpenseParser
 
   constructor (
-    @inject(Types.Repository.ExpenseParser) parser: ExpenseParser
+  @inject(Types.Repository.ExpenseParser) parser: ExpenseParser
   ) {
     this.parser = parser
   }

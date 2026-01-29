@@ -1,11 +1,12 @@
 import 'reflect-metadata'
+
 import { injectable } from 'inversify'
 import { v4 as uuid } from 'uuid'
 
 import Expense from '../domain/models/Expense.js'
 import Period from '../domain/models/Period.js'
-import PdfReader from './PdfReader.js'
 import { dateFromString } from '../utils/date.js'
+import PdfReader from './PdfReader.js'
 
 const EMPTY = ''
 @injectable()
@@ -41,7 +42,7 @@ export default class ExpenseParser {
   }
 
   private getFirstKeyLine (lines: string[]): string {
-    const EXPENSE_KEY_TEXT = 'IMPORTE DE'    
+    const EXPENSE_KEY_TEXT = 'IMPORTE DE'
     return lines.find(line => line.includes(EXPENSE_KEY_TEXT)) ?? EMPTY
   }
 

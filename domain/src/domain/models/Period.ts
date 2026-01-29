@@ -75,7 +75,7 @@ class Period {
     )} - ${this.to.toLocaleDateString(CULTURE)}`
   }
 
-  flatten(): any {
+  flatten (): any {
     return {
       from: this.from,
       to: this.to,
@@ -93,7 +93,7 @@ class Period {
     return this.from.valueOf()
   }
 
-  static fromPrimitives({ from, to, currently }): Period {
+  static fromPrimitives ({ from, to, currently }): Period {
     return new Period({ from: new Date(from), to: new Date(to), currently })
   }
 }
